@@ -10,16 +10,17 @@ using namespace std;
 
 int calcbits(int byte)
 {
-    int count = 0;
+    int bitsCount = 0;
     int i = 0;
     
-    while (i < 32) {
-        count += byte & 1;
+    while (i < 32)
+    {
+        bitsCount += byte & 1;
         byte = byte >> 1;
         i++;
     }
 
-    return count;
+    return bitsCount;
 }
 
 int main(int argc, char * argv[])
@@ -29,15 +30,15 @@ int main(int argc, char * argv[])
         cout << "Invalid arguments count\nUsage: calcbits <number>\n";
         return 1;
     }
-    
+
     if (!isdigit(*argv[1]))
     {
         cout << "Parameter must be integer!" << endl;
         return 1;
     }
-    
+
     int number = atoi(argv[1]);
-    
+
     cout << calcbits(number) << endl;
     
     return 0;

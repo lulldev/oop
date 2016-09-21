@@ -15,8 +15,50 @@
 
 using namespace std;
 
+bool OpenStream(ifstream & fileStream)
+{
+    if (!fileStream.is_open())
+    {
+        return false;
+    }
+    return true;
+}
+
+// возвращает номер строки
+int isFilesEqual(ifstream & file1, ifstream & file2)
+{
+    char ch1, ch2;
+    int lineCounter = 1;
+    
+    while (!file1.eof() && !file2.eof())
+    {
+        file1.get(ch1);
+        file2.get(ch2);
+        
+        if (ch1 != ch2)
+        {
+            return lineCounter;
+        }
+
+        if (ch1 == '\n')
+        {
+            lineCounter++;
+        }
+    
+    }
+    
+    if (!file1.eof() || !file2.eof())
+    {
+        return lineCounter;
+    }
+    
+    return 0;
+
+}
+
 int main(int argc, char * argv[])
 {
+    
     if (argc != 3)
     {
         cout << "Invalid arguments count\n"
@@ -24,56 +66,28 @@ int main(int argc, char * argv[])
         return 1;
     }
     
-    ifstream file1(argv[1]);
+    ifstream file1(argv[1]), file2(argv[2]);
     
-    if (!file1.is_open())
+    if (!OpenStream(file1))
     {
-        cout << "Failed to open " << argv[1] << " for reading\n";
+        cout << "Error reading file " << argv[1] << endl;
         return 1;
     }
     
-    ifstream file2(argv[2]);
-    
-    if (!file2.is_open())
+    if (!OpenStream(file2))
     {
-        cout << "Failed to open " << argv[2] << " for reading\n";
+        cout << "Error reading file " << argv[2] << endl;
         return 1;
     }
-    
-    char ch1, ch2;
-    int lineCounter1 = 0, lineCounter2 = 0;
-    
-    while (!file1.eof())
+
+    int isEqual = isFilesEqual(file1, file2);
+    if (isEqual != 0)
     {
-        file1.get(ch1);
-        file2.get(ch2);
-        
-        if (ch1 != ch2)
-        {
-            if (lineCounter1 >= lineCounter2)
-            {
-                cout << "Files are different. Line number is " << lineCounter1 << "\n";
-            }
-            else
-            {
-                cout << "Files are different. Line number is " << lineCounter2 << "\n";
-            }
-            return 1;
-        }
-        
-        if (ch1 == '\n')
-        {
-            lineCounter1++;
-        }
-        
-        if (ch2 == '\n')
-        {
-            lineCounter2++;
-        }
+        cout << "Files are different. Line number is " << isEqual << endl;
+        return 1;
     }
     
     cout << "Files are equal" << endl;
-    
     
     return 0;
 }

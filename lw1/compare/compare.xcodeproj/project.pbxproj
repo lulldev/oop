@@ -25,6 +25,18 @@
 /* Begin PBXFileReference section */
 		2074684D1D888F1A00A5DC69 /* compare */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = compare; sourceTree = BUILT_PRODUCTS_DIR; };
 		207468501D888F1A00A5DC69 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		32DCC116F96E9ED999F5D4D1 /* one-lines1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "one-lines1.txt"; sourceTree = "<group>"; };
+		32DCC1FD2671E02548D92D88 /* one-lines2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "one-lines2.txt"; sourceTree = "<group>"; };
+		32DCC236CB8220FB213FC193 /* test.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = test.sh; sourceTree = "<group>"; };
+		32DCC9EB456A440F21ECB281 /* equal2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = equal2.txt; sourceTree = "<group>"; };
+		32DCC9F2318B2A46D3F829DD /* file1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = file1.txt; sourceTree = "<group>"; };
+		32DCCA0D920D5D6976884678 /* empty2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = empty2.txt; sourceTree = "<group>"; };
+		32DCCA83E181EFB80B6323E1 /* no-empty.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "no-empty.txt"; sourceTree = "<group>"; };
+		32DCCB11E4ED0B314BAF066C /* empty1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = empty1.txt; sourceTree = "<group>"; };
+		32DCCB29013A6EAF60C08A54 /* multi-lines1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "multi-lines1.txt"; sourceTree = "<group>"; };
+		32DCCBB0427BCAD2CD258D04 /* multi-lines2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "multi-lines2.txt"; sourceTree = "<group>"; };
+		32DCCD7C28C559F01F6FBB33 /* equal1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = equal1.txt; sourceTree = "<group>"; };
+		32DCCEEF07FC78E512E290F1 /* file2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = file2.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +70,28 @@
 			isa = PBXGroup;
 			children = (
 				207468501D888F1A00A5DC69 /* main.cpp */,
+				32DCC236CB8220FB213FC193 /* test.sh */,
+				32DCC787D3DB5C36A2DA21A5 /* testing */,
 			);
 			path = compare;
+			sourceTree = "<group>";
+		};
+		32DCC787D3DB5C36A2DA21A5 /* testing */ = {
+			isa = PBXGroup;
+			children = (
+				32DCCA0D920D5D6976884678 /* empty2.txt */,
+				32DCCEEF07FC78E512E290F1 /* file2.txt */,
+				32DCCB11E4ED0B314BAF066C /* empty1.txt */,
+				32DCC9F2318B2A46D3F829DD /* file1.txt */,
+				32DCCA83E181EFB80B6323E1 /* no-empty.txt */,
+				32DCCD7C28C559F01F6FBB33 /* equal1.txt */,
+				32DCC116F96E9ED999F5D4D1 /* one-lines1.txt */,
+				32DCC1FD2671E02548D92D88 /* one-lines2.txt */,
+				32DCCB29013A6EAF60C08A54 /* multi-lines1.txt */,
+				32DCCBB0427BCAD2CD258D04 /* multi-lines2.txt */,
+				32DCC9EB456A440F21ECB281 /* equal2.txt */,
+			);
+			path = testing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
