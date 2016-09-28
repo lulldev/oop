@@ -1,0 +1,16 @@
+
+*.iml
+
+lw2/htmlEncodeDecode/.idea/misc.xml
+
+lw2/htmlEncodeDecode/.idea/modules.xml
+
+lw2/htmlEncodeDecode/.idea/workspace.xml
+
+lw2/htmlEncodeDecode/.idea/xcode.xml
+
+lw2/htmlEncodeDecode/htmlEncodeDecode.xcodeproj/project.pbxproj
+
+lw2/htmlEncodeDecode/htmlEncodeDecode.xcodeproj/xcuserdata/lull.xcuserdatad/xcschemes/xcschememanagement.plist
+
+lw2/htmlEncodeDecode/htmlEncodeDecode.xcodeproj/xcuserdata/lull.xcuserdatad/xcschemes/htmlEncodeDecode.xcscheme
