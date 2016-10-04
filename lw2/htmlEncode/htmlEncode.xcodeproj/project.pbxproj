@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20B54F481DA4676700A8FB85 /* testHtmlEncode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B54F471DA4676700A8FB85 /* testHtmlEncode.cpp */; };
 		20E653921DA44E9A001D252C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20E653911DA44E9A001D252C /* main.cpp */; };
 		20E6539A1DA44EBD001D252C /* htmlEncode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20E653981DA44EBD001D252C /* htmlEncode.cpp */; };
 		20E653AA1DA44F79001D252C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20E653A91DA44F79001D252C /* main.cpp */; };
-		20E653B21DA44FAC001D252C /* testSampleClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20E653B01DA44FAC001D252C /* testSampleClass.cpp */; };
 		20E653B51DA461DC001D252C /* htmlEncode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20E653981DA44EBD001D252C /* htmlEncode.cpp */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		20B54F471DA4676700A8FB85 /* testHtmlEncode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testHtmlEncode.cpp; sourceTree = "<group>"; };
 		20E6538E1DA44E9A001D252C /* htmlEncode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = htmlEncode; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E653911DA44E9A001D252C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		20E653981DA44EBD001D252C /* htmlEncode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = htmlEncode.cpp; sourceTree = "<group>"; };
@@ -43,7 +44,6 @@
 		20E653A71DA44F79001D252C /* htmlEncodeTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = htmlEncodeTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E653A91DA44F79001D252C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		20E653AE1DA44FAC001D252C /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
-		20E653B01DA44FAC001D252C /* testSampleClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testSampleClass.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,8 +96,8 @@
 		20E653A81DA44F79001D252C /* htmlEncodeTest */ = {
 			isa = PBXGroup;
 			children = (
+				20B54F471DA4676700A8FB85 /* testHtmlEncode.cpp */,
 				20E653AE1DA44FAC001D252C /* catch.hpp */,
-				20E653B01DA44FAC001D252C /* testSampleClass.cpp */,
 				20E653A91DA44F79001D252C /* main.cpp */,
 			);
 			path = htmlEncodeTest;
@@ -191,8 +191,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20E653B21DA44FAC001D252C /* testSampleClass.cpp in Sources */,
 				20E653B51DA461DC001D252C /* htmlEncode.cpp in Sources */,
+				20B54F481DA4676700A8FB85 /* testHtmlEncode.cpp in Sources */,
 				20E653AA1DA44F79001D252C /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
