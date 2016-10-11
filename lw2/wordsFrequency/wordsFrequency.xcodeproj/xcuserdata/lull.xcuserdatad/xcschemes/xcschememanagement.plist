@@ -9,10 +9,32 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>wordsFrequencyTest 2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>wordsFrequencyTest.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>20B54F5F1DA4C90C00A8FB85</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>20C4C08C1DACE1F60019EC8F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>20C4C0981DACE3940019EC8F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

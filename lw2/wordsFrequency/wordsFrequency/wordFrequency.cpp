@@ -1,39 +1,24 @@
 #include <iostream>
-#include "wordFrequency.h"
+#include "wordFrequency.hpp"
 
 using namespace std;
 
-bool icompare_util(unsigned char a, unsigned char b)
+size_t frequencyWordInMap(WordsFrequencyMap & frequencyMap, string & needleWord)
 {
-    return std::tolower(a) == std::tolower(b);
-}
-
-bool icompare(std::string const& a, std::string const& b)
-{
-    if (a.length() == b.length())
-    {
-        return std::equal(b.begin(), b.end(), a.begin(), icompare_util);
-    }
-    else
-    {
-        return false;
-    }
-}
-
-bool issetWordInMap(WordsFrequencyMap & frequencyMap, string & needleWord)
-{
+    size_t frequencyCount = 0;
     if (!frequencyMap.empty())
     {
         for(auto it = frequencyMap.begin(); it != frequencyMap.end(); ++it)
         {
-            if (!icompare(it->first, needleWord))
+            transform(needleWord.begin(), needleWord.end(), needleWord.begin(), ::tolower);
+            if (it->first == needleWord)
             {
-                return true;
+                frequencyCount = it->second;
             }
         }
     }
     
-    return false;
+    return frequencyCount;
 }
 
 void showResult(WordsFrequencyMap & frequencyMap)

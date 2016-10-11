@@ -1,7 +1,7 @@
 #include <iostream>
 #include <map>
 
-#include "wordFrequency.h"
+#include "wordFrequency.hpp"
 
 using namespace std;
 
@@ -12,23 +12,21 @@ int main(int argc, const char * argv[])
     string word = "";
     int wordCnt;
     
-    cout << "Введите слова для подсчета встречаемости:" << endl;
+    cout << "Введите слова для подсчета встречаемости:";
     while (ch != EOF)
     {
         ch = cin.get();
         if (word != "" && (ch == '\n' || ch == ' ' || ch == '\t'))
         {
-            if (!issetWordInMap(frequencyMap, word))
+            if (frequencyWordInMap(frequencyMap, word) == 0)
             {
                 frequencyMap.insert(pair <string, int> (word, 1));
             }
             else
             {
-                // TODO: word to small case
                 wordCnt = frequencyMap[word];
                 frequencyMap[word] = ++wordCnt;
             }
-            
             word = "";
         }
         else
