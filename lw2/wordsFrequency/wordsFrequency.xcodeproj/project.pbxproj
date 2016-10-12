@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		20B54F641DA4C90C00A8FB85 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B54F631DA4C90C00A8FB85 /* main.cpp */; };
 		20B54F6C1DA4CA7A00A8FB85 /* wordFrequency.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20B54F6B1DA4CA7A00A8FB85 /* wordFrequency.cpp */; };
-		20C4C09C1DACE3950019EC8F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20C4C09B1DACE3950019EC8F /* main.cpp */; };
+		20C4C09C1DACE3950019EC8F /* wordFrequencyTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20C4C09B1DACE3950019EC8F /* wordFrequencyTest.cpp */; };
 		20C4C0A21DAD10FF0019EC8F /* libboost_unit_test_framework-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C4C0A11DAD10FE0019EC8F /* libboost_unit_test_framework-mt.dylib */; };
 		20C4C0A41DAD11540019EC8F /* libboost_unit_test_framework.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C4C0A31DAD11540019EC8F /* libboost_unit_test_framework.dylib */; };
 		20C4C0A71DAD118D0019EC8F /* libboost_unit_test_framework-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C4C0A51DAD118D0019EC8F /* libboost_unit_test_framework-mt.a */; };
@@ -54,7 +54,7 @@
 		20B54F6A1DA4C96700A8FB85 /* wordFrequency.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wordFrequency.hpp; sourceTree = "<group>"; };
 		20B54F6B1DA4CA7A00A8FB85 /* wordFrequency.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wordFrequency.cpp; sourceTree = "<group>"; };
 		20C4C0991DACE3940019EC8F /* wordsFrequencyTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = wordsFrequencyTest; sourceTree = BUILT_PRODUCTS_DIR; };
-		20C4C09B1DACE3950019EC8F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		20C4C09B1DACE3950019EC8F /* wordFrequencyTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wordFrequencyTest.cpp; sourceTree = "<group>"; };
 		20C4C0A11DAD10FE0019EC8F /* libboost_unit_test_framework-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_unit_test_framework-mt.dylib"; path = "../../../../boost/lib/libboost_unit_test_framework-mt.dylib"; sourceTree = "<group>"; };
 		20C4C0A31DAD11540019EC8F /* libboost_unit_test_framework.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_unit_test_framework.dylib; path = ../../../../boost/lib/libboost_unit_test_framework.dylib; sourceTree = "<group>"; };
 		20C4C0A51DAD118D0019EC8F /* libboost_unit_test_framework-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_unit_test_framework-mt.a"; path = "../../../../boost/lib/libboost_unit_test_framework-mt.a"; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		20C4C09A1DACE3940019EC8F /* wordsFrequencyTest */ = {
 			isa = PBXGroup;
 			children = (
-				20C4C09B1DACE3950019EC8F /* main.cpp */,
+				20C4C09B1DACE3950019EC8F /* wordFrequencyTest.cpp */,
 			);
 			path = wordsFrequencyTest;
 			sourceTree = "<group>";
@@ -222,7 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20C4C0AF1DAD1BB60019EC8F /* wordFrequency.cpp in Sources */,
-				20C4C09C1DACE3950019EC8F /* main.cpp in Sources */,
+				20C4C09C1DACE3950019EC8F /* wordFrequencyTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,6 @@
 #include <map>
 
-typedef std::map <std::string, int> WordsFrequencyMap;
+typedef std::map <std::string, size_t> WordsFrequencyMap;
 
-size_t frequencyWordInMap(WordsFrequencyMap & frequencyMap, std::string & needleWord);
-void showResult(WordsFrequencyMap & frequencyMap);
+WordsFrequencyMap ReadWordsAndSearchFrequency(std::istream & input, std::ostream & output);
+void ShowResult(WordsFrequencyMap & frequencyMap);

@@ -3,25 +3,22 @@
 
 using namespace std;
 
-size_t frequencyWordInMap(WordsFrequencyMap & frequencyMap, string & needleWord)
+WordsFrequencyMap ReadWordsAndSearchFrequency(std::istream & input, std::ostream & output)
 {
-    size_t frequencyCount = 0;
-    if (!frequencyMap.empty())
+    WordsFrequencyMap frequencyMap;
+    string word;
+    
+    output << "Введите слова для подсчета встречаемости:";
+    while (input >> word)
     {
-        for(auto it = frequencyMap.begin(); it != frequencyMap.end(); ++it)
-        {
-            transform(needleWord.begin(), needleWord.end(), needleWord.begin(), ::tolower);
-            if (it->first == needleWord)
-            {
-                frequencyCount = it->second;
-            }
-        }
+        transform(word.begin(), word.end(), word.begin(), ::tolower);
+        ++frequencyMap[word];
     }
     
-    return frequencyCount;
+    return frequencyMap;
 }
 
-void showResult(WordsFrequencyMap & frequencyMap)
+void ShowResult(WordsFrequencyMap & frequencyMap)
 {
     if (!frequencyMap.empty())
     {
