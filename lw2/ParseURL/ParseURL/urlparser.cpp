@@ -27,6 +27,8 @@ bool ParseURL(string const & url, Protocol & protocol, int & port, string & host
             {
                 case 1: // http
                     protocolStr = urlComponent;
+                    transform(protocolStr.begin(), protocolStr.end(), protocolStr.begin(), ::tolower);
+                    
                     if (protocolStr == "http")
                     {
                         protocol = Protocol::HTTP;
