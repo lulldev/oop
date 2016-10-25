@@ -9,10 +9,25 @@
 /* Begin PBXBuildFile section */
 		20059ACC1DB4DB1C00DDC200 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20059ACB1DB4DB1C00DDC200 /* main.cpp */; };
 		20059AD41DB4DCCD00DDC200 /* urlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20059AD21DB4DCCD00DDC200 /* urlparser.cpp */; };
+		2008A59B1DBFBA4F0043B1CF /* TestURLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2008A59A1DBFBA4F0043B1CF /* TestURLParser.cpp */; };
+		2008A59F1DBFBBF00043B1CF /* urlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20059AD21DB4DCCD00DDC200 /* urlparser.cpp */; };
+		2008A5A51DBFC3B70043B1CF /* libboost_unit_test_framework-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2008A5A11DBFC3B70043B1CF /* libboost_unit_test_framework-mt.a */; };
+		2008A5A61DBFC3B70043B1CF /* libboost_unit_test_framework-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2008A5A21DBFC3B70043B1CF /* libboost_unit_test_framework-mt.dylib */; };
+		2008A5A71DBFC3B70043B1CF /* libboost_unit_test_framework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2008A5A31DBFC3B70043B1CF /* libboost_unit_test_framework.a */; };
+		2008A5A81DBFC3B70043B1CF /* libboost_unit_test_framework.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2008A5A41DBFC3B70043B1CF /* libboost_unit_test_framework.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		20059AC61DB4DB1C00DDC200 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		2008A5961DBFBA4F0043B1CF /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -28,6 +43,12 @@
 		20059ACB1DB4DB1C00DDC200 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		20059AD21DB4DCCD00DDC200 /* urlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = urlparser.cpp; sourceTree = "<group>"; };
 		20059AD31DB4DCCD00DDC200 /* urlparser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = urlparser.hpp; sourceTree = "<group>"; };
+		2008A5981DBFBA4F0043B1CF /* TestParseURL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestParseURL; sourceTree = BUILT_PRODUCTS_DIR; };
+		2008A59A1DBFBA4F0043B1CF /* TestURLParser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestURLParser.cpp; sourceTree = "<group>"; };
+		2008A5A11DBFC3B70043B1CF /* libboost_unit_test_framework-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_unit_test_framework-mt.a"; path = "../../../../boost/lib/libboost_unit_test_framework-mt.a"; sourceTree = "<group>"; };
+		2008A5A21DBFC3B70043B1CF /* libboost_unit_test_framework-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_unit_test_framework-mt.dylib"; path = "../../../../boost/lib/libboost_unit_test_framework-mt.dylib"; sourceTree = "<group>"; };
+		2008A5A31DBFC3B70043B1CF /* libboost_unit_test_framework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_unit_test_framework.a; path = ../../../../boost/lib/libboost_unit_test_framework.a; sourceTree = "<group>"; };
+		2008A5A41DBFC3B70043B1CF /* libboost_unit_test_framework.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_unit_test_framework.dylib; path = ../../../../boost/lib/libboost_unit_test_framework.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +59,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2008A5951DBFBA4F0043B1CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2008A5A51DBFC3B70043B1CF /* libboost_unit_test_framework-mt.a in Frameworks */,
+				2008A5A61DBFC3B70043B1CF /* libboost_unit_test_framework-mt.dylib in Frameworks */,
+				2008A5A71DBFC3B70043B1CF /* libboost_unit_test_framework.a in Frameworks */,
+				2008A5A81DBFC3B70043B1CF /* libboost_unit_test_framework.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -45,7 +77,9 @@
 			isa = PBXGroup;
 			children = (
 				20059ACA1DB4DB1C00DDC200 /* ParseURL */,
+				2008A5991DBFBA4F0043B1CF /* TestParseURL */,
 				20059AC91DB4DB1C00DDC200 /* Products */,
+				2008A5A01DBFC3B60043B1CF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -53,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				20059AC81DB4DB1C00DDC200 /* ParseURL */,
+				2008A5981DBFBA4F0043B1CF /* TestParseURL */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,6 +100,25 @@
 				20059AD31DB4DCCD00DDC200 /* urlparser.hpp */,
 			);
 			path = ParseURL;
+			sourceTree = "<group>";
+		};
+		2008A5991DBFBA4F0043B1CF /* TestParseURL */ = {
+			isa = PBXGroup;
+			children = (
+				2008A59A1DBFBA4F0043B1CF /* TestURLParser.cpp */,
+			);
+			path = TestParseURL;
+			sourceTree = "<group>";
+		};
+		2008A5A01DBFC3B60043B1CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2008A5A11DBFC3B70043B1CF /* libboost_unit_test_framework-mt.a */,
+				2008A5A21DBFC3B70043B1CF /* libboost_unit_test_framework-mt.dylib */,
+				2008A5A31DBFC3B70043B1CF /* libboost_unit_test_framework.a */,
+				2008A5A41DBFC3B70043B1CF /* libboost_unit_test_framework.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +141,23 @@
 			productReference = 20059AC81DB4DB1C00DDC200 /* ParseURL */;
 			productType = "com.apple.product-type.tool";
 		};
+		2008A5971DBFBA4F0043B1CF /* TestParseURL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2008A59E1DBFBA4F0043B1CF /* Build configuration list for PBXNativeTarget "TestParseURL" */;
+			buildPhases = (
+				2008A5941DBFBA4F0043B1CF /* Sources */,
+				2008A5951DBFBA4F0043B1CF /* Frameworks */,
+				2008A5961DBFBA4F0043B1CF /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestParseURL;
+			productName = TestParseURL;
+			productReference = 2008A5981DBFBA4F0043B1CF /* TestParseURL */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -97,6 +168,10 @@
 				ORGANIZATIONNAME = "Иван Калагин";
 				TargetAttributes = {
 					20059AC71DB4DB1C00DDC200 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					2008A5971DBFBA4F0043B1CF = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
 					};
@@ -115,6 +190,7 @@
 			projectRoot = "";
 			targets = (
 				20059AC71DB4DB1C00DDC200 /* ParseURL */,
+				2008A5971DBFBA4F0043B1CF /* TestParseURL */,
 			);
 		};
 /* End PBXProject section */
@@ -126,6 +202,15 @@
 			files = (
 				20059AD41DB4DCCD00DDC200 /* urlparser.cpp in Sources */,
 				20059ACC1DB4DB1C00DDC200 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2008A5941DBFBA4F0043B1CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2008A59F1DBFBBF00043B1CF /* urlparser.cpp in Sources */,
+				2008A59B1DBFBA4F0043B1CF /* TestURLParser.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +318,24 @@
 			};
 			name = Release;
 		};
+		2008A59C1DBFBA4F0043B1CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"HEADER_SEARCH_PATHS[arch=*]" = /usr/local/Cellar/boost/1.61.0_1/include;
+				LIBRARY_SEARCH_PATHS = "/usr/local/Cellar/boost/1.61.0_1/lib/**";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2008A59D1DBFBA4F0043B1CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -250,6 +353,15 @@
 			buildConfigurations = (
 				20059AD01DB4DB1C00DDC200 /* Debug */,
 				20059AD11DB4DB1C00DDC200 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2008A59E1DBFBA4F0043B1CF /* Build configuration list for PBXNativeTarget "TestParseURL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2008A59C1DBFBA4F0043B1CF /* Debug */,
+				2008A59D1DBFBA4F0043B1CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

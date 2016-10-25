@@ -5,15 +5,9 @@
 
 using namespace std;
 
-// TODO:
-//int getURLPortByProtocol(Protocol & protocol)
-//{
-//    return 0;
-//}
-
 bool ParseURL(string const & url, Protocol & protocol, int & port, string & host, string & document)
 {
-    regex urlRegexRule("(http|https|ftp):\/\/([^/:]+):?([^\/]*)?([\/])?([^]*)?");
+    regex urlRegexRule("(http|https|ftp)://([^/:]+):?([^/]*)?([/])?([^]*)?");
     smatch urlRegexResult;
     
     if (regex_match(url, urlRegexResult, urlRegexRule))

@@ -8,15 +8,13 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    string inputURL;
-    cout << "Input URL string> ";
-    cin >> inputURL;
-    
     Protocol urlProtocol;
     int urlPort;
     string urlHost, urlDocument;
     
-//    urlProtocol = HTTP;
+    string inputURL;
+    cout << "Input URL string> ";
+    cin >> inputURL;
     
     if (ParseURL(inputURL, urlProtocol, urlPort, urlHost, urlDocument))
     {
