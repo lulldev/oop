@@ -14,6 +14,22 @@ int urlPort;
 string urlAddress, urlHost, urlDocument;
 bool testURLFlag;
 
+BOOST_AUTO_TEST_CASE(WrongData)
+{
+    testURLFlag = ParseURL("", urlProtocol, urlPort, urlHost, urlDocument);
+    BOOST_CHECK(testURLFlag != true);
+    testURLFlag = ParseURL("http://", urlProtocol, urlPort, urlHost, urlDocument);
+    BOOST_CHECK(testURLFlag != true);
+    testURLFlag = ParseURL("http://test.ru:d/", urlProtocol, urlPort, urlHost, urlDocument);
+    BOOST_CHECK(testURLFlag != true);
+    testURLFlag = ParseURL("http://test.ru:", urlProtocol, urlPort, urlHost, urlDocument);
+    BOOST_CHECK(testURLFlag != true);
+    testURLFlag = ParseURL("http://:", urlProtocol, urlPort, urlHost, urlDocument);
+    BOOST_CHECK(testURLFlag != true);
+    testURLFlag = ParseURL("tttp://test.ru", urlProtocol, urlPort, urlHost, urlDocument);
+    BOOST_CHECK(testURLFlag != true);
+}
+
 BOOST_AUTO_TEST_CASE(HttpAddressTesting)
 {
     urlAddress = "http://vk.com/";
@@ -36,7 +52,7 @@ BOOST_AUTO_TEST_CASE(HttpsAddressTesting)
     BOOST_CHECK(urlProtocol == Protocol::HTTPS);
     BOOST_CHECK(urlPort == 443);
     BOOST_CHECK(urlHost == "vk.com");
-    BOOST_CHECK(urlDocument == "document");
+    BOOST_CHECK(urlDocument == "/document");
 }
 
 BOOST_AUTO_TEST_CASE(FtpAddressTesting)
@@ -61,7 +77,7 @@ BOOST_AUTO_TEST_CASE(AnyPortTesting)
     BOOST_CHECK(urlProtocol == Protocol::HTTP);
     BOOST_CHECK(urlPort == 8080);
     BOOST_CHECK(urlHost == "yandex.ru");
-    BOOST_CHECK(urlDocument == "document1/#title");
+    BOOST_CHECK(urlDocument == "/document1/#title");
 }
 
 BOOST_AUTO_TEST_SUITE_END()

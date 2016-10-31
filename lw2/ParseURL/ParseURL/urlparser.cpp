@@ -5,9 +5,46 @@
 
 using namespace std;
 
+Protocol GetProtocolByStr(const string strProtocol)
+{
+    if (strProtocol == "http")
+    {
+        return Protocol::HTTP;
+    }
+    else if (strProtocol == "https")
+    {
+        return Protocol::HTTPS;
+    }
+    else if (strProtocol == "ftp")
+    {
+        return Protocol::FTP;
+    }
+    
+    return Protocol::Undifened;
+}
+
+int GetPortByProtocol(Protocol & protocol)
+{
+    switch(protocol)
+    {
+        case Protocol::HTTP:
+            return 80;
+            break;
+        case Protocol::HTTPS:
+            return 443;
+            break;
+        case Protocol::FTP:
+            return 21;
+            break;
+    }
+    
+    return -1;
+}
+
 bool ParseURL(string const & url, Protocol & protocol, int & port, string & host, string & document)
 {
-    regex urlRegexRule("(http|https|ftp)://([^/:]+):?([^/]*)?([/])?([^]*)?");
+    // regexr (http|https|ftp):\/\/([^\/:]+)+(:[0-9]+)?(\/[^\/]+)*\/?$
+    regex urlRegexRule("(http|https|ftp)://([^/:]+)+(:[0-9]+)?(\/[^]+)*/?$");
     smatch urlRegexResult;
     
     if (regex_match(url, urlRegexResult, urlRegexRule))
@@ -22,19 +59,7 @@ bool ParseURL(string const & url, Protocol & protocol, int & port, string & host
                 case 1: // http
                     protocolStr = urlComponent;
                     transform(protocolStr.begin(), protocolStr.end(), protocolStr.begin(), ::tolower);
-                    
-                    if (protocolStr == "http")
-                    {
-                        protocol = Protocol::HTTP;
-                    }
-                    else if (protocolStr == "https")
-                    {
-                        protocol = Protocol::HTTPS;
-                    }
-                    else if (protocolStr == "ftp")
-                    {
-                        protocol = Protocol::FTP;
-                    }
+                    protocol = GetProtocolByStr(protocolStr);
                     break;
                 case 2: // domain
                     host = urlComponent;
@@ -43,25 +68,15 @@ bool ParseURL(string const & url, Protocol & protocol, int & port, string & host
                     portStr = urlComponent;
                     if (portStr.size() > 0)
                     {
+                        portStr.erase(portStr.begin());
                         port = stoi(portStr);
                     }
                     else
                     {
-                        switch(protocol)
-                        {
-                            case Protocol::HTTP:
-                                port = 80;
-                                break;
-                            case Protocol::HTTPS:
-                                port = 443;
-                                break;
-                            case Protocol::FTP:
-                                port = 21;
-                                break;
-                        }
+                        port = GetPortByProtocol(protocol);
                     }
                     break;
-                case 5: // document
+                case 4: // document
                     document = urlComponent;
                     break;
             }
