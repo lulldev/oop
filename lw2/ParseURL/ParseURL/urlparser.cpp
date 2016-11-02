@@ -49,36 +49,43 @@ bool ParseURL(string const & url, Protocol & protocol, int & port, string & host
     if (regex_match(url, urlRegexResult, urlRegexRule))
     {
         size_t componentCounter = 0;
-        string portStr, protocolStr;
 
         for (const auto & urlComponent : urlRegexResult)
         {
             switch(componentCounter)
             {
                 case 1: // http
-                    protocolStr = urlComponent;
+                {
+                    string protocolStr = urlComponent;
                     transform(protocolStr.begin(), protocolStr.end(), protocolStr.begin(), ::tolower);
                     protocol = GetProtocolByStr(protocolStr);
+                }
                     break;
                 case 2: // domain
                     host = urlComponent;
                     break;
                 case 4: // port
-                    portStr = urlComponent;
+                {
+                    string portStr = urlComponent;
                     if (portStr.size() > 0)
                     {
                         port = stoi(portStr);
+                        if (port < 1 && port > 65536)
+                        {
+                            return false;
+                        }
                     }
                     else
                     {
                         port = GetPortByProtocol(protocol);
                     }
+                }
                     break;
                 case 5: // document
                     document = urlComponent;
                     break;
             }
-            componentCounter++;
+            ++componentCounter;
         }
         return true;
     }

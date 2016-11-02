@@ -10,8 +10,7 @@ int main(int argc, const char * argv[])
 {
     Protocol urlProtocol;
     int urlPort;
-    string urlHost, urlDocument;
-    string inputURL;
+    string urlHost, urlDocument, inputURL;
     
     cout << "Input URL string's> ";
     
