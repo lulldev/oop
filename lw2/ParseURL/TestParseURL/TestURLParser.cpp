@@ -28,6 +28,8 @@ BOOST_AUTO_TEST_CASE(WrongData)
     BOOST_CHECK(testURLFlag != true);
     testURLFlag = ParseURL("tttp://test.ru", urlProtocol, urlPort, urlHost, urlDocument);
     BOOST_CHECK(testURLFlag != true);
+    testURLFlag = ParseURL("HTTP://test.ru", urlProtocol, urlPort, urlHost, urlDocument);
+    BOOST_CHECK(testURLFlag == true);
 }
 
 BOOST_AUTO_TEST_CASE(HttpAddressTesting)

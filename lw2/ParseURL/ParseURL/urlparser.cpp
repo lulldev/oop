@@ -20,7 +20,7 @@ Protocol GetProtocolByStr(const string strProtocol)
         return Protocol::FTP;
     }
     
-    return Protocol::Undifened;
+    return Protocol::Undefined;
 }
 
 int GetPortByProtocol(Protocol & protocol)
@@ -43,8 +43,7 @@ int GetPortByProtocol(Protocol & protocol)
 
 bool ParseURL(string const & url, Protocol & protocol, int & port, string & host, string & document)
 {
-    // regexr (http|https|ftp):\/\/([^\/:]+)+(:[0-9]+)?(\/[^\/]+)*\/?$
-    regex urlRegexRule("(http|https|ftp)://([^/:]+)+(:[0-9]+)?(\/[^]+)*/?$");
+    regex urlRegexRule("(http|https|ftp)://([^/:]+)+((?=:):([0-9]+))?(\/[^]+)*/?$", regex_constants::icase);
     smatch urlRegexResult;
     
     if (regex_match(url, urlRegexResult, urlRegexRule))
@@ -64,11 +63,10 @@ bool ParseURL(string const & url, Protocol & protocol, int & port, string & host
                 case 2: // domain
                     host = urlComponent;
                     break;
-                case 3: // port
+                case 4: // port
                     portStr = urlComponent;
                     if (portStr.size() > 0)
                     {
-                        portStr.erase(portStr.begin());
                         port = stoi(portStr);
                     }
                     else
@@ -76,7 +74,7 @@ bool ParseURL(string const & url, Protocol & protocol, int & port, string & host
                         port = GetPortByProtocol(protocol);
                     }
                     break;
-                case 4: // document
+                case 5: // document
                     document = urlComponent;
                     break;
             }
