@@ -13,8 +13,17 @@
 		2008A5CD1DBFD7FB0043B1CF /* libboost_unit_test_framework-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2008A5C91DBFD7FB0043B1CF /* libboost_unit_test_framework-mt.dylib */; };
 		2008A5CE1DBFD7FB0043B1CF /* libboost_unit_test_framework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2008A5CA1DBFD7FB0043B1CF /* libboost_unit_test_framework.a */; };
 		2008A5CF1DBFD7FB0043B1CF /* libboost_unit_test_framework.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2008A5CB1DBFD7FB0043B1CF /* libboost_unit_test_framework.dylib */; };
-		2008A5D21DBFDD370043B1CF /* car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2008A5D11DBFDD370043B1CF /* car.cpp */; };
-		2008A5D31DBFDD370043B1CF /* car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2008A5D11DBFDD370043B1CF /* car.cpp */; };
+		2008A5D21DBFDD370043B1CF /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2008A5D11DBFDD370043B1CF /* Car.cpp */; };
+		2008A5D31DBFDD370043B1CF /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2008A5D11DBFDD370043B1CF /* Car.cpp */; };
+		20628A6B1DD2676D00E3896E /* CarControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20628A691DD2676D00E3896E /* CarControl.cpp */; };
+		20628A6E1DD267D400E3896E /* CarControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20628A691DD2676D00E3896E /* CarControl.cpp */; };
+		20628A7A1DD2775E00E3896E /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2008A5D11DBFDD370043B1CF /* Car.cpp */; };
+		20628A7B1DD2775E00E3896E /* CarControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20628A691DD2676D00E3896E /* CarControl.cpp */; };
+		20628A7C1DD2777400E3896E /* testCarControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20628A6C1DD267C800E3896E /* testCarControl.cpp */; };
+		20628A7D1DD277A000E3896E /* libboost_unit_test_framework-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2008A5C81DBFD7FB0043B1CF /* libboost_unit_test_framework-mt.a */; };
+		20628A7E1DD277A000E3896E /* libboost_unit_test_framework-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2008A5C91DBFD7FB0043B1CF /* libboost_unit_test_framework-mt.dylib */; };
+		20628A7F1DD277A000E3896E /* libboost_unit_test_framework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2008A5CA1DBFD7FB0043B1CF /* libboost_unit_test_framework.a */; };
+		20628A801DD277A000E3896E /* libboost_unit_test_framework.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2008A5CB1DBFD7FB0043B1CF /* libboost_unit_test_framework.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +45,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		20628A711DD2758400E3896E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -47,8 +65,12 @@
 		2008A5C91DBFD7FB0043B1CF /* libboost_unit_test_framework-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_unit_test_framework-mt.dylib"; path = "../../../../boost/lib/libboost_unit_test_framework-mt.dylib"; sourceTree = "<group>"; };
 		2008A5CA1DBFD7FB0043B1CF /* libboost_unit_test_framework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_unit_test_framework.a; path = ../../../../boost/lib/libboost_unit_test_framework.a; sourceTree = "<group>"; };
 		2008A5CB1DBFD7FB0043B1CF /* libboost_unit_test_framework.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_unit_test_framework.dylib; path = ../../../../boost/lib/libboost_unit_test_framework.dylib; sourceTree = "<group>"; };
-		2008A5D01DBFD85A0043B1CF /* car.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = car.h; sourceTree = "<group>"; };
-		2008A5D11DBFDD370043B1CF /* car.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = car.cpp; sourceTree = "<group>"; };
+		2008A5D01DBFD85A0043B1CF /* Car.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
+		2008A5D11DBFDD370043B1CF /* Car.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Car.cpp; sourceTree = "<group>"; };
+		20628A691DD2676D00E3896E /* CarControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarControl.cpp; sourceTree = "<group>"; };
+		20628A6A1DD2676D00E3896E /* CarControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarControl.h; sourceTree = "<group>"; };
+		20628A6C1DD267C800E3896E /* testCarControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testCarControl.cpp; path = ../CarClassTesting/testCarControl.cpp; sourceTree = "<group>"; };
+		20628A731DD2758400E3896E /* CarControlTesting */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CarControlTesting; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +92,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		20628A701DD2758400E3896E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20628A7D1DD277A000E3896E /* libboost_unit_test_framework-mt.a in Frameworks */,
+				20628A7E1DD277A000E3896E /* libboost_unit_test_framework-mt.dylib in Frameworks */,
+				20628A7F1DD277A000E3896E /* libboost_unit_test_framework.a in Frameworks */,
+				20628A801DD277A000E3896E /* libboost_unit_test_framework.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +111,7 @@
 			children = (
 				2008A5B41DBFD58E0043B1CF /* CarClass */,
 				2008A5C11DBFD7790043B1CF /* CarClassTesting */,
+				20628A741DD2758400E3896E /* CarControlTesting */,
 				2008A5B31DBFD58E0043B1CF /* Products */,
 				2008A5C71DBFD7FB0043B1CF /* Frameworks */,
 			);
@@ -88,6 +122,7 @@
 			children = (
 				2008A5B21DBFD58E0043B1CF /* CarClass */,
 				2008A5C01DBFD7780043B1CF /* CarClassTesting */,
+				20628A731DD2758400E3896E /* CarControlTesting */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,8 +131,10 @@
 			isa = PBXGroup;
 			children = (
 				2008A5B51DBFD58E0043B1CF /* main.cpp */,
-				2008A5D01DBFD85A0043B1CF /* car.h */,
-				2008A5D11DBFDD370043B1CF /* car.cpp */,
+				2008A5D01DBFD85A0043B1CF /* Car.h */,
+				2008A5D11DBFDD370043B1CF /* Car.cpp */,
+				20628A691DD2676D00E3896E /* CarControl.cpp */,
+				20628A6A1DD2676D00E3896E /* CarControl.h */,
 			);
 			path = CarClass;
 			sourceTree = "<group>";
@@ -119,6 +156,14 @@
 				2008A5CB1DBFD7FB0043B1CF /* libboost_unit_test_framework.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		20628A741DD2758400E3896E /* CarControlTesting */ = {
+			isa = PBXGroup;
+			children = (
+				20628A6C1DD267C800E3896E /* testCarControl.cpp */,
+			);
+			path = CarControlTesting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +203,23 @@
 			productReference = 2008A5C01DBFD7780043B1CF /* CarClassTesting */;
 			productType = "com.apple.product-type.tool";
 		};
+		20628A721DD2758400E3896E /* CarControlTesting */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20628A771DD2758400E3896E /* Build configuration list for PBXNativeTarget "CarControlTesting" */;
+			buildPhases = (
+				20628A6F1DD2758400E3896E /* Sources */,
+				20628A701DD2758400E3896E /* Frameworks */,
+				20628A711DD2758400E3896E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CarControlTesting;
+			productName = CarControlTesting;
+			productReference = 20628A731DD2758400E3896E /* CarControlTesting */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -173,6 +235,10 @@
 					};
 					2008A5BF1DBFD7780043B1CF = {
 						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					20628A721DD2758400E3896E = {
+						CreatedOnToolsVersion = 8.1;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -191,6 +257,7 @@
 			targets = (
 				2008A5B11DBFD58E0043B1CF /* CarClass */,
 				2008A5BF1DBFD7780043B1CF /* CarClassTesting */,
+				20628A721DD2758400E3896E /* CarControlTesting */,
 			);
 		};
 /* End PBXProject section */
@@ -200,7 +267,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2008A5D21DBFDD370043B1CF /* car.cpp in Sources */,
+				2008A5D21DBFDD370043B1CF /* Car.cpp in Sources */,
+				20628A6B1DD2676D00E3896E /* CarControl.cpp in Sources */,
 				2008A5B61DBFD58E0043B1CF /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,8 +277,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2008A5D31DBFDD370043B1CF /* car.cpp in Sources */,
+				2008A5D31DBFDD370043B1CF /* Car.cpp in Sources */,
+				20628A6E1DD267D400E3896E /* CarControl.cpp in Sources */,
 				2008A5C31DBFD7790043B1CF /* testCarClass.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20628A6F1DD2758400E3896E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20628A7C1DD2777400E3896E /* testCarControl.cpp in Sources */,
+				20628A7A1DD2775E00E3896E /* Car.cpp in Sources */,
+				20628A7B1DD2775E00E3896E /* CarControl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +415,22 @@
 			};
 			name = Release;
 		};
+		20628A781DD2758400E3896E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		20628A791DD2758400E3896E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -346,7 +441,7 @@
 				2008A5B81DBFD58E0043B1CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2008A5B91DBFD58E0043B1CF /* Build configuration list for PBXNativeTarget "CarClass" */ = {
 			isa = XCConfigurationList;
@@ -355,7 +450,7 @@
 				2008A5BB1DBFD58E0043B1CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2008A5C41DBFD7790043B1CF /* Build configuration list for PBXNativeTarget "CarClassTesting" */ = {
 			isa = XCConfigurationList;
@@ -364,7 +459,15 @@
 				2008A5C61DBFD7790043B1CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
+		};
+		20628A771DD2758400E3896E /* Build configuration list for PBXNativeTarget "CarControlTesting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20628A781DD2758400E3896E /* Debug */,
+				20628A791DD2758400E3896E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

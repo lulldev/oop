@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CarClass/car.cpp"
-            timestampString = "499113916.185969"
+            timestampString = "500245294.687479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3"
-            endingLineNumber = "3"
-            landmarkName = "CCar::IsEngineTurnOn()"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "CCar::TurnOnEngine()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CarClass/car.cpp"
-            timestampString = "499760055.676311"
+            timestampString = "500245294.687479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "CCar::TurnOffEngine()"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "CCar::GetAvailableSpeedByGear(int gear)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
