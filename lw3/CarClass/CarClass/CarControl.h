@@ -1,27 +1,27 @@
+#pragma once
+
 #include <sstream>
+#include <map>
+#include <vector>
 
 #include "Car.h"
 
 class CCarControl
 {
 public:
-    
-    CCarControl(CCar & car, std::istream & input, std::ostream & output);
-    bool HandleCommand();
+    CCarControl(CCar & car);
+    ~CCarControl() = default;
+
+    bool ReadAndActionCommand(std::istream & input, std::ostream & output);
 
 private:
-    void Info(std::istream & args);
-    bool EngineOn(std::istream & args);
-    bool EngineOff(std::istream & args);
+    void Info();
+    bool EngineOn();
+    bool EngineOff();
     bool SetGear(int gear);
     bool SetSpeed(int speed);
     
-private:
-    CCar & m_car;
-    std::istream & m_input;
-    std::ostream & m_output;
-
-    typedef std::map<std::string, std::function<bool(std::istream & args)>> ActionMap;
-    
-    const ActionMap m_actionMap;
+    CCar m_car;
+    void ActionCommand(std::vector<std::string> args);
+    std::stringstream m_output;
 };

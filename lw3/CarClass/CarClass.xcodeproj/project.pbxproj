@@ -16,7 +16,6 @@
 		2008A5D21DBFDD370043B1CF /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2008A5D11DBFDD370043B1CF /* Car.cpp */; };
 		2008A5D31DBFDD370043B1CF /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2008A5D11DBFDD370043B1CF /* Car.cpp */; };
 		20628A6B1DD2676D00E3896E /* CarControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20628A691DD2676D00E3896E /* CarControl.cpp */; };
-		20628A6E1DD267D400E3896E /* CarControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20628A691DD2676D00E3896E /* CarControl.cpp */; };
 		20628A7A1DD2775E00E3896E /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2008A5D11DBFDD370043B1CF /* Car.cpp */; };
 		20628A7B1DD2775E00E3896E /* CarControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20628A691DD2676D00E3896E /* CarControl.cpp */; };
 		20628A7C1DD2777400E3896E /* testCarControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20628A6C1DD267C800E3896E /* testCarControl.cpp */; };
@@ -71,6 +70,10 @@
 		20628A6A1DD2676D00E3896E /* CarControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarControl.h; sourceTree = "<group>"; };
 		20628A6C1DD267C800E3896E /* testCarControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testCarControl.cpp; path = ../CarClassTesting/testCarControl.cpp; sourceTree = "<group>"; };
 		20628A731DD2758400E3896E /* CarControlTesting */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CarControlTesting; sourceTree = BUILT_PRODUCTS_DIR; };
+		20628A831DD2EC7E00E3896E /* libboost_program_options-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_program_options-mt.a"; path = "../../../../boost/lib/libboost_program_options-mt.a"; sourceTree = "<group>"; };
+		20628A841DD2EC7E00E3896E /* libboost_program_options-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_program_options-mt.dylib"; path = "../../../../boost/lib/libboost_program_options-mt.dylib"; sourceTree = "<group>"; };
+		20628A851DD2EC7E00E3896E /* libboost_program_options.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_program_options.a; path = ../../../../boost/lib/libboost_program_options.a; sourceTree = "<group>"; };
+		20628A861DD2EC7E00E3896E /* libboost_program_options.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_program_options.dylib; path = ../../../../boost/lib/libboost_program_options.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,10 @@
 		2008A5C71DBFD7FB0043B1CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20628A831DD2EC7E00E3896E /* libboost_program_options-mt.a */,
+				20628A841DD2EC7E00E3896E /* libboost_program_options-mt.dylib */,
+				20628A851DD2EC7E00E3896E /* libboost_program_options.a */,
+				20628A861DD2EC7E00E3896E /* libboost_program_options.dylib */,
 				2008A5C81DBFD7FB0043B1CF /* libboost_unit_test_framework-mt.a */,
 				2008A5C91DBFD7FB0043B1CF /* libboost_unit_test_framework-mt.dylib */,
 				2008A5CA1DBFD7FB0043B1CF /* libboost_unit_test_framework.a */,
@@ -226,7 +233,7 @@
 		2008A5AA1DBFD58E0043B1CF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Иван Калагин";
 				TargetAttributes = {
 					2008A5B11DBFD58E0043B1CF = {
@@ -278,7 +285,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2008A5D31DBFDD370043B1CF /* Car.cpp in Sources */,
-				20628A6E1DD267D400E3896E /* CarControl.cpp in Sources */,
 				2008A5C31DBFD7790043B1CF /* testCarClass.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +320,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -361,6 +368,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -386,6 +394,8 @@
 		2008A5BA1DBFD58E0043B1CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -393,6 +403,8 @@
 		2008A5BB1DBFD58E0043B1CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -419,6 +431,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -427,6 +440,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -468,6 +482,7 @@
 				20628A791DD2758400E3896E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

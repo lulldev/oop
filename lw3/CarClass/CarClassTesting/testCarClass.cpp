@@ -3,12 +3,16 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include <iostream>
+
 #include "Car.h"
 
 struct CarFixture
 {
     CCar car;
 };
+
+// todo extend
 
 BOOST_FIXTURE_TEST_SUITE(Car, CarFixture)
 
@@ -36,8 +40,8 @@ BOOST_FIXTURE_TEST_SUITE(Car, CarFixture)
     BOOST_AUTO_TEST_CASE(get_available_speed_by_gear)
     {
         // wrong gear
-        rangeSpeedMap getSpeed = car.GetAvailableSpeedByGear(10);
-        BOOST_CHECK(getSpeed.first == -1 && getSpeed.second == -1);
+        RangeSpeed getSpeed = car.GetAvailableSpeedByGear(10);
+        BOOST_CHECK(getSpeed.first == 0 && getSpeed.second == 0);
         
         // gear = -1 => 0-20 km/h
         getSpeed = car.GetAvailableSpeedByGear(-1);
@@ -45,7 +49,7 @@ BOOST_FIXTURE_TEST_SUITE(Car, CarFixture)
         
         // gear = 0 => no limits
         getSpeed = car.GetAvailableSpeedByGear(0);
-        BOOST_CHECK(getSpeed.first == 0 && getSpeed.second == 0);
+        BOOST_CHECK(getSpeed.first == 0 && getSpeed.second == 150);
         
         // gear = 1 => 0-20 km/h
         getSpeed = car.GetAvailableSpeedByGear(3);
@@ -63,7 +67,7 @@ BOOST_FIXTURE_TEST_SUITE(Car, CarFixture)
         BOOST_CHECK(car.IsSpeedCorrespondGear(15, -1)); // good
         
         // gear = 0 => no speed limit
-        BOOST_CHECK(!car.IsSpeedCorrespondGear(100, 0)); // wrong
+        BOOST_CHECK(!car.IsSpeedCorrespondGear(200, 0)); // wrong
         BOOST_CHECK(car.IsSpeedCorrespondGear(0, 0)); // good
         
         // gear = 2

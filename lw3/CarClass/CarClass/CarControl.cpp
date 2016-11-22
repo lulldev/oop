@@ -1,38 +1,142 @@
-#include "Car.h"
+#include <boost/algorithm/string.hpp>
+
+#include <iostream>
+#include <vector>
+
 #include "CarControl.h"
 
 using namespace std;
 
-/*
- Info. Выводит состояние двигателя автомобиля, направление движения, скорость и передачу
- EngineOn. Включает двигатель
- EngineOff. Выключает двигатель
- SetGear <передача>. Включает заданную передачу. В случае ошибки сообщает о причине невозможности переключения передачи
- SetSpeed <скорость>. Устанавливает указанную скорость движения. В случае невозможности изменения скорости сообщает о причине невозможности изменить скорость на указанную.
-*/
-
-bool CCarControl::HandleCommand()
+CCarControl::CCarControl(CCar & car)
 {
-    string commandLine;
-    getline(m_input, commandLine);
-    istringstream strm(commandLine);
+}
+
+vector<string> split(string str, char delimiter)
+{
+    vector<string> internal;
+    stringstream ss(str);
+    string tok;
     
-    string action;
-    strm >> action;
-    
-    auto it = m_actionMap.find(action);
-    if (it != m_actionMap.end())
+    while(getline(ss, tok, delimiter))
     {
-        return it->second(strm);
+        internal.push_back(tok);
+    }
+    
+    return internal;
+}
+
+bool CCarControl::ReadAndActionCommand(std::istream & input, std::ostream & output)
+{
+    string inputCommand;
+    vector<string> splitCommand;
+    
+    getline(input, inputCommand);
+    splitCommand = split(inputCommand, ' ');
+    output.clear();
+    m_output.str("");
+    
+    if (splitCommand.size() > 0 && splitCommand.size() <= 2)
+    {
+        ActionCommand(splitCommand);
+        output << m_output.str();
+        return true;
     }
     
     return false;
 }
 
-bool CCarControl::EngineOn(std::istream & args)
+void CCarControl::ActionCommand(vector<string> args)
 {
-    m_car.TurnOnEngine();
-    m_output << "Car engine is turn on!" << endl;
-    return true;
+    if (args[0] == "Info")
+    {
+        Info();
+    }
+    else if (args[0] == "EngineOn")
+    {
+        EngineOn();
+    }
+    else if (args[0] == "EngineOff")
+    {
+        EngineOff();
+    }
+    else if (args[0] == "SetGear")
+    {
+        string gearParam = args[1];
+        if (isdigit(gearParam[0]) || (gearParam[0] == '-' && isdigit(gearParam[1])))
+        {
+            SetGear(stoi(gearParam));
+        }
+        else
+        {
+            m_output << "Gear number is wrong!\n";
+        }
+    }
+    else if (args[0] == "SetSpeed")
+    {
+        string speedParam = args[1];
+        if (isdigit(speedParam[0]))
+        {
+            SetSpeed(stoi(speedParam));
+        }
+        else
+        {
+            m_output << "Speed number is wrong!\n";
+        }
+    }
+    else
+    {
+        m_output << "Unknow command\n";
+    }
+}
+
+void CCarControl::Info()
+{
+    string engineStatus = (m_car.m_engineIsOn) ? "on" : "off";
+    
+    m_output << "Information:\nEngine is: " << engineStatus << "\nCurrent gear: " << m_car.m_currentGear << "\nCurrent speed: " << m_car.m_currentSpeed << "\nCurrent direction: " << m_car.GetDirection() << "\n";
+}
+
+bool CCarControl::EngineOn()
+{
+    bool isEngineOn = m_car.TurnOnEngine();
+    
+    (isEngineOn)
+        ? m_output << "Car engine is turn ON!\n"
+        : m_output << "Engine already ON!\n";
+    
+    return isEngineOn;
+}
+
+bool CCarControl::EngineOff()
+{
+    bool isEngineOff = m_car.TurnOffEngine();
+    
+    (isEngineOff)
+        ? m_output << "Car engine is turn OFF!\n"
+        : m_output << "Engine already OFF!\n";
+    
+    return isEngineOff;
+}
+
+bool CCarControl::SetGear(int gear)
+{    
+    bool isSetGear = m_car.SetGear(gear);
+    
+    (isSetGear)
+        ? m_output << "Set " << gear << " gear is complete!\n"
+        : m_output << "Error set input gear\n";
+
+    return isSetGear;
+}
+
+bool CCarControl::SetSpeed(int speed)
+{
+    bool isSetSpeed = m_car.SetSpeed(speed);
+    
+    (isSetSpeed)
+        ? m_output << "Set " << speed << " km/h is complete!\n"
+        : m_output << "Error set input speed\n";
+    
+    return isSetSpeed;
 }
 
