@@ -21,7 +21,7 @@ private:
     bool SetGear(int gear);
     bool SetSpeed(int speed);
     
-    CCar m_car;
+    CCar & m_car;
     void ActionCommand(std::vector<std::string> args);
     std::stringstream m_output;
 };

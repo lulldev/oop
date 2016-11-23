@@ -8,6 +8,7 @@
 using namespace std;
 
 CCarControl::CCarControl(CCar & car)
+    : m_car(car)
 {
 }
 
@@ -64,7 +65,14 @@ void CCarControl::ActionCommand(vector<string> args)
         string gearParam = args[1];
         if (isdigit(gearParam[0]) || (gearParam[0] == '-' && isdigit(gearParam[1])))
         {
-            SetGear(stoi(gearParam));
+            try
+            {
+                SetGear(stoi(gearParam));
+            }
+            catch(...)
+            {
+                m_output << "Gear number is wrong!\n";
+            }
         }
         else
         {
@@ -76,7 +84,14 @@ void CCarControl::ActionCommand(vector<string> args)
         string speedParam = args[1];
         if (isdigit(speedParam[0]))
         {
-            SetSpeed(stoi(speedParam));
+            try
+            {
+                SetSpeed(stoi(speedParam));
+            }
+            catch(...)
+            {
+                m_output << "Speed number is wrong!\n";
+            }
         }
         else
         {

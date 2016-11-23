@@ -18,7 +18,6 @@ CCar::CCar()
         {4, {40, 90}},
         {5, {50, 150}}
     };
-    
 }
 
 bool CCar::IsEngineTurnOn()const
@@ -147,7 +146,6 @@ bool CCar::SetSpeed(int speed)
 {
     if (IsSpeedCorrespondGear(speed, m_currentGear) && IsGearAllowSpeed(speed))
     {
-        // направление в зависимости от скорости и передачи
         m_currentSpeed = speed;
         UpdateDirection();
         return true;
