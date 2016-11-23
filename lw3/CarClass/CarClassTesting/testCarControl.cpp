@@ -45,7 +45,8 @@ BOOST_FIXTURE_TEST_SUITE(CarControl, CarControlDependencies)
 
     BOOST_AUTO_TEST_CASE(can_engine_off)
     {
-        VerifyCommandAction("EngineOff", "Engine already OFF!\n");
+        car.TurnOnEngine();
+        VerifyCommandAction("EngineOff", "Car engine is turn OFF!\n");
     }
 
     BOOST_AUTO_TEST_CASE(can_set_gear)
@@ -71,7 +72,7 @@ BOOST_FIXTURE_TEST_SUITE(CarControl, CarControlDependencies)
         VerifyCommandAction("SetSpeed 30", "Error set input speed\n");
         VerifyCommandAction("SetSpeed 10", "Set 10 km/h is complete!\n");
 
-        VerifyCommandAction("EngineOff", "Engine already OFF!\n");
+        VerifyCommandAction("EngineOff", "Can't OFF engine!\n");
     }
 
 BOOST_AUTO_TEST_SUITE_END()

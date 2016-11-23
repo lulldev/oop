@@ -15,12 +15,12 @@ CCarControl::CCarControl(CCar & car)
 vector<string> split(string str, char delimiter)
 {
     vector<string> internal;
-    stringstream ss(str);
-    string tok;
+    stringstream strStream(str);
+    string strTok;
     
-    while(getline(ss, tok, delimiter))
+    while(getline(strStream, strTok, delimiter))
     {
-        internal.push_back(tok);
+        internal.push_back(strTok);
     }
     
     return internal;
@@ -128,7 +128,7 @@ bool CCarControl::EngineOff()
     
     (isEngineOff)
         ? m_output << "Car engine is turn OFF!\n"
-        : m_output << "Engine already OFF!\n";
+        : m_output << "Can't OFF engine!\n";
     
     return isEngineOff;
 }

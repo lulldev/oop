@@ -12,11 +12,11 @@ int main(int argc, const char * argv[])
     CCar car;
     CCarControl carControl(car);
     
-    do
+    while(!cin.eof())
     {
         cout << "Input command >>";
+        carControl.ReadAndActionCommand(cin, cout);
     }
-    while (carControl.ReadAndActionCommand(cin, cout));
     
     return 0;
 }
