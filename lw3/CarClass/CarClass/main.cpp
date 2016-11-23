@@ -7,8 +7,6 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    string inputCommand;
-
     CCar car;
     CCarControl carControl(car);
     
