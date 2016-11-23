@@ -12,8 +12,6 @@ struct CarFixture
     CCar car;
 };
 
-// todo extend
-
 BOOST_FIXTURE_TEST_SUITE(Car, CarFixture)
 
     // изначально автомобиль не заведен

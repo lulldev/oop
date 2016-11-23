@@ -27,15 +27,14 @@ public:
     bool SetGear(int gear);
     bool SetSpeed(int speed);
     
-    RangeSpeedMap m_rangeSpeedMap;
-    
-    RangeSpeed GetAvailableSpeedByGear(int gear);
-    bool IsSpeedCorrespondGear(int speed, int gear);
+    RangeSpeed GetAvailableSpeedByGear(int gear)const;
+    bool IsSpeedCorrespondGear(int speed, int gear)const;
     void UpdateDirection();
     std::string GetDirection()const;
     bool IsGearAllowSpeed(int speed)const;
     
 private:
+    RangeSpeedMap m_rangeSpeedMap;
     bool m_engineIsOn;
     DirectionMovement m_carDirection;
     int m_currentSpeed;

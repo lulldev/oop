@@ -46,12 +46,12 @@ bool CCar::TurnOffEngine()
     return false;
 }
 
-RangeSpeed CCar::GetAvailableSpeedByGear(int gear)
+RangeSpeed CCar::GetAvailableSpeedByGear(int gear)const
 {
-    return m_rangeSpeedMap[gear];
+    return m_rangeSpeedMap.at(gear);
 }
 
-bool CCar::IsSpeedCorrespondGear(int currentSpeed, int gear)
+bool CCar::IsSpeedCorrespondGear(int currentSpeed, int gear)const
 {
     RangeSpeed speedRange = GetAvailableSpeedByGear(gear);
     return (currentSpeed >= speedRange.first && currentSpeed <= speedRange.second);
