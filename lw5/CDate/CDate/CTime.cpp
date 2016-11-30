@@ -60,4 +60,3 @@ unsigned CTime::ParseSecondsFromFormatTime(string & formatTime)
     
     return (stoi(splitFormatTime[0]) * 3600) + (stoi(splitFormatTime[1]) * 60) + stoi(splitFormatTime[2]);
 }
-
