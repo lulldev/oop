@@ -67,30 +67,6 @@ CTime  CTime::operator -(CTime const & time2)
     return CTime((subtractionResult < 0) ? MAX_SECONDS_IN_DAY - (subtractionResult * -1) : subtractionResult);
 }
 
-CTime const  CTime::operator++(int)
-{
-    ++m_timeSeconds;
-    if (m_timeSeconds >= MAX_SECONDS_IN_DAY)
-    {
-        m_timeSeconds = m_timeSeconds - MAX_SECONDS_IN_DAY;
-    }
-    return *this;
-}
-
-CTime const  CTime::operator--(int)
-{
-    signed seconds = m_timeSeconds;
-    --seconds;
-    if (seconds < 0)
-    {
-        m_timeSeconds = MAX_SECONDS_IN_DAY - (seconds * -1);
-    }
-    else
-    {
-        m_timeSeconds = seconds;
-    }
-    return *this;
-}
 
 CTime & CTime::operator++()
 {
@@ -100,6 +76,11 @@ CTime & CTime::operator++()
         m_timeSeconds = m_timeSeconds - MAX_SECONDS_IN_DAY;
     }
     return *this;
+}
+
+CTime const CTime::operator++(int)
+{
+    return ++*this;
 }
 
 CTime & CTime::operator--()
@@ -117,6 +98,11 @@ CTime & CTime::operator--()
     return *this;
 }
 
+CTime const CTime::operator--(int)
+{
+    return --*this;
+}
+
 CTime & CTime::operator =(CTime const & other)
 {
     if (std::addressof(other) != this)
@@ -126,6 +112,7 @@ CTime & CTime::operator =(CTime const & other)
     }
     return *this;
 }
+
 
 CTime & CTime::operator +=(CTime const & other)
 {
