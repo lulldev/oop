@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <sstream>
 
 #include <boost/algorithm/string.hpp>
 
@@ -37,16 +38,15 @@ public:
     bool operator >=(CTime const & other)const;
     bool operator <=(CTime const & other)const;
     CTime const operator *(unsigned number)const;
+    CTime const friend operator *(unsigned number, CTime const & other);
     CTime const operator /(unsigned number)const;
     unsigned operator /(CTime const & other)const;
-//    std::ostream & operator<<(std::ostream & output, const СTime & time);
-//    std::istream & operator>>(std::istream & input, const CTime & time);
+    std::ostream friend & operator<<(std::ostream & output, const CTime & time);
+//    std::istream friend & operator>>(std::istream & input, const CTime & time);
 
 private:
-    // храним время в секундах
     unsigned m_timeSeconds;
     bool m_validTime;
     
-    // считывыет из строки формата h:m:s числовое значение секунды
     unsigned ParseSecondsFromFormatTime(const std::string & formatTime)const;
 };

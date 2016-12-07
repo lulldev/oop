@@ -228,14 +228,12 @@ CTime const CTime::operator *(unsigned number)const
     return CTime((multiplicationResult > MAX_SECONDS_IN_DAY) ? multiplicationResult - MAX_SECONDS_IN_DAY : multiplicationResult);
 }
 
-// todo
-//CTime const operator *(CTime const & other)
-//{
-//    unsigned multiplicationResult = other.GetSeconds() * number;
-//    return CTime((multiplicationResult > MAX_SECONDS_IN_DAY) ?
-//                  multiplicationResult - MAX_SECONDS_IN_DAY
-//                  : multiplicationResult);
-//}
+CTime const operator *(unsigned number, CTime const & other)
+{
+    unsigned multiplicationResult = other.m_timeSeconds * number;
+    return CTime((multiplicationResult > MAX_SECONDS_IN_DAY) ?
+                  multiplicationResult - MAX_SECONDS_IN_DAY : multiplicationResult);
+}
 
 CTime const CTime::operator /(unsigned number)const
 {
@@ -258,13 +256,15 @@ unsigned CTime::operator /(CTime const & other)const
     return divisionResult;
 }
 
-//ostream & operator<<(ostream & output, const CTime & time)
+std::ostream & operator <<(std::ostream & output, const CTime & time)
+{
+    (time.IsValid()) ? output << time.FormatTime() : output << "INVALID TIME";
+    return output;
+}
+
+//std::istream & operator >>(std::istream & input, const CTime & time)
 //{
-//    (time.IsValid()) ? output << time.FormatTime() : output << "INVALID TIME";
-//    return output;
-//}
-//
-//istream & operator>>(istream & input, const CTime & time)
-//{
-//    (time.ParseSecondsFromFormatTime(input))
+//    signed parseSecondsFromInput = time.ParseSecondsFromFormatTime(input.str());
+//    (parseSecondsFromInput != -1) ? input >> parseSecondsFromInput : input >> "INVALID TIME";
+//    return input;
 //}
