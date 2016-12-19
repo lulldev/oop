@@ -22,17 +22,22 @@ bool VerifyTime(const CTime & time, unsigned hours, unsigned minutes, unsigned s
 
 BOOST_FIXTURE_TEST_SUITE(DateTesting, TimeFixture)
 
+BOOST_AUTO_TEST_CASE(test_init_wrong_date)
+{
+    try
+    {
+        CTime time1(40, 2, 10);
+    }
+    catch (invalid_argument e)
+    {
+        BOOST_CHECK_EQUAL(e.what(), "Invalid value for CTime");
+    }
+}
+
 BOOST_AUTO_TEST_CASE(test_init_date)
 {
-    CTime time1(40, 2, 10);
-    BOOST_CHECK(time1.IsValid() == false);
-    
-    CTime time2(0, 0, 0);
-    BOOST_CHECK(time2.IsValid() == true);
-    
     CTime time3(2, 12, 10);
-    BOOST_CHECK(time2.IsValid() == true);
-    
+    BOOST_CHECK(time3.IsValid() == true);
 }
 
 BOOST_AUTO_TEST_CASE(test_get_hours)
@@ -74,6 +79,12 @@ BOOST_AUTO_TEST_CASE(test_format_date)
     BOOST_CHECK_EQUAL(time3.FormatTime(), "01:00:00");
 }
 
+// todo: try invalid time
+//BOOST_AUTO_TEST_CASE(test_addition_operator_with_wrong)
+//{
+//    BOOST_REQUIRE(VerifyTime(CTime(0, 0, 0) + CTime(90, 10, 20), 0, 0, 0));
+//}
+
 BOOST_AUTO_TEST_CASE(test_addition_operator_wrong_result)
 {
     BOOST_REQUIRE(!VerifyTime(CTime(0, 0, 0) + CTime(10, 10, 20), 0, 0, 0));
@@ -101,36 +112,32 @@ BOOST_AUTO_TEST_CASE(test_substraction_operator)
     BOOST_REQUIRE(VerifyTime(CTime(0, 0, 5) - CTime(0, 0, 10), 23, 59, 55));
 }
 
-BOOST_AUTO_TEST_CASE(test_postfix_inc_and_dec_wrong_result)
+BOOST_AUTO_TEST_CASE(test_prefix_inc_and_dec_with_wrong)
 {
-    BOOST_REQUIRE(!VerifyTime(CTime(0, 0, 0)++, 0, 0, 0));
-    BOOST_REQUIRE(!VerifyTime(CTime(0, 0, 0)--, 0, 0, 0));
-}
-
-BOOST_AUTO_TEST_CASE(test_postfix_inc_and_dec)
-{
-    BOOST_REQUIRE(!VerifyTime(CTime(0, 0, 0)++, 0, 0, 0));
-    BOOST_REQUIRE(VerifyTime(CTime(10, 10, 20)++, 10, 10, 21));
-    BOOST_REQUIRE(VerifyTime(CTime(23, 59, 59)++, 0, 0, 0));
-    
-    BOOST_REQUIRE(!VerifyTime(CTime(0, 0, 0)--, 0, 0, 0));
-    BOOST_REQUIRE(VerifyTime(CTime(10, 10, 20)--, 10, 10, 19));
-    BOOST_REQUIRE(VerifyTime(CTime(0, 0, 0)--, 23, 59, 59));
-}
-
-BOOST_AUTO_TEST_CASE(test_prefix_inc_and_dec_wrong_result)
-{
-    BOOST_REQUIRE(!VerifyTime(++CTime(0, 0, 0), 0, 0, 0));
-    BOOST_REQUIRE(!VerifyTime(--CTime(0, 0, 0), 0, 0, 0));
+    BOOST_REQUIRE(!VerifyTime(++CTime(0, 0, 10), 0, 0, 0));
+    BOOST_REQUIRE(!VerifyTime(--CTime(0, 0, 10), 0, 0, 11));
 }
 
 BOOST_AUTO_TEST_CASE(test_prefix_inc_and_dec)
 {
     BOOST_REQUIRE(VerifyTime(++CTime(10, 10, 20), 10, 10, 21));
-    BOOST_REQUIRE(VerifyTime(++CTime(23, 59, 59), 0, 0, 0));
-
-    BOOST_REQUIRE(VerifyTime(--CTime(10, 10, 20), 10, 10, 19));
     BOOST_REQUIRE(VerifyTime(--CTime(0, 0, 0), 23, 59, 59));
+}
+
+BOOST_AUTO_TEST_CASE(test_postfix_inc_and_dec_with_wrong)
+{
+    BOOST_REQUIRE(!VerifyTime(CTime(0, 0, 0)++, 0, 0, 1));
+    BOOST_REQUIRE(!VerifyTime(CTime(0, 0, 0)--, 23, 59, 59));
+}
+
+BOOST_AUTO_TEST_CASE(test_postfix_inc_and_dec)
+{    
+    CTime time1(23, 59, 59);
+    BOOST_REQUIRE(VerifyTime(time1++, 23, 59, 59));
+    BOOST_REQUIRE(VerifyTime(time1, 0, 0, 0));
+    
+    BOOST_REQUIRE(VerifyTime(time1--, 0, 0, 0));
+    BOOST_REQUIRE(VerifyTime(time1, 23, 59, 59));
 }
 
 BOOST_AUTO_TEST_CASE(test_assignment_operator)
@@ -198,26 +205,43 @@ BOOST_AUTO_TEST_CASE(test_assignment_multiplocation_operator)
 }
 
 
-BOOST_AUTO_TEST_CASE(test_assignment_division_operator)
+BOOST_AUTO_TEST_CASE(test_assignment_division_operator_with_wrong_param)
 {
     CTime time1(100);
     CTime time2(0);
+    CTime time3(10);
+
+    // division by zero
+    
+    try
+    {
+        time1 / time2;
+    }
+    catch (overflow_error e)
+    {
+        BOOST_REQUIRE_EQUAL(e.what(), "Divide by zero exception");
+    }
+    
+    // big second param
+    
+    try
+    {
+        time3 / time1;
+    }
+    catch (invalid_argument e)
+    {
+        BOOST_REQUIRE_EQUAL(e.what(), "Invalid right param for division");
+    }
+}
+
+BOOST_AUTO_TEST_CASE(test_assignment_division_operator)
+{
+    CTime time1(100);
+    CTime time2(10);
+    
     time1 /= time2;
     
-    BOOST_REQUIRE(!VerifyTime(time1, 0, 0, 0));
-    BOOST_REQUIRE(VerifyTime(time1, 0, 1, 40));
-    
-    CTime time3(100);
-    CTime time4(10);
-    time3 /= time4;
-
-    BOOST_REQUIRE(VerifyTime(time3, 0, 0, 10));
-    
-    CTime time5(10);
-    CTime time6(100);
-    time5 /= time6;
-    
-    BOOST_REQUIRE(VerifyTime(time5, 0, 0, 10));
+    BOOST_REQUIRE(VerifyTime(time1, 0, 0, 10));
 }
 
 BOOST_AUTO_TEST_CASE(test_comparison_operator)
@@ -226,8 +250,11 @@ BOOST_AUTO_TEST_CASE(test_comparison_operator)
     CTime time2(20);
     CTime time3(10);
 
+    BOOST_REQUIRE(!(time1 == time2));
     BOOST_REQUIRE(time1 == time1);
     BOOST_REQUIRE(time1 == time3);
+    
+    BOOST_REQUIRE(!(time1 != time3));
     BOOST_REQUIRE(time1 != time2);
 }
 
@@ -238,6 +265,8 @@ BOOST_AUTO_TEST_CASE(test_strict_comparison_operator)
     CTime time3(20);
     
     BOOST_REQUIRE(!(time3 < time1));
+    BOOST_REQUIRE(!(time1 > time3));
+    
     BOOST_REQUIRE(time3 > time1);
     BOOST_REQUIRE(time1 < time2);
 }
@@ -260,32 +289,76 @@ BOOST_AUTO_TEST_CASE(test_multiplication_operator_wrong_result)
 
 BOOST_AUTO_TEST_CASE(test_multiplication_operator)
 {
-    BOOST_REQUIRE(VerifyTime(CTime (3, 5, 15) * 0, 0, 0, 0));
-    BOOST_REQUIRE(VerifyTime(CTime (3, 5, 15) * 3, 9, 15, 45));
-    BOOST_REQUIRE(VerifyTime(3 * CTime (3, 5, 15), 9, 15, 45));
+    BOOST_REQUIRE(VerifyTime(CTime(3, 5, 15) * 0, 0, 0, 0));
+    BOOST_REQUIRE(VerifyTime(CTime(3, 5, 15) * 3, 9, 15, 45));
+    BOOST_REQUIRE(VerifyTime(3 * CTime(3, 5, 15), 9, 15, 45));
+    BOOST_REQUIRE(VerifyTime(CTime(23, 0, 0) * 3, 21, 0, 0));
 }
 
-BOOST_AUTO_TEST_CASE(test_division_operator_wrong_result)
+BOOST_AUTO_TEST_CASE(test_division_operator_wrong_param)
 {
+    CTime time1(100);
     
-    BOOST_REQUIRE(!VerifyTime(CTime(100) / CTime(0), 0, 0, 0));
-    BOOST_REQUIRE(!VerifyTime(CTime(100) / CTime(0), 10, 10, 10));
+    try
+    {
+        time1 / 0;
+    }
+    catch (overflow_error e)
+    {
+        BOOST_REQUIRE_EQUAL(e.what(), "Divide by zero exception");
+    }
+}
+
+BOOST_AUTO_TEST_CASE(test_division_operator_wrong_vals)
+{
+ 
+    CTime time1(100);
+    CTime time2(0);
+    CTime time3(10);
+    
+    // division by zero
+    
+    try
+    {
+        time1 / time2;
+    }
+    catch (overflow_error e)
+    {
+        BOOST_REQUIRE_EQUAL(e.what(), "Divide by zero exception");
+    }
+    
+    // big second param
+    
+    try
+    {
+        time3 / time1;
+    }
+    catch (invalid_argument e)
+    {
+        BOOST_REQUIRE_EQUAL(e.what(), "Invalid right param for division");
+    }
+
 }
 
 BOOST_AUTO_TEST_CASE(test_division_operator)
 {
-    
-    BOOST_REQUIRE(VerifyTime(CTime(100) / CTime(0), 0, 1, 40));
-    BOOST_REQUIRE(VerifyTime(CTime(100) / CTime(10), 0, 0, 10));
-    BOOST_REQUIRE(VerifyTime(CTime(10) / CTime(100), 0, 0, 10));
+    BOOST_REQUIRE_EQUAL(CTime(100) / CTime(10), 10);
+    BOOST_REQUIRE_EQUAL(CTime(100) / CTime(100), 1);
 }
 
 BOOST_AUTO_TEST_CASE(test_wrong_output_time)
 {
-    CTime time(99, 10, 10);
     std::stringstream output;
-    output << time;
-    BOOST_REQUIRE_EQUAL(output.str(), "INVALID TIME");
+
+    try
+    {
+        CTime time10(99, 10, 10);
+    }
+    catch (invalid_argument e)
+    {
+        BOOST_REQUIRE_EQUAL(e.what(), "Invalid value for CTime");
+    }
+    
     output.clear();
 }
 
@@ -298,18 +371,25 @@ BOOST_AUTO_TEST_CASE(test_output_time)
     output.clear();
 }
 
-//BOOST_AUTO_TEST_CASE(test_wrong_input_time)
-//{
-//    std::stringstream input("00:00:10");
-//    input >> time;
-//    VerifyTime(time, 0, 0, 10);
-//}
-//
-//BOOST_AUTO_TEST_CASE(test_input_time)
-//{
-//    std::stringstream input("00:00:10");
-//    input >> time;
-//    VerifyTime(time, 0, 0, 10);
-//}
+/*
+BOOST_AUTO_TEST_CASE(test_input_wrong_time)
+{
+    CTime time1;
+    std::stringstream input;
+    std::string inputTime("00:00:11");
+    
+    input >> inputTime;
+    cout << time1.FormatTime() << endl;
+    BOOST_REQUIRE(VerifyTime(time1, 0, 2, 10));
+
+}
+
+BOOST_AUTO_TEST_CASE(test_input_time)
+{
+    std::stringstream input("00:00:10");
+    input >> time;
+    VerifyTime(time, 0, 0, 11);
+}
+*/
 
 BOOST_AUTO_TEST_SUITE_END()

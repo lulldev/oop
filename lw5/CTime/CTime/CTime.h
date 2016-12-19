@@ -41,12 +41,13 @@ public:
     CTime const friend operator *(unsigned number, CTime const & other);
     CTime const operator /(unsigned number)const;
     unsigned operator /(CTime const & other)const;
-    std::ostream friend & operator<<(std::ostream & output, const CTime & time);
-//    std::istream friend & operator>>(std::istream & input, const CTime & time);
+    std::ostream friend & operator <<(std::ostream & output, const CTime & time);
+    std::istream friend & operator >>(std::istream & input, std::string const inputTime);
 
 private:
     unsigned m_timeSeconds;
     bool m_validTime;
-    
-    unsigned ParseSecondsFromFormatTime(const std::string & formatTime)const;
 };
+
+static signed ParseSecondsFromFormatTime(const std::string & formatTime);
+
