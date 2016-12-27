@@ -1,0 +1,378 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		20110F661E09BBC80005CDB4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20110F651E09BBC80005CDB4 /* main.cpp */; };
+		20110F731E09BCE20005CDB4 /* TestHttpURL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20110F721E09BCE20005CDB4 /* TestHttpURL.cpp */; };
+		20110F7C1E09BD1E0005CDB4 /* libboost_unit_test_framework-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20110F781E09BD1E0005CDB4 /* libboost_unit_test_framework-mt.a */; };
+		20110F7D1E09BD1E0005CDB4 /* libboost_unit_test_framework-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 20110F791E09BD1E0005CDB4 /* libboost_unit_test_framework-mt.dylib */; };
+		20110F7E1E09BD1E0005CDB4 /* libboost_unit_test_framework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20110F7A1E09BD1E0005CDB4 /* libboost_unit_test_framework.a */; };
+		20110F7F1E09BD1E0005CDB4 /* libboost_unit_test_framework.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 20110F7B1E09BD1E0005CDB4 /* libboost_unit_test_framework.dylib */; };
+		20110F821E09BFEC0005CDB4 /* CUrlParsingError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20110F801E09BFEC0005CDB4 /* CUrlParsingError.cpp */; };
+		20110F851E09C0030005CDB4 /* CHttpUrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20110F831E09C0030005CDB4 /* CHttpUrl.cpp */; };
+		20110F881E09CA610005CDB4 /* CHttpUrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20110F831E09C0030005CDB4 /* CHttpUrl.cpp */; };
+		20110F891E09EA2A0005CDB4 /* CUrlParsingError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20110F801E09BFEC0005CDB4 /* CUrlParsingError.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		20110F601E09BBC70005CDB4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		20110F6E1E09BCE20005CDB4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		20110F621E09BBC80005CDB4 /* HttpURL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HttpURL; sourceTree = BUILT_PRODUCTS_DIR; };
+		20110F651E09BBC80005CDB4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		20110F701E09BCE20005CDB4 /* TestHttpURL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestHttpURL; sourceTree = BUILT_PRODUCTS_DIR; };
+		20110F721E09BCE20005CDB4 /* TestHttpURL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestHttpURL.cpp; sourceTree = "<group>"; };
+		20110F781E09BD1E0005CDB4 /* libboost_unit_test_framework-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_unit_test_framework-mt.a"; path = "../../../boost/lib/libboost_unit_test_framework-mt.a"; sourceTree = "<group>"; };
+		20110F791E09BD1E0005CDB4 /* libboost_unit_test_framework-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_unit_test_framework-mt.dylib"; path = "../../../boost/lib/libboost_unit_test_framework-mt.dylib"; sourceTree = "<group>"; };
+		20110F7A1E09BD1E0005CDB4 /* libboost_unit_test_framework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_unit_test_framework.a; path = ../../../boost/lib/libboost_unit_test_framework.a; sourceTree = "<group>"; };
+		20110F7B1E09BD1E0005CDB4 /* libboost_unit_test_framework.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_unit_test_framework.dylib; path = ../../../boost/lib/libboost_unit_test_framework.dylib; sourceTree = "<group>"; };
+		20110F801E09BFEC0005CDB4 /* CUrlParsingError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CUrlParsingError.cpp; sourceTree = "<group>"; };
+		20110F811E09BFEC0005CDB4 /* CUrlParsingError.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CUrlParsingError.hpp; sourceTree = "<group>"; };
+		20110F831E09C0030005CDB4 /* CHttpUrl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CHttpUrl.cpp; sourceTree = "<group>"; };
+		20110F841E09C0030005CDB4 /* CHttpUrl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CHttpUrl.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		20110F5F1E09BBC70005CDB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20110F6D1E09BCE20005CDB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20110F7C1E09BD1E0005CDB4 /* libboost_unit_test_framework-mt.a in Frameworks */,
+				20110F7D1E09BD1E0005CDB4 /* libboost_unit_test_framework-mt.dylib in Frameworks */,
+				20110F7E1E09BD1E0005CDB4 /* libboost_unit_test_framework.a in Frameworks */,
+				20110F7F1E09BD1E0005CDB4 /* libboost_unit_test_framework.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		20110F591E09BBC70005CDB4 = {
+			isa = PBXGroup;
+			children = (
+				20110F641E09BBC80005CDB4 /* HttpURL */,
+				20110F711E09BCE20005CDB4 /* TestHttpURL */,
+				20110F631E09BBC80005CDB4 /* Products */,
+				20110F771E09BD1D0005CDB4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		20110F631E09BBC80005CDB4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20110F621E09BBC80005CDB4 /* HttpURL */,
+				20110F701E09BCE20005CDB4 /* TestHttpURL */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20110F641E09BBC80005CDB4 /* HttpURL */ = {
+			isa = PBXGroup;
+			children = (
+				20110F651E09BBC80005CDB4 /* main.cpp */,
+				20110F801E09BFEC0005CDB4 /* CUrlParsingError.cpp */,
+				20110F811E09BFEC0005CDB4 /* CUrlParsingError.hpp */,
+				20110F831E09C0030005CDB4 /* CHttpUrl.cpp */,
+				20110F841E09C0030005CDB4 /* CHttpUrl.hpp */,
+			);
+			path = HttpURL;
+			sourceTree = "<group>";
+		};
+		20110F711E09BCE20005CDB4 /* TestHttpURL */ = {
+			isa = PBXGroup;
+			children = (
+				20110F721E09BCE20005CDB4 /* TestHttpURL.cpp */,
+			);
+			path = TestHttpURL;
+			sourceTree = "<group>";
+		};
+		20110F771E09BD1D0005CDB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20110F781E09BD1E0005CDB4 /* libboost_unit_test_framework-mt.a */,
+				20110F791E09BD1E0005CDB4 /* libboost_unit_test_framework-mt.dylib */,
+				20110F7A1E09BD1E0005CDB4 /* libboost_unit_test_framework.a */,
+				20110F7B1E09BD1E0005CDB4 /* libboost_unit_test_framework.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		20110F611E09BBC70005CDB4 /* HttpURL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20110F691E09BBC80005CDB4 /* Build configuration list for PBXNativeTarget "HttpURL" */;
+			buildPhases = (
+				20110F5E1E09BBC70005CDB4 /* Sources */,
+				20110F5F1E09BBC70005CDB4 /* Frameworks */,
+				20110F601E09BBC70005CDB4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HttpURL;
+			productName = HttpURL;
+			productReference = 20110F621E09BBC80005CDB4 /* HttpURL */;
+			productType = "com.apple.product-type.tool";
+		};
+		20110F6F1E09BCE20005CDB4 /* TestHttpURL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20110F741E09BCE20005CDB4 /* Build configuration list for PBXNativeTarget "TestHttpURL" */;
+			buildPhases = (
+				20110F6C1E09BCE20005CDB4 /* Sources */,
+				20110F6D1E09BCE20005CDB4 /* Frameworks */,
+				20110F6E1E09BCE20005CDB4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestHttpURL;
+			productName = TestHttpURL;
+			productReference = 20110F701E09BCE20005CDB4 /* TestHttpURL */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		20110F5A1E09BBC70005CDB4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Иван Калагин";
+				TargetAttributes = {
+					20110F611E09BBC70005CDB4 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					20110F6F1E09BCE20005CDB4 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 20110F5D1E09BBC70005CDB4 /* Build configuration list for PBXProject "HttpURL" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 20110F591E09BBC70005CDB4;
+			productRefGroup = 20110F631E09BBC80005CDB4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				20110F611E09BBC70005CDB4 /* HttpURL */,
+				20110F6F1E09BCE20005CDB4 /* TestHttpURL */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		20110F5E1E09BBC70005CDB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20110F661E09BBC80005CDB4 /* main.cpp in Sources */,
+				20110F821E09BFEC0005CDB4 /* CUrlParsingError.cpp in Sources */,
+				20110F851E09C0030005CDB4 /* CHttpUrl.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20110F6C1E09BCE20005CDB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20110F891E09EA2A0005CDB4 /* CUrlParsingError.cpp in Sources */,
+				20110F881E09CA610005CDB4 /* CHttpUrl.cpp in Sources */,
+				20110F731E09BCE20005CDB4 /* TestHttpURL.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		20110F671E09BBC80005CDB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		20110F681E09BBC80005CDB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		20110F6A1E09BBC80005CDB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		20110F6B1E09BBC80005CDB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		20110F751E09BCE20005CDB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		20110F761E09BCE20005CDB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.61.0_1/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		20110F5D1E09BBC70005CDB4 /* Build configuration list for PBXProject "HttpURL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20110F671E09BBC80005CDB4 /* Debug */,
+				20110F681E09BBC80005CDB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20110F691E09BBC80005CDB4 /* Build configuration list for PBXNativeTarget "HttpURL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20110F6A1E09BBC80005CDB4 /* Debug */,
+				20110F6B1E09BBC80005CDB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		20110F741E09BCE20005CDB4 /* Build configuration list for PBXNativeTarget "TestHttpURL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20110F751E09BCE20005CDB4 /* Debug */,
+				20110F761E09BCE20005CDB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 20110F5A1E09BBC70005CDB4 /* Project object */;
+}
