@@ -19,25 +19,16 @@ bool VerifyTime(const CTime & time, unsigned hours, unsigned minutes, unsigned s
     return ((time.GetHours() == hours) && (time.GetMinutes() == minutes) && (time.GetSeconds() == seconds));
 }
 
-
 BOOST_FIXTURE_TEST_SUITE(DateTesting, TimeFixture)
 
 BOOST_AUTO_TEST_CASE(test_init_wrong_date)
 {
-    try
-    {
-        CTime time1(40, 2, 10);
-    }
-    catch (invalid_argument e)
-    {
-        BOOST_CHECK_EQUAL(e.what(), "Invalid value for CTime");
-    }
+    BOOST_CHECK_THROW(CTime(40, 2, 10), invalid_argument);
 }
 
 BOOST_AUTO_TEST_CASE(test_init_date)
 {
     CTime time3(2, 12, 10);
-    BOOST_CHECK(time3.IsValid() == true);
 }
 
 BOOST_AUTO_TEST_CASE(test_get_hours)
@@ -112,6 +103,7 @@ BOOST_AUTO_TEST_CASE(test_substraction_operator)
     BOOST_REQUIRE(VerifyTime(CTime(0, 0, 5) - CTime(0, 0, 10), 23, 59, 55));
 }
 
+// clear
 BOOST_AUTO_TEST_CASE(test_prefix_inc_and_dec_with_wrong)
 {
     BOOST_REQUIRE(!VerifyTime(++CTime(0, 0, 10), 0, 0, 0));
@@ -213,26 +205,8 @@ BOOST_AUTO_TEST_CASE(test_assignment_division_operator_with_wrong_param)
 
     // division by zero
     
-    try
-    {
-        time1 / time2;
+    BOOST_CHECK_THROW(time1 / time2, overflow_error);
     }
-    catch (overflow_error e)
-    {
-        BOOST_REQUIRE_EQUAL(e.what(), "Divide by zero exception");
-    }
-    
-    // big second param
-    
-    try
-    {
-        time3 / time1;
-    }
-    catch (invalid_argument e)
-    {
-        BOOST_REQUIRE_EQUAL(e.what(), "Invalid right param for division");
-    }
-}
 
 BOOST_AUTO_TEST_CASE(test_assignment_division_operator)
 {
@@ -264,6 +238,8 @@ BOOST_AUTO_TEST_CASE(test_strict_comparison_operator)
     CTime time2(40);
     CTime time3(20);
     
+    BOOST_REQUIRE(!(time1 > time1));
+    BOOST_REQUIRE(!(time1 < time1));
     BOOST_REQUIRE(!(time3 < time1));
     BOOST_REQUIRE(!(time1 > time3));
     
@@ -278,8 +254,13 @@ BOOST_AUTO_TEST_CASE(test_nonstrict_comparison_operator)
     CTime time3(60);
     
     BOOST_REQUIRE(!(time1 >= time2));
+    BOOST_REQUIRE(!(time2 <= time1));
+
     BOOST_REQUIRE(time1 <= time2);
+    BOOST_REQUIRE(time2 >= time1);
     BOOST_REQUIRE(time2 >= time3);
+    BOOST_REQUIRE(time2 <= time3);
+
 }
 
 BOOST_AUTO_TEST_CASE(test_multiplication_operator_wrong_result)
@@ -298,69 +279,23 @@ BOOST_AUTO_TEST_CASE(test_multiplication_operator)
 BOOST_AUTO_TEST_CASE(test_division_operator_wrong_param)
 {
     CTime time1(100);
-    
-    try
-    {
-        time1 / 0;
-    }
-    catch (overflow_error e)
-    {
-        BOOST_REQUIRE_EQUAL(e.what(), "Divide by zero exception");
-    }
+
+    BOOST_CHECK_THROW(CTime(100) / 0, overflow_error);
 }
 
 BOOST_AUTO_TEST_CASE(test_division_operator_wrong_vals)
 {
- 
-    CTime time1(100);
-    CTime time2(0);
-    CTime time3(10);
-    
     // division by zero
-    
-    try
-    {
-        time1 / time2;
-    }
-    catch (overflow_error e)
-    {
-        BOOST_REQUIRE_EQUAL(e.what(), "Divide by zero exception");
-    }
-    
-    // big second param
-    
-    try
-    {
-        time3 / time1;
-    }
-    catch (invalid_argument e)
-    {
-        BOOST_REQUIRE_EQUAL(e.what(), "Invalid right param for division");
-    }
-
+    BOOST_CHECK_THROW(CTime(100) / CTime(0), overflow_error);
 }
 
 BOOST_AUTO_TEST_CASE(test_division_operator)
 {
     BOOST_REQUIRE_EQUAL(CTime(100) / CTime(10), 10);
     BOOST_REQUIRE_EQUAL(CTime(100) / CTime(100), 1);
+    BOOST_REQUIRE_EQUAL(CTime(10) / CTime(100), 0);
 }
 
-BOOST_AUTO_TEST_CASE(test_wrong_output_time)
-{
-    std::stringstream output;
-
-    try
-    {
-        CTime time10(99, 10, 10);
-    }
-    catch (invalid_argument e)
-    {
-        BOOST_REQUIRE_EQUAL(e.what(), "Invalid value for CTime");
-    }
-    
-    output.clear();
-}
 
 BOOST_AUTO_TEST_CASE(test_output_time)
 {
@@ -371,25 +306,33 @@ BOOST_AUTO_TEST_CASE(test_output_time)
     output.clear();
 }
 
-/*
 BOOST_AUTO_TEST_CASE(test_input_wrong_time)
 {
     CTime time1;
-    std::stringstream input;
-    std::string inputTime("00:00:11");
-    
-    input >> inputTime;
-    cout << time1.FormatTime() << endl;
-    BOOST_REQUIRE(VerifyTime(time1, 0, 2, 10));
+    std::stringstream input1("");
+    std::stringstream input2("00:00");
+    std::stringstream input3("00:00;00");
+    std::stringstream input4("some text");
 
+    BOOST_CHECK_EQUAL(input1 >> time1, "INVALID TIME");
+    BOOST_CHECK_EQUAL(input2 >> time1, "INVALID TIME");
+    BOOST_CHECK_EQUAL(input3 >> time1, "INVALID TIME");
+    BOOST_CHECK_EQUAL(input4 >> time1, "INVALID TIME");
 }
 
 BOOST_AUTO_TEST_CASE(test_input_time)
 {
-    std::stringstream input("00:00:10");
-    input >> time;
-    VerifyTime(time, 0, 0, 11);
+    CTime time1;
+    CTime time2;
+
+    std::stringstream input1("00:00:10");
+    std::stringstream input2("12:20:10");
+
+    input1 >> time1;
+    VerifyTime(time, 0, 0, 10);
+    
+    input2 >> time2;
+    VerifyTime(time, 12, 20, 10);
 }
-*/
 
 BOOST_AUTO_TEST_SUITE_END()

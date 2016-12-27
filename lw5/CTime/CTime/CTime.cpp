@@ -4,9 +4,7 @@ using namespace std;
 
 CTime::CTime(unsigned hours, unsigned minutes, unsigned seconds)
 {
-    m_validTime = (hours < 24) && (minutes < 60) && (seconds < 60);
-    
-    if (!m_validTime)
+    if ((hours >= 24) || (minutes >= 60) || (seconds >= 60))
     {
         throw invalid_argument("Invalid value for CTime");
     }
@@ -14,7 +12,9 @@ CTime::CTime(unsigned hours, unsigned minutes, unsigned seconds)
     m_timeSeconds = (hours * 3600) + (minutes * 60) + seconds;
 }
 
-CTime::CTime(unsigned timeStamp) : m_timeSeconds(timeStamp) {}
+CTime::CTime(unsigned timeStamp) : m_timeSeconds(timeStamp)
+{
+}
 
 unsigned CTime::GetHours()const
 {
@@ -28,12 +28,7 @@ unsigned CTime::GetMinutes()const
 
 unsigned CTime::GetSeconds()const
 {
-    return (m_timeSeconds % 60);
-}
-
-bool CTime::IsValid()const
-{
-    return m_validTime;
+    return m_timeSeconds % 60;
 }
 
 string CTime::FormatTime()const
@@ -45,18 +40,6 @@ string CTime::FormatTime()const
     return hours.substr(hours.size() - 2) + ":" + minutes.substr(minutes.size() - 2) + ":" + seconds.substr(seconds.size() - 2);
 }
 
-static signed ParseSecondsFromFormatTime(const string & formatTime)
-{
-    vector<string> splitFormatTime;
-    boost::split(splitFormatTime, formatTime, boost::is_any_of(":"));
-    
-    if (splitFormatTime.size() != 3)
-    {
-        return -1;
-    }
-    
-    return (stoi(splitFormatTime[0]) * 3600) + (stoi(splitFormatTime[1]) * 60) + stoi(splitFormatTime[2]);
-}
 
 CTime CTime::operator +(CTime const & time2)
 {
@@ -221,7 +204,6 @@ bool CTime::operator >=(CTime const & other)const
 
 bool CTime::operator <=(CTime const & other)const
 {
-    return true;
     return (m_timeSeconds <= other.m_timeSeconds);
 }
 
@@ -259,41 +241,48 @@ CTime const CTime::operator /(unsigned number)const
 
 unsigned CTime::operator /(CTime const & other)const
 {
-    CTime tmpCopy(other);
-
     if (other.m_timeSeconds == 0)
     {
         throw overflow_error("Divide by zero exception");
     }
-    else if (m_timeSeconds < tmpCopy.m_timeSeconds)
-    {
-        throw invalid_argument("Invalid right param for division");
-    }
 
-    return m_timeSeconds / tmpCopy.m_timeSeconds;
+    return m_timeSeconds / other.m_timeSeconds;
 }
 
 ostream & operator <<(std::ostream & output, const CTime & time)
 {
-    (time.IsValid()) ? output << time.FormatTime() : output << "INVALID TIME";
+    output << time.FormatTime();
     return output;
 }
 
-istream & operator >>(std::istream & input, std::string const inputTime)
+
+static signed ParseSecondsFromFormatTime(const std::string & formatTime)
 {
-    string inputResult("INVALID TIME");
-    input >> inputTime;
+    vector<string> splitFormatTime;
+    boost::split(splitFormatTime, formatTime, boost::is_any_of(":"));
     
-    signed parseSecondsFromInput = ParseSecondsFromFormatTime(inputTime);
+    if (splitFormatTime.size() != 3)
+    {
+        return -1;
+    }
+    
+    return (stoi(splitFormatTime[0]) * 3600) + (stoi(splitFormatTime[1]) * 60) + stoi(splitFormatTime[2]);
+}
+
+std::string operator >>(std::istream & input, CTime & time)
+{
+
+    string inputStr;
+    input >> inputStr;
+
+    signed parseSecondsFromInput = ParseSecondsFromFormatTime(inputStr);
     
     if (parseSecondsFromInput == -1)
     {
-        // todo
-        cout << inputResult;
+        return "INVALID TIME";
     }
     
-    //cout << CTime(parseSecondsFromInput).FormatTime();
+    time.m_timeSeconds = parseSecondsFromInput;
     
-    return input;
-    
+    return time.FormatTime();
 }
