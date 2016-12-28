@@ -7,7 +7,7 @@ using namespace std;
 CUrlParsingError::CUrlParsingError(std::string const& message)
     : std::invalid_argument(message)
 {
-    m_message = message;
+    m_message = what();
 }
 
 string CUrlParsingError::GetMessage()const
