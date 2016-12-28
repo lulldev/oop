@@ -11,35 +11,35 @@ CHttpUrl::CHttpUrl() {}
 CHttpUrl::CHttpUrl(std::string const& url)
 {
     ParseURL(url);
-    m_Url = url;
+    m_url = url;
 }
 
 CHttpUrl::CHttpUrl(std::string const& domain, std::string const& document, Protocol protocol, unsigned port)
-    : m_Domain(domain)
-    , m_Document(document)
-    , m_Protocol(protocol)
-    , m_Port(port)
+    : m_domain(domain)
+    , m_document(document)
+    , m_protocol(protocol)
+    , m_port(port)
 {
     
-    if (m_Port == 0)
+    if (m_port == 0)
     {
-        m_Port = GetPortByProtocol(m_Protocol);
+        m_port = GetPortByProtocol(m_protocol);
     }
     
-    ValidateURLParams(m_Domain, m_Document, m_Protocol, to_string(m_Port));
+    ValidateURLParams(m_domain, m_document, m_protocol, to_string(m_port));
 
-    m_Url = MakeURLFromParams();
+    m_url = MakeURLFromParams();
 }
 
 std::string CHttpUrl::GetProtocolName()const
 {
-    switch(m_Protocol)
+    switch(m_protocol)
     {
         case Protocol::HTTP:
-            return "http";
+            return HTTP_PROTOCOL;
             break;
         case Protocol::HTTPS:
-            return "https";
+            return HTTPS_PROTOCOL;
             break;
         default:
             return "";
@@ -50,21 +50,21 @@ std::string CHttpUrl::GetProtocolName()const
 
 std::string CHttpUrl::ProtocolToString()const
 {
-    return GetProtocolName() + "://";
+    return GetProtocolName();
 }
 
 Protocol CHttpUrl::GetProtocolByStr(std::string const& strProtocol)const
 {
-    if (strProtocol == "http")
+    if (strProtocol == HTTP_PROTOCOL)
     {
         return Protocol::HTTP;
     }
-    else if (strProtocol == "https")
+    else if (strProtocol == HTTPS_PROTOCOL)
     {
         return Protocol::HTTPS;
     }
     
-    return Protocol::UNKNOW;
+    return Protocol::UNKNOWN;
 }
 
 signed CHttpUrl::GetPortByProtocol(Protocol& protocol)const
@@ -96,7 +96,7 @@ void CHttpUrl::ValidateProtocol(Protocol & protocol)const
 {
     if (protocol != Protocol::HTTP && protocol != Protocol::HTTPS)
     {
-        throw ErrorInvalidProtocol("Error set protocol");
+        throw CUrlParsingError(ERROR_MESSAGE_INVALID_PROTOCOL);
     }
 }
 
@@ -107,7 +107,7 @@ void CHttpUrl::ValidateDomain(std::string domainStr)const
     
     if (!regex_match(domainStr, urlRegexResult, urlRegexRule))
     {
-        throw ErrorInvalidDomain("Error set domain");
+        throw CUrlParsingError(ERROR_MESSAGE_INVALID_DOMAIN);
     }
 }
 
@@ -119,17 +119,17 @@ void CHttpUrl::ValidatePort(std::string port)const
         portNumber = stoi(port);
         if (to_string(portNumber) != port)
         {
-            throw ErrorInvalidPort("Port must be number");
+            throw CUrlParsingError(ERROR_MESSAGE_INVALID_PORT);
         }
     }
     catch(...)
     {
-        throw ErrorInvalidPort("Port must be number");
+        throw CUrlParsingError(ERROR_MESSAGE_INVALID_PORT);
     }
     
     if (portNumber < 1 || portNumber > 65536)
     {
-        throw ErrorInvalidPort("Port must be 1-65536");
+        throw CUrlParsingError(ERROR_MESSAGE_INVALID_PORT);
     }
 }
 
@@ -142,84 +142,68 @@ void CHttpUrl::ValidateURLParams(std::string & domain, std::string & document, P
 
 std::string CHttpUrl::MakeURLFromParams()const
 {
-    return ProtocolToString() + m_Domain +  to_string(m_Port) + m_Document;
+    return ProtocolToString() + "://" + m_domain +  to_string(m_port) + m_document;
 }
 
 void CHttpUrl::ParseURL(string const& url)
 {
-    regex urlRegexRule("([a-zA-Z0-9]+)://([^/:]+)+((?=:):([a-zA-Z0-9]+))?(/[^]+)*/?$", regex_constants::icase);
-    
+    regex urlRegexRule("([a-zA-Z0-9]+)://([^/:]+):?((?!:)[a-zA-Z0-9]+)?(/[^]+)*/?$", regex_constants::icase);
     smatch urlRegexResult;
-    size_t componentCounter = 0;
-    
-    regex_match(url, urlRegexResult, urlRegexRule);
-    
-    for (const auto& urlComponent : urlRegexResult)
-    {
-        switch (componentCounter)
-        {
-            case 1: // http
-            {
-                ValidateProtocolByStr(urlComponent);
-                m_Protocol = GetProtocolByStr(urlComponent);
-            }
-                break;
-            case 2: // domain
-                ValidateDomain(urlComponent);
-                m_Domain = urlComponent;
-                break;
-            case 4: // port
-            {
-                string portStr = urlComponent;
-                
-                if (portStr.size() > 0)
-                {
-                    ValidatePort(portStr);
-                    m_Port = stoi(portStr);
-                }
-                else
-                {
-                    m_Port = GetPortByProtocol(m_Protocol);
-                }
-
-            }
-                break;
-            case 5: // document
-                m_Document = urlComponent;
-                break;
-        }
-        ++componentCounter;
-    }
     
     if (!regex_match(url, urlRegexResult, urlRegexRule))
     {
-        throw CUrlParsingError("Wrong init url");
+        throw CUrlParsingError(ERROR_MESSAGE_INVALID_URL);
     }
     
+    ValidateProtocolByStr(urlRegexResult[1]);
+    m_protocol = GetProtocolByStr(urlRegexResult[1]);
+    
+    ValidateDomain(urlRegexResult[2]);
+    m_domain = urlRegexResult[2];
+    
+    string portStr = urlRegexResult[3];
+    
+    if (portStr.size() > 0)
+    {
+        ValidatePort(portStr);
+        m_port = stoi(portStr);
+    }
+    else
+    {
+        m_port = GetPortByProtocol(m_protocol);
+    }
+    
+    m_document = urlRegexResult[4];
 }
 
 
 string CHttpUrl::GetURL()const
 {
-    return m_Url;
+    return m_url;
 }
 
 string CHttpUrl::GetDomain()const
 {
-    return m_Domain;
+    return m_domain;
 }
 
 string CHttpUrl::GetDocument()const
 {
-    return m_Document;
+    return m_document;
 }
 
 Protocol CHttpUrl::GetProtocol()const
 {
-    return m_Protocol;
+    return m_protocol;
 }
 
 unsigned short CHttpUrl::GetPort()const
 {
-    return m_Port;
+    return m_port;
 }
+
+std::string CHttpUrl::GetStringProtocol()const
+{
+    return ProtocolToString();
+}
+

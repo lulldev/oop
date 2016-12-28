@@ -1,8 +1,11 @@
 #include <iostream>
 
+#define HTTP_PROTOCOL  "http"
+#define HTTPS_PROTOCOL "https"
+
 enum Protocol
 {
-    UNKNOW,
+    UNKNOWN,
     HTTP,
     HTTPS
 };
@@ -52,13 +55,15 @@ public:
     
     // возвращает номер порта
     unsigned short GetPort()const;
-
+    
+    std::string GetStringProtocol()const;
+    
 private:
-    std::string m_Url;
-    std::string m_Domain;
-    std::string m_Document;
-    Protocol m_Protocol;
-    unsigned m_Port;
+    std::string m_url;
+    std::string m_domain;
+    std::string m_document;
+    Protocol m_protocol;
+    unsigned m_port;
     
     // parsing
     void ParseURL(std::string const& url);

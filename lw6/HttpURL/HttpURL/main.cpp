@@ -15,7 +15,11 @@ int main(int argc, const char * argv[])
         try
         {
             CHttpUrl httpURL(inputURL);
-            cout << "[+] " << inputURL << endl;
+            cout << "[+] " << httpURL.GetURL() << endl;
+            cout << "Protocol: " << httpURL.GetStringProtocol() << endl;
+            cout << "Domain: " << httpURL.GetDomain() << endl;
+            cout << "Port: " << httpURL.GetPort() << endl;
+            cout << "Document: " << httpURL.GetDocument() << endl;
         }
         catch (CUrlParsingError &e)
         {

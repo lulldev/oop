@@ -1,5 +1,11 @@
 #include <iostream>
 
+#define ERROR_MESSAGE_INVALID_URL       "Error init URL"
+#define ERROR_MESSAGE_INVALID_PROTOCOL  "Error set protocol"
+#define ERROR_MESSAGE_INVALID_DOMAIN    "Error set domain"
+#define ERROR_MESSAGE_INVALID_PORT      "Error set port"
+
+
 class CUrlParsingError : public std::invalid_argument
 {
 public:
@@ -12,31 +18,3 @@ public:
 protected:
     std::string m_message;
 };
-
-class ErrorInvalidProtocol : public CUrlParsingError
-{
-public:
-    ErrorInvalidProtocol(std::string const& message);
-    std::string GetMessage()const;
-    virtual void PrintInfo()const;
-    virtual ~ErrorInvalidProtocol() = default;
-};
-
-class ErrorInvalidPort : public CUrlParsingError
-{
-public:
-    ErrorInvalidPort(std::string const& message);
-    std::string GetMessage()const;
-    virtual void PrintInfo()const;
-    virtual ~ErrorInvalidPort() = default;
-};
-
-class ErrorInvalidDomain : public CUrlParsingError
-{
-public:
-    ErrorInvalidDomain(std::string const& message);
-    std::string GetMessage()const;
-    virtual void PrintInfo()const;
-    virtual ~ErrorInvalidDomain() = default;
-};
-
