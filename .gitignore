@@ -14,3 +14,5 @@ lw2/htmlEncodeDecode/htmlEncodeDecode.xcodeproj/project.pbxproj
 lw2/htmlEncodeDecode/htmlEncodeDecode.xcodeproj/xcuserdata/lull.xcuserdatad/xcschemes/xcschememanagement.plist
 
 lw2/htmlEncodeDecode/htmlEncodeDecode.xcodeproj/xcuserdata/lull.xcuserdatad/xcschemes/htmlEncodeDecode.xcscheme
+
+*.sh
