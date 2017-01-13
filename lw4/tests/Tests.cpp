@@ -1,12 +1,18 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
+#include <vector>
+#include <iostream>
+
 #include "../VolumeBodies/CSphere.h"
 #include "../VolumeBodies/CCone.h"
 #include "../VolumeBodies/CParallelepiped.h"
 #include "../VolumeBodies/CCylinder.h"
 
+#include "../ConsoleProgram/ConsoleProgram.h"
+
 using testing::Eq;
+using namespace std;
 
 /* -------------------- Сфера -------------------- */
 
@@ -57,6 +63,17 @@ TEST_F(CSphereTestFixture, TestBaseSphereMethods)
     ASSERT_EQ(sphere->GetRadius(), 20.0);
     ASSERT_EQ(sphere->GetVolume(), (4/3) * 3.14 * pow(20.0, 3));
     ASSERT_EQ(sphere->GetMass(), sphere->GetDensity() * sphere->GetVolume());
+}
+
+TEST_F(CSphereTestFixture, ToStringSphere)
+{
+    std::string expectedString = "Type: sphere\n"
+            "Density: 10.000000\n"
+            "Volume: 25120.000000\n"
+            "Mass: 251200.000000\n"
+            "Radius: 20.000000\n";
+
+    ASSERT_TRUE(sphere->ToString() == expectedString);
 }
 
 /* -------------------- Конус -------------------- */
@@ -118,6 +135,18 @@ TEST_F(CConeTestFixture, TestBaseConeMethods)
     // 2094.3999
     double expectedTesingVolume = (5.0 / 3) * (pow(20.0, 2) * M_PI);
     ASSERT_FLOAT_EQ(cone->GetVolume(), expectedTesingVolume);
+}
+
+TEST_F(CConeTestFixture, ToStringCone)
+{
+    std::string expectedString = "Type: cone\n"
+            "Density: 10.000000\n"
+            "Volume: 2094.395102\n"
+            "Mass: 20943.951024\n"
+            "Radius: 20.000000\n"
+            "Height: 5.000000\n";
+
+    ASSERT_TRUE(cone->ToString() == expectedString);
 }
 
 /* -------------------- Параллелепипед -------------------- */
@@ -184,6 +213,20 @@ TEST_F(CParallelepipedTestFixture, TestBaseParallelepipedMethods)
     ASSERT_FLOAT_EQ(parallelepiped->GetMass(), (20.0 * 5.0 * 15.0) * 10); // 15000
 }
 
+
+TEST_F(CParallelepipedTestFixture, ToStringParallelepiped)
+{
+    std::string expectedString = "Type: parallelepiped\n"
+            "Density: 10.000000\n"
+            "Volume: 1500.000000\n"
+            "Mass: 15000.000000\n"
+            "Width: 20.000000\n"
+            "Height: 5.000000\n"
+            "Depth: 15.000000\n";
+
+    ASSERT_TRUE(parallelepiped->ToString() == expectedString);
+}
+
 /* -------------------- Цилиндр -------------------- */
 
 class CCylinderTestFixture : public ::testing::Test
@@ -222,7 +265,6 @@ TEST_F(CCylinderTestFixture, InitClassWithNegativeHeight)
     ASSERT_THROW(CCylinder cylinder(1.0, 1, -5), std::invalid_argument);
 }
 
-
 TEST_F(CCylinderTestFixture, InitClassWithAllowParams)
 {
     ASSERT_NO_THROW(CCylinder cylinder(1.0, 10.00, 5.00));
@@ -243,23 +285,35 @@ TEST_F(CCylinderTestFixture, TestBaseConeMethods)
     ASSERT_FLOAT_EQ(cylinder->GetVolume(), M_PI * pow(20.0, 3) * 5.0);
 }
 
+TEST_F(CCylinderTestFixture, ToStringCylinder)
+{
+    std::string expectedString = "Type: cylinder\n"
+            "Density: 10.000000\n"
+            "Volume: 125663.706144\n"
+            "Mass: 1256637.061436\n"
+            "Radius: 20.000000\n";
 
-/* -------------------- Проверка ToString -------------------- */
+    ASSERT_TRUE(cylinder->ToString() == expectedString);
+}
 
-class CBodiesTestFixture : public ::testing::Test
+/* -------------------- Цилиндр -------------------- */
+
+class ConsoleProgramTestFixture : public ::testing::Test
 {
 public:
-    CSphere *sphere;
-    CCone *cone;
-    CParallelepiped *parallelepiped;
-    CCylinder *cylinder;
+    ConsoleProgram *program;
+    std::ostringstream *output;
 
-    CBodiesTestFixture()
+    ConsoleProgramTestFixture()
     {
-        sphere = new CSphere(10.0, 20.0);
-        cone = new CCone(10.0, 20.0, 5.0);
-        parallelepiped = new CParallelepiped(10.0, 20.0, 5.0, 10);
-        cylinder = new CCylinder(10.0, 20.0, 5.0);
+        output;
+        std::vector<std::shared_ptr<CBody>> bodiesArray;
+        program = new ConsoleProgram(std::cin, std::cout, bodiesArray);
+    }
+
+    std::string GetOutput()
+    {
+        return output->rdbuf()->str();
     }
 
 protected:
@@ -269,58 +323,15 @@ protected:
 
     void TearDown()
     {
-        delete sphere;
-        delete cone;
-        delete parallelepiped;
-        delete cylinder;
+        std::cout.clear();
+        delete program;
     }
 };
 
-TEST_F(CBodiesTestFixture, ToStringSphere)
+TEST_F(ConsoleProgramTestFixture, CallUnknowParameters)
 {
-    std::string expectedString = "Type: sphere\n"
-            "Density: 10.000000\n"
-            "Volume: 25120.000000\n"
-            "Mass: 251200.000000\n"
-            "Radius: 20.000000\n";
-
-    ASSERT_TRUE(sphere->ToString() == expectedString);
-}
-
-TEST_F(CBodiesTestFixture, ToStringParallelepiped)
-{
-    std::cout << parallelepiped->ToString();
-    std::string expectedString = "Type: parallelepiped\n"
-            "Density: 10.000000\n"
-            "Volume: 1000.000000\n"
-            "Mass: 10000.000000\n"
-            "Width: 20.000000\n"
-            "Height: 5.000000\n"
-            "Depth: 10.000000\n";
-
-    ASSERT_TRUE(parallelepiped->ToString() == expectedString);
-}
-
-TEST_F(CBodiesTestFixture, ToStringCone)
-{
-    std::string expectedString = "Type: cone\n"
-            "Density: 10.000000\n"
-            "Volume: 2094.395102\n"
-            "Mass: 20943.951024\n"
-            "Radius: 20.000000\n"
-            "Height: 5.000000\n";
-
-    ASSERT_TRUE(cone->ToString() == expectedString);
-}
-TEST_F(CBodiesTestFixture, ToStringCylinder)
-{
-    std::string expectedString = "Type: cylinder\n"
-            "Density: 10.000000\n"
-            "Volume: 125663.706144\n"
-            "Mass: 1256637.061436\n"
-            "Radius: 20.000000\n";
-
-    ASSERT_TRUE(cylinder->ToString() == expectedString);
+    program->ProcessInputCommand("123");
+    ASSERT_TRUE(GetOutput() == "Invalid number parameters!");
 }
 
 int main(int argc, char* argv[])
