@@ -22,7 +22,14 @@ int main(int argc, char* argv[])
 
     while(getline(cin, inputString))
     {
-        program.ProcessInputCommand(inputString);
+        try
+        {
+            program.ProcessInputCommand(inputString);
+        }
+        catch (const invalid_argument& e)
+        {
+            cout << e.what() << endl;
+        }
     }
 
     program.PrintVolumeBodies();

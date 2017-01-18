@@ -14,7 +14,6 @@ public:
     ConsoleProgram(std::istream& input, std::ostream& output, std::vector<std::shared_ptr<CBody>>& bodiesArray);
 
     void ProcessInputCommand(std::string inputCommand);
-    bool CallCommand(std::vector<std::string> splitCommand);
     void PrintVolumeBodies()const;
     void PrintMaxMassBody();
     void PrintMinWeightBody();
@@ -28,4 +27,6 @@ private:
     void CreateParallelepiped(std::vector<std::string> parameters);
     void CreateCone(std::vector<std::string> parameters);
     void CreateCylinder(std::vector<std::string> parameters);
+
+    bool CallCommand(std::vector<std::string> splitCommand);
 };

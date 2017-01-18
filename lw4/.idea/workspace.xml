@@ -43,57 +43,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CSphere.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VolumeBodies/CSphere.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConsoleProgram.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ConsoleProgram/ConsoleProgram.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#17#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConsoleProgram.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ConsoleProgram.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ConsoleProgram/ConsoleProgram.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="240" column="1" lean-forward="false" selection-start-line="240" selection-start-column="1" selection-end-line="240" selection-end-column="1" />
+            <state relative-caret-position="250">
+              <caret line="224" column="61" lean-forward="false" selection-start-line="224" selection-start-column="61" selection-end-line="224" selection-end-column="61" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
+                <marker date="1484475100000" expanded="true" signature="966:1316" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4">
-              <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tests.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Tests.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/Tests.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="333" column="39" lean-forward="true" selection-start-line="333" selection-start-column="39" selection-end-line="333" selection-end-column="39" />
+            <state relative-caret-position="295">
+              <caret line="445" column="0" lean-forward="true" selection-start-line="445" selection-start-column="0" selection-end-line="445" selection-end-column="0" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -101,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CCone.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VolumeBodies/CCone.h">
+      <file leaf-file-name="ConsoleProgram.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ConsoleProgram/ConsoleProgram.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="41" lean-forward="false" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+            <state relative-caret-position="255">
+              <caret line="17" column="9" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -124,6 +91,9 @@
     <findStrings>
       <find>CCone</find>
       <find>stof</find>
+      <find>TestCallParallelepipedWithValidParameters</find>
+      <find>TestCallParallelepipedWithInvalidParameters</find>
+      <find>TestCallCylinderWithValidParameters</find>
     </findStrings>
     <replaceStrings>
       <replace>CCylinder</replace>
@@ -149,10 +119,10 @@
         <option value="$PROJECT_DIR$/VolumeBodies/CSphere.cpp" />
         <option value="$PROJECT_DIR$/lib/boost/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/main.cpp" />
-        <option value="$PROJECT_DIR$/tests/Tests.cpp" />
         <option value="$PROJECT_DIR$/ConsoleProgram/ConsoleProgram.h" />
+        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/ConsoleProgram/ConsoleProgram.cpp" />
+        <option value="$PROJECT_DIR$/tests/Tests.cpp" />
       </list>
     </option>
   </component>
@@ -164,9 +134,8 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
     <option name="width" value="1280" />
-    <option name="height" value="774" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -260,6 +229,7 @@
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -267,8 +237,12 @@
       <recent name="$PROJECT_DIR$/tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Google Test.oop_lw4_testing">
+  <component name="RunManager" selected="Application.oop_lw4_testing">
     <configuration default="false" name="CSphereTestFixture.InitClassWithNegativeRadius" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" WORKING_DIR="" PASS_PARENT_ENVS_2="true" PROJECT_NAME="oop_lw4_testing" TARGET_NAME="oop_lw4_testing" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="oop_lw4_testing" RUN_TARGET_NAME="oop_lw4_testing" TEST_CLASS="CSphereTestFixture" TEST_METHOD="InitClassWithNegativeRadius" TEST_MODE="SUITE_TEST">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="ConsoleProgramTestFixture.TestWrongCallCommand" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" WORKING_DIR="" PASS_PARENT_ENVS_2="true" PROJECT_NAME="oop_lw4_testing" TARGET_NAME="oop_lw4_testing" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="oop_lw4_testing" RUN_TARGET_NAME="oop_lw4_testing" TEST_CLASS="ConsoleProgramTestFixture" TEST_METHOD="TestWrongCallCommand" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
     </configuration>
@@ -479,7 +453,7 @@
       <envs />
       <method />
     </configuration>
-    <list size="11">
+    <list size="12">
       <item index="0" class="java.lang.String" itemvalue="Application.oop_lw4_testing" />
       <item index="1" class="java.lang.String" itemvalue="Application.Build All" />
       <item index="2" class="java.lang.String" itemvalue="Application.oop_lw4" />
@@ -491,10 +465,12 @@
       <item index="8" class="java.lang.String" itemvalue="Google Test.All in Tests.cpp" />
       <item index="9" class="java.lang.String" itemvalue="Google Test.oop_lw4_testing" />
       <item index="10" class="java.lang.String" itemvalue="Google Test.CSphereTestFixture.InitClassWithNegativeRadius" />
+      <item index="11" class="java.lang.String" itemvalue="Google Test.ConsoleProgramTestFixture.TestWrongCallCommand" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Google Test.CSphereTestFixture.InitClassWithNegativeRadius" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Google Test.ConsoleProgramTestFixture.TestWrongCallCommand" />
+        <item index="1" class="java.lang.String" itemvalue="Google Test.CSphereTestFixture.InitClassWithNegativeRadius" />
       </list>
     </recent_temporary>
   </component>
@@ -511,44 +487,46 @@
       <workItem from="1483899680509" duration="4869000" />
       <workItem from="1483911832700" duration="11287000" />
       <workItem from="1484077899792" duration="16528000" />
-      <workItem from="1484256051152" duration="11905000" />
+      <workItem from="1484256051152" duration="16447000" />
+      <workItem from="1484470845089" duration="6619000" />
+      <workItem from="1484710743235" duration="353000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="oop_lw4_testing - 2017.01.11 at 02h 28m 07s.xml">
+    <history-entry file="ConsoleProgramTestFixture_TestWrongCallCommand - 2017.01.15 at 12h 06m 52s.xml">
+      <configuration name="ConsoleProgramTestFixture.TestWrongCallCommand" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="ConsoleProgramTestFixture_TestWrongCallCommand - 2017.01.15 at 12h 08m 22s.xml">
+      <configuration name="ConsoleProgramTestFixture.TestWrongCallCommand" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="ConsoleProgramTestFixture_TestWrongCallCommand - 2017.01.15 at 12h 11m 15s.xml">
+      <configuration name="ConsoleProgramTestFixture.TestWrongCallCommand" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="ConsoleProgramTestFixture_TestWrongCallCommand - 2017.01.15 at 12h 11m 40s.xml">
+      <configuration name="ConsoleProgramTestFixture.TestWrongCallCommand" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="ConsoleProgramTestFixture_TestWrongCallCommand - 2017.01.15 at 12h 12m 11s.xml">
+      <configuration name="ConsoleProgramTestFixture.TestWrongCallCommand" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="oop_lw4_testing - 2017.01.13 at 09h 35m 21s.xml">
       <configuration name="oop_lw4_testing" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="oop_lw4_testing - 2017.01.11 at 02h 31m 08s.xml">
+    <history-entry file="oop_lw4_testing - 2017.01.13 at 09h 40m 14s.xml">
       <configuration name="oop_lw4_testing" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="oop_lw4_testing - 2017.01.11 at 02h 32m 05s.xml">
+    <history-entry file="oop_lw4_testing - 2017.01.13 at 09h 41m 15s.xml">
       <configuration name="oop_lw4_testing" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="oop_lw4_testing - 2017.01.11 at 08h 07m 15s.xml">
+    <history-entry file="oop_lw4_testing - 2017.01.13 at 09h 43m 38s.xml">
       <configuration name="oop_lw4_testing" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="oop_lw4_testing - 2017.01.11 at 08h 08m 26s.xml">
-      <configuration name="oop_lw4_testing" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="oop_lw4_testing - 2017.01.11 at 08h 09m 06s.xml">
-      <configuration name="oop_lw4_testing" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="oop_lw4_testing - 2017.01.11 at 08h 09m 34s.xml">
-      <configuration name="oop_lw4_testing" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="oop_lw4_testing - 2017.01.13 at 04h 00m 19s.xml">
-      <configuration name="oop_lw4_testing" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="oop_lw4_testing - 2017.01.13 at 04h 13m 18s.xml">
-      <configuration name="oop_lw4_testing" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="oop_lw4_testing - 2017.01.13 at 04h 15m 18s.xml">
+    <history-entry file="oop_lw4_testing - 2017.01.15 at 12h 05m 33s.xml">
       <configuration name="oop_lw4_testing" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44589000" />
+    <option name="totallyTimeSpent" value="56103000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -560,18 +538,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1280" height="774" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24543288" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50438595" sideWeight="0.4813344" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50409836" sideWeight="0.4225576" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32650274" sideWeight="0.49682036" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.3260234" sideWeight="0.50953895" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3611111" sideWeight="0.4733916" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29234973" sideWeight="0.4217633" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50438595" sideWeight="0.5186656" order="7" side_tool="true" content_ui="tabs" x="0" y="293" width="1279" height="232" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50409836" sideWeight="0.5774424" order="7" side_tool="true" content_ui="tabs" x="0" y="293" width="1279" height="232" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3991228" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -604,6 +582,65 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/VolumeBodies/CBody.h">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConsoleProgram/ConsoleProgram.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+            <marker date="1484475100000" expanded="true" signature="966:1316" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VolumeBodies/CSphere.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConsoleProgram/ConsoleProgram.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="30" lean-forward="true" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Tests.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VolumeBodies/CCone.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="41" lean-forward="false" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VolumeBodies/CBody.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VolumeBodies/CBody.h">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
@@ -614,7 +651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -640,7 +676,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
           <caret line="2231" column="11" lean-forward="false" selection-start-line="2231" selection-start-column="11" selection-end-line="2231" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -662,7 +697,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -670,7 +704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
           <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -678,7 +711,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
           <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -708,7 +740,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -716,7 +747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -728,6 +758,72 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/VolumeBodies/CParallelepiped.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VolumeBodies/CCylinder.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VolumeBodies/CBody.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="33" column="14" lean-forward="false" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/vector">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="656" column="46" lean-forward="false" selection-start-line="656" selection-start-column="46" selection-end-line="656" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/memory">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="4299" column="17" lean-forward="false" selection-start-line="4299" selection-start-column="17" selection-end-line="4299" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VolumeBodies/CCone.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="41" lean-forward="false" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#19#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VolumeBodies/CSphere.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/googletest-master/googletest/src/gtest-port.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="1019" column="0" lean-forward="false" selection-start-line="1019" selection-start-column="0" selection-end-line="1019" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/VolumeBodies/CBody.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -736,98 +832,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VolumeBodies/CParallelepiped.cpp">
+    <entry file="file://$PROJECT_DIR$/tests/Tests.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VolumeBodies/CCylinder.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VolumeBodies/CBody.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="33" column="14" lean-forward="false" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/vector">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="656" column="46" lean-forward="false" selection-start-line="656" selection-start-column="46" selection-end-line="656" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/memory">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="4299" column="17" lean-forward="false" selection-start-line="4299" selection-start-column="17" selection-end-line="4299" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VolumeBodies/CSphere.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+        <state relative-caret-position="295">
+          <caret line="445" column="0" lean-forward="true" selection-start-line="445" selection-start-column="0" selection-end-line="445" selection-end-column="0" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VolumeBodies/CCone.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="41" lean-forward="false" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ConsoleProgram/ConsoleProgram.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="255">
+          <caret line="17" column="9" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ConsoleProgram/ConsoleProgram.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="240" column="1" lean-forward="false" selection-start-line="240" selection-start-column="1" selection-end-line="240" selection-end-column="1" />
+        <state relative-caret-position="250">
+          <caret line="224" column="61" lean-forward="false" selection-start-line="224" selection-start-column="61" selection-end-line="224" selection-end-column="61" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Tests.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="333" column="39" lean-forward="true" selection-start-line="333" selection-start-column="39" selection-end-line="333" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
+            <marker date="1484475100000" expanded="true" signature="966:1316" ph="{...}" />
           </folding>
         </state>
       </provider>

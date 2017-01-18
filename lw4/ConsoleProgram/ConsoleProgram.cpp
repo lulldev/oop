@@ -45,17 +45,18 @@ void ConsoleProgram::ProcessInputCommand(std::string inputCommand)
 {
     vector<string> splitCommand{split(inputCommand, ' ')};
 
-    if (splitCommand.size() < 2)
-    {
-        m_output << "Invalid number parameters!" << endl;
-    }
-    else
-    {
-        if (!CallCommand(splitCommand))
+        if (splitCommand.size() < 2)
         {
-            m_output << "Unknow command" << endl;
+            throw invalid_argument("Invalid number parameters");
         }
-    }
+        else
+        {
+            if (!CallCommand(splitCommand))
+            {
+                throw invalid_argument("Unknow parameters");
+            }
+        }
+
 }
 
 void ConsoleProgram::CreateSphere(std::vector<std::string> parameters)
@@ -68,7 +69,7 @@ void ConsoleProgram::CreateSphere(std::vector<std::string> parameters)
         density = stod(parameters[1]);
         radius = stod(parameters[2]);
     }
-    catch(invalid_argument const& e)
+    catch(const std::exception& e)
     {
         throw invalid_argument("Sphere invalid parameters");
     }
@@ -145,32 +146,25 @@ void ConsoleProgram::CreateCylinder(std::vector<std::string> parameters)
 
 bool ConsoleProgram::CallCommand(std::vector<std::string> splitCommand)
 {
-    try
+    if (splitCommand[0] == TYPENAME_SPHERE)
     {
-        if (splitCommand[0] == TYPENAME_SPHERE)
-        {
-            CreateSphere(splitCommand);
-        }
-        else if (splitCommand[0] == TYPENAME_PARALLELEPIPED)
-        {
-            CreateParallelepiped(splitCommand);
-        }
-        else if (splitCommand[0] == TYPENAME_CONE)
-        {
-            CreateCone(splitCommand);
-        }
-        else if (splitCommand[0] == TYPENAME_CYLINDER)
-        {
-            CreateCylinder(splitCommand);
-        }
-        else
-        {
-            return false;
-        }
+        CreateSphere(splitCommand);
     }
-    catch (invalid_argument const& e)
+    else if (splitCommand[0] == TYPENAME_PARALLELEPIPED)
     {
-        m_output << e.what() << endl;
+        CreateParallelepiped(splitCommand);
+    }
+    else if (splitCommand[0] == TYPENAME_CONE)
+    {
+        CreateCone(splitCommand);
+    }
+    else if (splitCommand[0] == TYPENAME_CYLINDER)
+    {
+        CreateCylinder(splitCommand);
+    }
+    else
+    {
+        return false;
     }
 
     return true;
@@ -180,7 +174,7 @@ void ConsoleProgram::PrintVolumeBodies()const
 {
     if (m_bodiesArray.empty())
     {
-        m_output << "Volume bodies array is empty!" << endl;
+        m_output << "Volume bodies array is empty!";
     }
 
     for (auto &concreteBody : m_bodiesArray)
@@ -193,7 +187,7 @@ void ConsoleProgram::PrintMaxMassBody()
 {
     if (m_bodiesArray.empty())
     {
-        m_output << "Volume bodies array is empty!" << endl;
+        m_output << "Volume bodies array is empty!";
     }
 
     auto maxBodyMass = m_bodiesArray.front();
@@ -206,7 +200,7 @@ void ConsoleProgram::PrintMaxMassBody()
         }
     }
 
-    m_output << "PrintMaxMass: Volume body with MAX mass:\n" << maxBodyMass->ToString();
+    m_output << "PrintMaxMass: Volume body with MAX mass:" << maxBodyMass->ToString() << endl;
 }
 
 const double GetWeightByBodyDensityAndVolume(double density, double volume)
@@ -218,7 +212,7 @@ void ConsoleProgram::PrintMinWeightBody()
 {
     if (m_bodiesArray.empty())
     {
-        m_output << "PrintMinWeight: Volume bodies array is empty!" << endl;
+        m_output << "PrintMinWeight: Volume bodies array is empty!";
     }
 
     auto minBodyWeght = m_bodiesArray.front();
@@ -236,6 +230,6 @@ void ConsoleProgram::PrintMinWeightBody()
         }
     }
 
-    m_output << "PrintMaxMass: Volume body with MIN weight:\n\t" << minBodyWeght->ToString();
+    m_output << "PrintMaxMass: Volume body with MIN weight:" << minBodyWeght->ToString() << endl;
 
 }

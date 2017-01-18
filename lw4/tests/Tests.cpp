@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
+#include <stdexcept>
 #include <vector>
 #include <iostream>
 
@@ -31,7 +32,7 @@ protected:
     {
     }
 
-    void TearDown()
+    void TearDown() override
     {
         delete sphere;
     }
@@ -93,7 +94,7 @@ protected:
     {
     }
 
-    void TearDown()
+    void TearDown() override
     {
         delete cone;
     }
@@ -166,7 +167,7 @@ protected:
     {
     }
 
-    void TearDown()
+    void TearDown() override
     {
         delete parallelepiped;
     }
@@ -244,7 +245,7 @@ protected:
     {
     }
 
-    void TearDown()
+    void TearDown() override
     {
         delete cylinder;
     }
@@ -296,24 +297,24 @@ TEST_F(CCylinderTestFixture, ToStringCylinder)
     ASSERT_TRUE(cylinder->ToString() == expectedString);
 }
 
-/* -------------------- Цилиндр -------------------- */
+/* -------------------- Консольная программа -------------------- */
+
 
 class ConsoleProgramTestFixture : public ::testing::Test
 {
 public:
     ConsoleProgram *program;
-    std::ostringstream *output;
+    std::vector<std::shared_ptr<CBody>> bodiesArray;
 
     ConsoleProgramTestFixture()
     {
-        output;
-        std::vector<std::shared_ptr<CBody>> bodiesArray;
         program = new ConsoleProgram(std::cin, std::cout, bodiesArray);
     }
 
     std::string GetOutput()
     {
-        return output->rdbuf()->str();
+        testing::internal::CaptureStdout();
+        return testing::internal::GetCapturedStdout();
     }
 
 protected:
@@ -321,22 +322,133 @@ protected:
     {
     }
 
-    void TearDown()
+    void TearDown() override
     {
         std::cout.clear();
         delete program;
     }
 };
 
-TEST_F(ConsoleProgramTestFixture, CallUnknowParameters)
+TEST_F(ConsoleProgramTestFixture, TestWrongCommandCall)
 {
-    program->ProcessInputCommand("123");
-    ASSERT_TRUE(GetOutput() == "Invalid number parameters!");
+    ASSERT_THROW(program->ProcessInputCommand(""), invalid_argument);
+    ASSERT_THROW(program->ProcessInputCommand("test"), invalid_argument);
 }
+
+TEST_F(ConsoleProgramTestFixture, TestUnknowCommandCall)
+{
+    ASSERT_THROW(program->ProcessInputCommand("command 10 10 10"), invalid_argument);
+
+    try
+    {
+        program->ProcessInputCommand("command 10 10 10");
+    }
+    catch (const std::exception& ex)
+    {
+        EXPECT_STREQ("Unknow parameters", ex.what());
+    }
+}
+
+TEST_F(ConsoleProgramTestFixture, TestCallSphereWithInvalidParameters)
+{
+    ASSERT_THROW(program->ProcessInputCommand("sphere 10"), invalid_argument);
+    ASSERT_THROW(program->ProcessInputCommand("sphere string"), invalid_argument);
+
+    try
+    {
+        program->ProcessInputCommand("sphere 10 d");
+    }
+    catch (const std::exception& e)
+    {
+        EXPECT_STREQ("Sphere invalid parameters", e.what());
+    }
+
+}
+
+TEST_F(ConsoleProgramTestFixture, TestCallSphereWithValidParameters)
+{
+    ASSERT_NO_THROW(program->ProcessInputCommand("sphere 10 10"));
+    ASSERT_NO_THROW(program->ProcessInputCommand("sphere 23.23 5.55"));
+}
+
+TEST_F(ConsoleProgramTestFixture, TestCallConeWithInvalidParameters)
+{
+    ASSERT_THROW(program->ProcessInputCommand("cone 10"), invalid_argument);
+    ASSERT_THROW(program->ProcessInputCommand("cone string"), invalid_argument);
+
+    try
+    {
+        program->ProcessInputCommand("cone dsf 12 11");
+    }
+    catch (const std::exception& e)
+    {
+        EXPECT_STREQ("Cone invalid parameters", e.what());
+    }
+
+}
+
+TEST_F(ConsoleProgramTestFixture, TestCallConeWithValidParameters)
+{
+    ASSERT_NO_THROW(program->ProcessInputCommand("cone 10 10 30"));
+    ASSERT_NO_THROW(program->ProcessInputCommand("cone 23.23 5.55 0.24"));
+}
+
+TEST_F(ConsoleProgramTestFixture, TestCallParallelepipedWithInvalidParameters)
+{
+    ASSERT_THROW(program->ProcessInputCommand("parallelepiped 10"), invalid_argument);
+    ASSERT_THROW(program->ProcessInputCommand("parallelepiped string"), invalid_argument);
+
+    try
+    {
+        program->ProcessInputCommand("parallelepiped dsf 12 11");
+    }
+    catch (const std::exception& e)
+    {
+        EXPECT_STREQ("Parallelepiped invalid parameters", e.what());
+    }
+
+}
+
+TEST_F(ConsoleProgramTestFixture, TestCallParallelepipedWithValidParameters)
+{
+    ASSERT_NO_THROW(program->ProcessInputCommand("parallelepiped 10 100 300 20"));
+    ASSERT_NO_THROW(program->ProcessInputCommand("parallelepiped 23.23 5.55 0.24 10"));
+}
+
+TEST_F(ConsoleProgramTestFixture, TestCallCylinderWithInvalidParameters)
+{
+    ASSERT_THROW(program->ProcessInputCommand("cylinder 10"), invalid_argument);
+    ASSERT_THROW(program->ProcessInputCommand("cylinder string"), invalid_argument);
+
+    try
+    {
+        program->ProcessInputCommand("cylinder dsf 12 11");
+    }
+    catch (const std::exception& e)
+    {
+        EXPECT_STREQ("Cylinder invalid parameters", e.what());
+    }
+
+}
+
+TEST_F(ConsoleProgramTestFixture, TestCallCylinderWithValidParameters)
+{
+    ASSERT_NO_THROW(program->ProcessInputCommand("cylinder 10 100 300"));
+    ASSERT_NO_THROW(program->ProcessInputCommand("cylinder 23.23 5.55 0.24"));
+}
+
+
+TEST_F(ConsoleProgramTestFixture, TestCallPrintMaxMassBody)
+{
+    ASSERT_NO_THROW(program->ProcessInputCommand("cylinder 10 100 300"));
+    ASSERT_NO_THROW(program->ProcessInputCommand("cylinder 23.23 5.55 0.24"));
+}
+
+
+// todo: compound
 
 int main(int argc, char* argv[])
 {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
-    //return 0;
 }
