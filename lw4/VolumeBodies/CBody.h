@@ -11,7 +11,7 @@ public:
 
     double GetDensity()const;
     virtual double GetVolume()const;
-    double GetMass()const;
+    virtual double GetMass()const;
     virtual std::string ToString()const;
 
     std::string m_type;

@@ -7,7 +7,6 @@
 
 using namespace std;
 
-
 const vector<string> split(const string& targetString, const char& delimiter)
 {
     string tmpString("");

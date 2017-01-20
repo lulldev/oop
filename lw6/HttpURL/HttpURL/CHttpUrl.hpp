@@ -69,6 +69,7 @@ private:
     void ParseURL(std::string const& url);
     Protocol GetProtocolByStr(std::string const& strProtocol)const;
     signed GetPortByProtocol(Protocol& protocol)const;
+    Protocol GetProtocolByPort(signed port)const;
     
     // validation
     void ValidateURLParams(std::string & domain, std::string & document, Protocol & protocol, std::string port);

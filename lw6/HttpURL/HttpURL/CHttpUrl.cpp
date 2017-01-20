@@ -84,6 +84,16 @@ signed CHttpUrl::GetPortByProtocol(Protocol& protocol)const
     return -1;
 }
 
+Protocol CHttpUrl::GetProtocolByPort(signed port)const
+{
+    if (port == 443)
+    {
+        return Protocol::HTTPS;
+    }
+    
+    return Protocol::HTTP;
+}
+
 void CHttpUrl::ValidateProtocolByStr(std::string protocol)const
 {
     transform(protocol.begin(), protocol.end(), protocol.begin(), ::tolower);
@@ -121,6 +131,7 @@ void CHttpUrl::ValidatePort(std::string port)const
         {
             throw CUrlParsingError(ERROR_MESSAGE_INVALID_PORT);
         }
+        
     }
     catch(...)
     {
@@ -167,6 +178,7 @@ void CHttpUrl::ParseURL(string const& url)
     {
         ValidatePort(portStr);
         m_port = stoi(portStr);
+        m_protocol = GetProtocolByPort(m_port);
     }
     else
     {

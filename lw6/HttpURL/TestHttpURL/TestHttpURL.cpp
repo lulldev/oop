@@ -57,13 +57,6 @@ BOOST_AUTO_TEST_SUITE(http_url_suite)
 
         BOOST_AUTO_TEST_CASE(no_valid_link)
         {
-            /*
-            BOOST_CHECK_THROW(CHttpUrl httpUrl(""), CUrlParsingError);
-            BOOST_CHECK_THROW(CHttpUrl("httrp://vk"), CUrlParsingError);
-            BOOST_CHECK_THROW(CHttpUrl("httrp://vk"), CUrlParsingError);
-            BOOST_CHECK_THROW(CHttpUrl("http://vk..."), CUrlParsingError);
-             */
-            
             BOOST_CHECK(VerifyExceptionMessage(ERROR_MESSAGE_INVALID_URL, std::string(""), {}, {}, {}, {}));
             BOOST_CHECK(VerifyExceptionMessage(ERROR_MESSAGE_INVALID_PROTOCOL, std::string("httpr://ya.ru"), {}, {}, {}, {}));
         }
@@ -80,15 +73,6 @@ BOOST_AUTO_TEST_SUITE(http_url_suite)
 
         BOOST_AUTO_TEST_CASE(no_valid_link)
         {
-            /*
-            BOOST_CHECK_THROW(CHttpUrl("", "", Protocol::HTTP, 0), CUrlParsingError);
-
-            BOOST_CHECK_THROW(CHttpUrl("-site.ru", "", Protocol::HTTP, 0), CUrlParsingError);
-            
-            BOOST_CHECK_THROW(CHttpUrl("test", "some_document", Protocol::UNKNOWN, 0), CUrlParsingError);
-            BOOST_CHECK_THROW(CHttpUrl("test", "some_document", Protocol::HTTP, 80000), CUrlParsingError);
-             */
-            
             BOOST_CHECK(VerifyExceptionMessage(ERROR_MESSAGE_INVALID_DOMAIN, {}, std::string("si te.ru"), std::string(""), Protocol::HTTP, 0));
             BOOST_CHECK(VerifyExceptionMessage(ERROR_MESSAGE_INVALID_PROTOCOL, {}, std::string("site.ru"), std::string(""), Protocol::UNKNOWN, 0));
             BOOST_CHECK(VerifyExceptionMessage(ERROR_MESSAGE_INVALID_PORT, {}, std::string("site.ru"), std::string(""), Protocol::HTTP, 80000));

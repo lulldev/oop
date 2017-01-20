@@ -5,11 +5,7 @@
 #include <vector>
 #include <iostream>
 
-#include "../VolumeBodies/CSphere.h"
-#include "../VolumeBodies/CCone.h"
-#include "../VolumeBodies/CParallelepiped.h"
-#include "../VolumeBodies/CCylinder.h"
-
+#include "../VolumeBodies/VolumeBodies.h"
 #include "../ConsoleProgram/ConsoleProgram.h"
 
 using testing::Eq;
@@ -295,6 +291,36 @@ TEST_F(CCylinderTestFixture, ToStringCylinder)
             "Radius: 20.000000\n";
 
     ASSERT_TRUE(cylinder->ToString() == expectedString);
+}
+
+/* -------------------- Составное тело -------------------- */
+
+class CCompoundTestFixture : public ::testing::Test
+{
+public:
+    CCompound *compound;
+
+    CCompoundTestFixture()
+    {
+        std::vector<std::shared_ptr<CBody>>childBodiesArray;
+        compound = new CCompound(childBodiesArray);
+    }
+
+protected:
+    void SetUp() override
+    {
+    }
+
+    void TearDown() override
+    {
+        delete compound;
+    }
+};
+
+TEST_F(CCompoundTestFixture, TestAddChild)
+{
+    CCylinder cylinder(10, 10, 10);
+    ASSERT_TRUE(compound->AddChildBody(cylinder));
 }
 
 /* -------------------- Консольная программа -------------------- */

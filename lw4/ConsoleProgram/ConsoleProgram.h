@@ -2,10 +2,7 @@
 #include <string>
 #include <iostream>
 
-#include "../VolumeBodies/CSphere.h"
-#include "../VolumeBodies/CCone.h"
-#include "../VolumeBodies/CParallelepiped.h"
-#include "../VolumeBodies/CCylinder.h"
+#include "../VolumeBodies/VolumeBodies.h"
 
 class ConsoleProgram
 {
