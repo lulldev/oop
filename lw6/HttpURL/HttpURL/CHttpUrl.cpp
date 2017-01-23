@@ -9,7 +9,6 @@ using namespace std;
 CHttpUrl::CHttpUrl(std::string const& url)
 {
     ParseURL(url);
-    m_url = url;
 }
 
 CHttpUrl::CHttpUrl(std::string const& domain, std::string const& document, Protocol protocol, unsigned port)
@@ -26,7 +25,7 @@ CHttpUrl::CHttpUrl(std::string const& domain, std::string const& document, Proto
     
     ValidateURLParams(m_domain, m_document, m_protocol, to_string(m_port));
 
-    m_url = MakeURLFromParams();
+    m_url = MakeURLFromParams(true);
 }
 
 std::string CHttpUrl::GetProtocolName()const
@@ -53,11 +52,14 @@ std::string CHttpUrl::ProtocolToString()const
 
 Protocol CHttpUrl::GetProtocolByStr(std::string const& strProtocol)const
 {
-    if (strProtocol == HTTP_PROTOCOL)
+    std::string tmpStrProtocol = strProtocol;
+    transform(tmpStrProtocol.begin(), tmpStrProtocol.end(), tmpStrProtocol.begin(), ::tolower);
+
+    if (tmpStrProtocol == HTTP_PROTOCOL)
     {
         return Protocol::HTTP;
     }
-    else if (strProtocol == HTTPS_PROTOCOL)
+    else if (tmpStrProtocol == HTTPS_PROTOCOL)
     {
         return Protocol::HTTPS;
     }
@@ -98,7 +100,7 @@ void CHttpUrl::ValidateProtocol(Protocol & protocol)const
     }
 }
 
-void CHttpUrl::ValidateDomain(std::string domainStr)const
+void CHttpUrl::ValidateDomain(std::string domainStr)
 {
     regex urlRegexRule("^([a-zA-Z0-9]([a-zA-Z0-9./-]{0,63}[a-zA-Z0-9])$)", regex_constants::icase);
     smatch urlRegexResult;
@@ -107,6 +109,9 @@ void CHttpUrl::ValidateDomain(std::string domainStr)const
     {
         throw CUrlParsingError(ERROR_MESSAGE_INVALID_DOMAIN);
     }
+    
+    transform(domainStr.begin(), domainStr.end(), domainStr.begin(), ::tolower);
+    m_domain = domainStr;
 }
 
 void CHttpUrl::ValidatePort(std::string port)const
@@ -125,7 +130,7 @@ void CHttpUrl::ValidatePort(std::string port)const
         throw CUrlParsingError(ERROR_MESSAGE_INVALID_PORT);
     }
     
-    if (portNumber < 1 || portNumber > 65536)
+    if (portNumber < 1 || portNumber > 65535)
     {
         throw CUrlParsingError(ERROR_MESSAGE_INVALID_PORT);
     }
@@ -138,9 +143,14 @@ void CHttpUrl::ValidateURLParams(std::string & domain, std::string & document, P
     ValidatePort(port);
 }
 
-std::string CHttpUrl::MakeURLFromParams()const
+std::string CHttpUrl::MakeURLFromParams(bool isPortSet)const
 {
-    return ProtocolToString() + "://" + m_domain +  to_string(m_port) + m_document;
+    if (isPortSet)
+    {
+        return ProtocolToString() + "://" + GetDomain() + ":" + to_string(GetPort()) + GetDocument();
+    }
+    
+    return ProtocolToString() + "://" + m_domain + m_document;
 }
 
 void CHttpUrl::ParseURL(string const& url)
@@ -157,14 +167,15 @@ void CHttpUrl::ParseURL(string const& url)
     m_protocol = GetProtocolByStr(urlRegexResult[1]);
     
     ValidateDomain(urlRegexResult[2]);
-    m_domain = urlRegexResult[2];
     
     string portStr = urlRegexResult[3];
+    bool isPortSet = false;
     
     if (portStr.size() > 0)
     {
         ValidatePort(portStr);
         m_port = stoi(portStr);
+        isPortSet = true;
     }
     else
     {
@@ -172,6 +183,8 @@ void CHttpUrl::ParseURL(string const& url)
     }
     
     m_document = urlRegexResult[4];
+    
+    m_url = MakeURLFromParams(isPortSet);
 }
 
 

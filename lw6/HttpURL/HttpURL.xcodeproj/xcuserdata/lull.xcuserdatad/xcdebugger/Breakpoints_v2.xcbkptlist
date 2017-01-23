@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestHttpURL/TestHttpURL.cpp"
-            timestampString = "504600399.208406"
+            timestampString = "506851931.922278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "BOOST_AUTO_TEST_CASE(valid_link)"
             landmarkType = "9">
          </BreakpointContent>

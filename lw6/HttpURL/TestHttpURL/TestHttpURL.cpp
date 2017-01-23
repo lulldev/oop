@@ -63,8 +63,10 @@ BOOST_AUTO_TEST_SUITE(http_url_suite)
 
         BOOST_AUTO_TEST_CASE(valid_link)
         {
-            BOOST_CHECK(VerifyURL(CHttpUrl("http://vk1.com/"), "http://vk1.com/", Protocol::UNKNOWN, "", "", 0));
+            BOOST_CHECK(VerifyURL(CHttpUrl("http://vk1.com"), "http://vk1.com", Protocol::UNKNOWN, "", "", 0));
             BOOST_CHECK(VerifyURL(CHttpUrl("http://vk1.com/some/document.php"), "http://vk1.com/some/document.php", Protocol::UNKNOWN, "", "", 0));
+            BOOST_CHECK(VerifyURL(CHttpUrl("HTTP://YA.com/"), "http://ya.com", Protocol::UNKNOWN, "", "", 0));
+
         }
 
     BOOST_AUTO_TEST_SUITE_END()
@@ -118,6 +120,8 @@ BOOST_AUTO_TEST_SUITE(http_url_suite)
             BOOST_CHECK(VerifyURL(CHttpUrl("site.ru", "", Protocol::HTTPS, 0), "", Protocol::HTTPS, "site.ru", "", 443));
             BOOST_CHECK(VerifyURL(CHttpUrl("localhost", "", Protocol::HTTP, 0), "", Protocol::HTTP, "localhost", "", 80));
             BOOST_CHECK(VerifyURL(CHttpUrl("localhost-site.com", "doc", Protocol::HTTP, 0), "", Protocol::HTTP, "localhost-site.com", "doc", 80));
+            BOOST_CHECK(VerifyURL(CHttpUrl("TEST.RU", "doc", Protocol::HTTP, 0), "", Protocol::HTTP, "test.ru", "doc", 80));
+
         }
 
     BOOST_AUTO_TEST_SUITE_END()
@@ -128,6 +132,8 @@ BOOST_AUTO_TEST_SUITE(http_url_suite)
         {
             BOOST_CHECK(VerifyExceptionMessage(ERROR_MESSAGE_INVALID_PORT, std::string("http://test:8e0/"), {}, {}, {}, {}));
             BOOST_CHECK(VerifyExceptionMessage(ERROR_MESSAGE_INVALID_PORT, {}, std::string("ya.ru"), std::string(""), Protocol::HTTP, 70000));
+            BOOST_CHECK(VerifyExceptionMessage(ERROR_MESSAGE_INVALID_PORT, std::string("http://ya.ru:65536"), {}, {}, {}, {}));
+
         }
 
         BOOST_AUTO_TEST_CASE(valid_port)
@@ -136,6 +142,7 @@ BOOST_AUTO_TEST_SUITE(http_url_suite)
             BOOST_CHECK(VerifyURL(CHttpUrl("site.ru", "", Protocol::HTTPS, 0), "", Protocol::HTTPS, "site.ru", "", 443));
             BOOST_CHECK(VerifyURL(CHttpUrl("https://site.ru"), "", Protocol::HTTPS, "site.ru", "", 443));
             BOOST_CHECK(VerifyURL(CHttpUrl("http://site.ru:100/"), "", Protocol::HTTP, "site.ru", "", 100));
+            BOOST_CHECK(VerifyURL(CHttpUrl("http://ya.ru:65535"), "", Protocol::HTTP, "ya.ru", "", 65535));
         }
 
     BOOST_AUTO_TEST_SUITE_END()

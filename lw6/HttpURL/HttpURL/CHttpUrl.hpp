@@ -72,11 +72,11 @@ private:
     void ValidateURLParams(std::string & domain, std::string & document, Protocol & protocol, std::string port);
     void ValidateProtocol(Protocol & protocol)const;
     void ValidateProtocolByStr(std::string protocol)const;
-    void ValidateDomain(std::string domain)const;
+    void ValidateDomain(std::string domain);
     void ValidatePort(std::string port)const;
     
     std::string GetProtocolName()const;
     std::string ProtocolToString()const;
-    std::string MakeURLFromParams()const;
+    std::string MakeURLFromParams(bool isPortSet)const;
 
 };
