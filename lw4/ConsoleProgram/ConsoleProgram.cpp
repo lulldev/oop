@@ -169,24 +169,16 @@ bool ConsoleProgram::CallCommand(std::vector<std::string> splitCommand)
     return true;
 }
 
-void ConsoleProgram::PrintVolumeBodies()const
+const double GetWeightByBodyDensityAndVolume(double density, double volume)
 {
-    if (m_bodiesArray.empty())
-    {
-        m_output << "Volume bodies array is empty!";
-    }
-
-    for (auto &concreteBody : m_bodiesArray)
-    {
-        m_output << concreteBody->ToString() << endl;
-    }
+    return (density - 1000) * 9.8 * volume;
 }
 
-void ConsoleProgram::PrintMaxMassBody()
+std::shared_ptr<CBody> ConsoleProgram::GetMaxMassBody()const
 {
     if (m_bodiesArray.empty())
     {
-        m_output << "Volume bodies array is empty!";
+        throw std::invalid_argument("Body array is empty");
     }
 
     auto maxBodyMass = m_bodiesArray.front();
@@ -199,19 +191,14 @@ void ConsoleProgram::PrintMaxMassBody()
         }
     }
 
-    m_output << "PrintMaxMass: Volume body with MAX mass:" << maxBodyMass->ToString() << endl;
+    return maxBodyMass;
 }
 
-const double GetWeightByBodyDensityAndVolume(double density, double volume)
-{
-    return (density - 1000) * 9.8 * volume;
-}
-
-void ConsoleProgram::PrintMinWeightBody()
+std::shared_ptr<CBody> ConsoleProgram::GetMinWeightBody()const
 {
     if (m_bodiesArray.empty())
     {
-        m_output << "PrintMinWeight: Volume bodies array is empty!";
+        throw std::invalid_argument("Body array is empty");
     }
 
     auto minBodyWeght = m_bodiesArray.front();
@@ -229,6 +216,34 @@ void ConsoleProgram::PrintMinWeightBody()
         }
     }
 
-    m_output << "PrintMaxMass: Volume body with MIN weight:" << minBodyWeght->ToString() << endl;
+    return minBodyWeght;
+}
 
+
+void ConsoleProgram::PrintVolumeBodies()const
+{
+    if (m_bodiesArray.empty())
+    {
+        m_output << "Volume bodies array is empty!" << endl;
+    }
+
+    m_output << "All bodies in program array:" << endl;
+
+    for (auto &concreteBody : m_bodiesArray)
+    {
+        m_output << concreteBody->ToString() << endl;
+    }
+}
+
+void ConsoleProgram::PrintMaxMassBody()
+{
+    m_output << "Volume body with MAX mass:" << endl;
+    m_output << GetMaxMassBody()->ToString() << endl;
+}
+
+
+void ConsoleProgram::PrintMinWeightBody()
+{
+    m_output << "Volume body with MIN weight:" << endl;
+    m_output << GetMinWeightBody()->ToString() << endl;
 }

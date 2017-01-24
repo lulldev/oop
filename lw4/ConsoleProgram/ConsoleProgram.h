@@ -15,8 +15,11 @@ public:
     void PrintMaxMassBody();
     void PrintMinWeightBody();
 
+    std::shared_ptr<CBody> GetMaxMassBody()const;
+    std::shared_ptr<CBody> GetMinWeightBody()const;
+
 private:
-    std::vector<std::shared_ptr<CBody>>& m_bodiesArray;
+    std::vector<std::shared_ptr<CBody>> m_bodiesArray;
     std::istream& m_input;
     std::ostream& m_output;
 

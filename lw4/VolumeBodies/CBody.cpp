@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 
 #include "CBody.h"
 
@@ -21,6 +22,7 @@ CBody::CBody(const std::string& figureType, double density)
     m_density = density;
 }
 
+
 double CBody::GetDensity()const
 {
     return m_density;
@@ -42,4 +44,9 @@ string CBody::ToString()const
            "Density: " + to_string(GetDensity()) + "\n" +
            "Volume: " + to_string(GetVolume()) + "\n" +
            "Mass: " + to_string(GetMass());
+}
+
+std::string CBody::GetType()const
+{
+    return m_type;
 }

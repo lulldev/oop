@@ -51,7 +51,7 @@ TEST_F(CSphereTestFixture, InitClassWithAllowParams)
 
 TEST_F(CSphereTestFixture, CheckSphereType)
 {
-    ASSERT_TRUE(sphere->m_type == TYPENAME_SPHERE);
+    ASSERT_TRUE(sphere->GetType() == TYPENAME_SPHERE);
 }
 
 TEST_F(CSphereTestFixture, TestBaseSphereMethods)
@@ -119,7 +119,7 @@ TEST_F(CConeTestFixture, InitClassWithAllowParams)
 
 TEST_F(CConeTestFixture, CheckSphereType)
 {
-    ASSERT_TRUE(cone->m_type == TYPENAME_CONE);
+    ASSERT_TRUE(cone->GetType() == TYPENAME_CONE);
 }
 
 TEST_F(CConeTestFixture, TestBaseConeMethods)
@@ -196,7 +196,7 @@ TEST_F(CParallelepipedTestFixture, InitClassWithAllowParams)
 
 TEST_F(CParallelepipedTestFixture, CheckParallelepipedType)
 {
-    ASSERT_TRUE(parallelepiped->m_type == TYPENAME_PARALLELEPIPED);
+    ASSERT_TRUE(parallelepiped->GetType() == TYPENAME_PARALLELEPIPED);
 }
 
 TEST_F(CParallelepipedTestFixture, TestBaseParallelepipedMethods)
@@ -269,7 +269,7 @@ TEST_F(CCylinderTestFixture, InitClassWithAllowParams)
 
 TEST_F(CCylinderTestFixture, CheckSphereType)
 {
-    ASSERT_TRUE(cylinder->m_type == TYPENAME_CYLINDER);
+    ASSERT_TRUE(cylinder->GetType() == TYPENAME_CYLINDER);
 }
 
 TEST_F(CCylinderTestFixture, TestBaseConeMethods)
@@ -298,30 +298,76 @@ TEST_F(CCylinderTestFixture, ToStringCylinder)
 class CCompoundTestFixture : public ::testing::Test
 {
 public:
+    CCompound *thisCompound;
+
+    CCylinder *cylinder;
+    CCone *cone;
+    CParallelepiped *parallelepiped;
+    CSphere *sphere;
     CCompound *compound;
 
     CCompoundTestFixture()
     {
         std::vector<std::shared_ptr<CBody>>childBodiesArray;
-        compound = new CCompound(childBodiesArray);
+        thisCompound = new CCompound(childBodiesArray);
     }
 
 protected:
     void SetUp() override
     {
+        std::vector<std::shared_ptr<CBody>>childBodiesArray;
+
+        cylinder = new CCylinder(10, 10, 10);
+        cone = new CCone(5, 5, 5);
+        parallelepiped = new CParallelepiped(7, 7, 7, 7);
+        sphere = new CSphere(10, 20);
+        compound = new CCompound(childBodiesArray);
     }
 
     void TearDown() override
     {
-        delete compound;
+        delete cylinder;
+        delete cone;
+        delete parallelepiped;
+        delete sphere;
+        delete thisCompound;
     }
 };
 
-TEST_F(CCompoundTestFixture, TestAddChild)
+TEST_F(CCompoundTestFixture, TestSelfAddToChild)
 {
-    CCylinder cylinder(10, 10, 10);
-    ASSERT_TRUE(compound->AddChildBody(cylinder));
+    ASSERT_THROW(thisCompound->AddChildBody(*thisCompound), std::invalid_argument);
 }
+
+TEST_F(CCompoundTestFixture, TestAddValideSimpleBodiesChilds)
+{
+    ASSERT_TRUE(thisCompound->AddChildBody(*cylinder));
+    ASSERT_TRUE(thisCompound->AddChildBody(*cone));
+    ASSERT_TRUE(thisCompound->AddChildBody(*parallelepiped));
+    ASSERT_TRUE(thisCompound->AddChildBody(*sphere));
+}
+
+
+TEST_F(CCompoundTestFixture, TestAddCompoundChilds)
+{
+    ASSERT_TRUE(thisCompound->AddChildBody(*cylinder));
+    ASSERT_TRUE(thisCompound->AddChildBody(*cone));
+    ASSERT_TRUE(thisCompound->AddChildBody(*compound));
+}
+
+
+TEST_F(CCompoundTestFixture, TestGetMassOfSimpleBodies)
+{
+    CCylinder cylinder1(10, 2, 1);
+
+    thisCompound->AddChildBody(cylinder1);
+    thisCompound->AddChildBody(*sphere);
+
+//    cout << cylinder->GetMass() << endl;
+//    cout << cone->GetMass() << endl;
+    cout << thisCompound->GetMass() << endl;
+}
+
 
 /* -------------------- Консольная программа -------------------- */
 
@@ -454,7 +500,6 @@ TEST_F(ConsoleProgramTestFixture, TestCallCylinderWithInvalidParameters)
     {
         EXPECT_STREQ("Cylinder invalid parameters", e.what());
     }
-
 }
 
 TEST_F(ConsoleProgramTestFixture, TestCallCylinderWithValidParameters)
@@ -463,15 +508,37 @@ TEST_F(ConsoleProgramTestFixture, TestCallCylinderWithValidParameters)
     ASSERT_NO_THROW(program->ProcessInputCommand("cylinder 23.23 5.55 0.24"));
 }
 
+/* -------------------- Вывод макс/мин тела -------------------- */
 
-TEST_F(ConsoleProgramTestFixture, TestCallPrintMaxMassBody)
+TEST_F(ConsoleProgramTestFixture, TestCallMaxMassBodyWithEmptyBodiesArray)
 {
-    ASSERT_NO_THROW(program->ProcessInputCommand("cylinder 10 100 300"));
-    ASSERT_NO_THROW(program->ProcessInputCommand("cylinder 23.23 5.55 0.24"));
+    ASSERT_THROW(program->GetMaxMassBody(), invalid_argument);
+    program->ProcessInputCommand("cylinder 10 10 10");
+    ASSERT_NO_THROW(program->GetMaxMassBody());
 }
 
+TEST_F(ConsoleProgramTestFixture, TestCallMinWeightBodyWithEmptyBodiesArray)
+{
+    ASSERT_THROW(program->GetMaxMassBody(), invalid_argument);
+    program->ProcessInputCommand("cone 5 10 5");
+    ASSERT_NO_THROW(program->GetMaxMassBody());
+}
 
-// todo: compound
+TEST_F(ConsoleProgramTestFixture, TestCallMaxMassBody)
+{
+    program->ProcessInputCommand("cylinder 10 10 10");
+    program->ProcessInputCommand("sphere 20 20");
+
+    ASSERT_TRUE(program->GetMaxMassBody()->GetType() == TYPENAME_SPHERE);
+}
+
+TEST_F(ConsoleProgramTestFixture, TestCallMinWeightBody)
+{
+    program->ProcessInputCommand("cylinder 10 10 10");
+    program->ProcessInputCommand("parallelepiped 5 5 5 5");
+
+    ASSERT_TRUE(program->GetMinWeightBody()->GetType() == TYPENAME_CYLINDER);
+}
 
 int main(int argc, char* argv[])
 {

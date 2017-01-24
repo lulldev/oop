@@ -13,11 +13,11 @@ CCompound::CCompound(std::vector<std::shared_ptr<CBody>>& childBodiesArray)
 
 bool CCompound::IsValidBody(const CBody& body)const
 {
-    return body.m_type == TYPENAME_SPHERE ||
-           body.m_type == TYPENAME_CONE ||
-           body.m_type == TYPENAME_PARALLELEPIPED ||
-           body.m_type == TYPENAME_CYLINDER ||
-           body.m_type == TYPENAME_COMPOUND;
+    return body.GetType() == TYPENAME_SPHERE ||
+           body.GetType() == TYPENAME_CONE ||
+           body.GetType() == TYPENAME_PARALLELEPIPED ||
+           body.GetType() == TYPENAME_CYLINDER ||
+           body.GetType() == TYPENAME_COMPOUND;
 }
 
 bool CCompound::AddChildBody(CBody& chldBody)
@@ -38,7 +38,17 @@ bool CCompound::AddChildBody(CBody& chldBody)
 
 double CCompound::GetMass()const
 {
-    return 0.0;
+    double mass = 0.0;
+
+    if (!m_childBodies.empty())
+    {
+        for (auto childBody : m_childBodies)
+        {
+            mass += childBody->GetMass();
+        }
+    }
+
+    return mass;
 }
 
 
