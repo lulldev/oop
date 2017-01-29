@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "20F2B55D1DEDD8B400D3E6CB"
-               BuildableName = "CTime"
-               BlueprintName = "CTime"
+               BlueprintIdentifier = "209D614F1E3E941C009DB7BC"
+               BuildableName = "CTimeTesting"
+               BlueprintName = "CTimeTesting"
                ReferencedContainer = "container:CTime.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "20F2B55D1DEDD8B400D3E6CB"
-            BuildableName = "CTime"
-            BlueprintName = "CTime"
+            BlueprintIdentifier = "209D614F1E3E941C009DB7BC"
+            BuildableName = "CTimeTesting"
+            BlueprintName = "CTimeTesting"
             ReferencedContainer = "container:CTime.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "20F2B55D1DEDD8B400D3E6CB"
-            BuildableName = "CTime"
-            BlueprintName = "CTime"
+            BlueprintIdentifier = "209D614F1E3E941C009DB7BC"
+            BuildableName = "CTimeTesting"
+            BlueprintName = "CTimeTesting"
             ReferencedContainer = "container:CTime.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "20F2B55D1DEDD8B400D3E6CB"
-            BuildableName = "CTime"
-            BlueprintName = "CTime"
+            BlueprintIdentifier = "209D614F1E3E941C009DB7BC"
+            BuildableName = "CTimeTesting"
+            BlueprintName = "CTimeTesting"
             ReferencedContainer = "container:CTime.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

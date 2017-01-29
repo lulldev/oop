@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>CDate.xcscheme</key>
+		<key>CTime.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>CDateTesting.xcscheme</key>
+		<key>CTimeTesting.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
@@ -17,12 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>20F2B55D1DEDD8B400D3E6CB</key>
+		<key>209D613E1E3E93DB009DB7BC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>20F2B56E1DEDDCE600D3E6CB</key>
+		<key>209D614F1E3E941C009DB7BC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

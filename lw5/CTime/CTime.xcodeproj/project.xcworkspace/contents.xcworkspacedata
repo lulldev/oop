@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "/Users/lull/GitHub/oop/lw5">
+      location = "self:CTime.xcodeproj">
    </FileRef>
 </Workspace>
