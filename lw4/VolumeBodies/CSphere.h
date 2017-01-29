@@ -8,7 +8,7 @@ public:
     CSphere(double density, double radius);
 
     double GetRadius()const;
-    double GetVolume()const override;
+    double GetVolume() override;
 
     std::string ToString() override;
 

@@ -303,6 +303,8 @@ public:
     CCompound compound;
     CCompound thisCompound;
 
+    std::vector<std::shared_ptr<CBody>> childBodiesArray;
+
     CCompoundTestFixture()
         :cylinder(10, 10, 10),
          cone(5, 5, 5),
@@ -327,9 +329,6 @@ protected:
 //        delete sphere;
 //        delete thisCompound;
     }
-
-private:
-    std::vector<std::shared_ptr<CBody>> childBodiesArray;
 };
 
 TEST_F(CCompoundTestFixture, TestSelfAddToChild)
@@ -356,14 +355,17 @@ TEST_F(CCompoundTestFixture, TestAddCompoundChilds)
 
 TEST_F(CCompoundTestFixture, TestGetMassOfSimpleBodies)
 {
-    CCylinder cylinder1(10, 2, 1);
+    ASSERT_DOUBLE_EQ(thisCompound.GetMass(), 0);
 
-    thisCompound.AddChildBody(cylinder1);
-    //thisCompound.AddChildBody(*sphere);
+    CCone cone2(5, 5, 5);
 
-//    cout << cylinder.GetMass() << endl;
-//    cout << cone.GetMass() << endl;
-    cout << thisCompound.GetMass() << endl;
+    std::vector<std::shared_ptr<CBody>> childBodiesArray;
+    CCompound cd(childBodiesArray);
+    cd.AddChildBody(cone2);
+
+    cout << to_string(cone2.GetMass()) << endl;
+    //ASSERT_DOUBLE_EQ(thisCompound.GetMass(), 0);
+    ASSERT_DOUBLE_EQ(cd.GetMass(), 0);
 }
 
 

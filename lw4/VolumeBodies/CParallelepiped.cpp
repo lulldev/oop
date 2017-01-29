@@ -42,7 +42,7 @@ double CParallelepiped::GetDepth()const
     return m_depth;
 }
 
-double CParallelepiped::GetVolume() const
+double CParallelepiped::GetVolume()
 {
     return (m_width * m_height * m_depth);
 }

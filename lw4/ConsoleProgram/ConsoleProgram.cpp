@@ -44,21 +44,20 @@ void ConsoleProgram::ProcessInputCommand(std::string inputCommand)
 {
     vector<string> splitCommand{split(inputCommand, ' ')};
 
-        if (splitCommand.size() < 2)
+    if (splitCommand.size() < 2)
+    {
+        throw invalid_argument("Invalid number parameters");
+    }
+    else
+    {
+        if (!CallCommand(splitCommand))
         {
-            throw invalid_argument("Invalid number parameters");
+            throw invalid_argument("Unknow parameters");
         }
-        else
-        {
-            if (!CallCommand(splitCommand))
-            {
-                throw invalid_argument("Unknow parameters");
-            }
-        }
-
+    }
 }
 
-void ConsoleProgram::CreateSphere(std::vector<std::string> parameters)
+void ConsoleProgram::CreateSphere(std::vector<std::string>& parameters)
 {
     double density;
     double radius;
@@ -77,7 +76,7 @@ void ConsoleProgram::CreateSphere(std::vector<std::string> parameters)
     m_bodiesArray.push_back(sphere);
 }
 
-void ConsoleProgram::CreateParallelepiped(std::vector<std::string> parameters)
+void ConsoleProgram::CreateParallelepiped(std::vector<std::string>& parameters)
 {
     double density;
     double width;
@@ -100,7 +99,7 @@ void ConsoleProgram::CreateParallelepiped(std::vector<std::string> parameters)
     m_bodiesArray.push_back(parallelepiped);
 }
 
-void ConsoleProgram::CreateCone(std::vector<std::string> parameters)
+void ConsoleProgram::CreateCone(std::vector<std::string>& parameters)
 {
 
     double density;
@@ -122,7 +121,7 @@ void ConsoleProgram::CreateCone(std::vector<std::string> parameters)
     m_bodiesArray.push_back(cone);
 }
 
-void ConsoleProgram::CreateCylinder(std::vector<std::string> parameters)
+void ConsoleProgram::CreateCylinder(std::vector<std::string>& parameters)
 {
     double density;
     double radius;
@@ -143,7 +142,7 @@ void ConsoleProgram::CreateCylinder(std::vector<std::string> parameters)
     m_bodiesArray.push_back(cylinder);
 }
 
-bool ConsoleProgram::CallCommand(std::vector<std::string> splitCommand)
+bool ConsoleProgram::CallCommand(std::vector<std::string>& splitCommand)
 {
     if (splitCommand[0] == TYPENAME_SPHERE)
     {

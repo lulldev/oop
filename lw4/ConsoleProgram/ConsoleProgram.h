@@ -23,10 +23,10 @@ private:
     std::istream& m_input;
     std::ostream& m_output;
 
-    void CreateSphere(std::vector<std::string> parameters);
-    void CreateParallelepiped(std::vector<std::string> parameters);
-    void CreateCone(std::vector<std::string> parameters);
-    void CreateCylinder(std::vector<std::string> parameters);
+    void CreateSphere(std::vector<std::string>& parameters);
+    void CreateParallelepiped(std::vector<std::string>& parameters);
+    void CreateCone(std::vector<std::string>& parameters);
+    void CreateCylinder(std::vector<std::string>& parameters);
 
-    bool CallCommand(std::vector<std::string> splitCommand);
+    bool CallCommand(std::vector<std::string>& splitCommand);
 };

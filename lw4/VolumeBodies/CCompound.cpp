@@ -30,6 +30,7 @@ bool CCompound::AddChildBody(CBody& chldBody)
 
     if (IsValidBody(chldBody))
     {
+        cout << "add";
         m_childBodies.push_back(make_shared<CBody>(chldBody));
         return true;
     }
@@ -45,11 +46,33 @@ double CCompound::GetMass()
     {
         for (auto childBody : m_childBodies)
         {
-            mass += childBody->GetMass();
+            cout << childBody->GetType() << "|" << childBody->GetMass() << endl;
+            //mass += childBody->GetMass();
         }
     }
-
+    //cout << mass;
     return mass;
 }
 
+
+double CCompound::GetVolume()
+{
+    double volume = 0.0;
+
+    if (!m_childBodies.empty())
+    {
+        for (auto childBody : m_childBodies)
+        {
+            volume += childBody->GetVolume();
+        }
+    }
+
+    return volume;
+}
+
+
+double CCompound::GetDensity()
+{
+    return GetMass() / GetVolume();
+}
 

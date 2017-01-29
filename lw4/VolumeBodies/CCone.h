@@ -7,7 +7,7 @@ class CCone : public CBody
 public:
     CCone(double density, double radius, double height);
 
-    double GetVolume()const override;
+    double GetVolume() override;
     double GetHeight()const;
     double GetBaseRadius()const;
 

@@ -7,7 +7,7 @@ class CCylinder : public CBody
 public:
     CCylinder(double density, double radius, double height);
 
-    double GetVolume()const override;
+    double GetVolume() override;
     double GetHeight()const;
     double GetBaseRadius()const;
 

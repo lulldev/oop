@@ -1,6 +1,7 @@
 #pragma once
 
 #include "FigureTypes.h"
+#include "Helpers.h"
 
 class CBody
 {
@@ -10,8 +11,8 @@ public:
     CBody(const std::string& figureType, double density);
 
     virtual double GetDensity();
-    virtual double GetVolume()const;
-    virtual double GetMass();
+    virtual double GetVolume();
+    double GetMass();
 
     virtual std::string ToString();
 

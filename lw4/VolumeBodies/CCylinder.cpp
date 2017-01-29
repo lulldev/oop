@@ -31,7 +31,7 @@ double CCylinder::GetHeight()const
     return m_height;
 }
 
-double CCylinder::GetVolume()const
+double CCylinder::GetVolume()
 {
     return M_PI * pow(m_radius, 3) * m_height;
 }

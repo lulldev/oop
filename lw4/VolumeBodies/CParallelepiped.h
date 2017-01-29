@@ -10,7 +10,7 @@ public:
     double GetWidth()const;
     double GetHeight()const;
     double GetDepth()const;
-    double GetVolume()const override;
+    double GetVolume() override;
 
     std::string ToString() override;
 

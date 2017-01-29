@@ -22,15 +22,14 @@ CBody::CBody(const std::string& figureType, double density)
     m_density = density;
 }
 
-
 double CBody::GetDensity()
 {
-    return m_density;
+    return RoundedByDecimals(m_density, 2);
 }
 
-double CBody::GetVolume()const
+double CBody::GetVolume()
 {
-    return m_volume;
+    return RoundedByDecimals(m_volume, 2);
 }
 
 double CBody::GetMass()
