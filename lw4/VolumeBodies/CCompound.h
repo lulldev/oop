@@ -11,7 +11,7 @@ public:
     CCompound(std::vector<std::shared_ptr<CBody>>& childBodiesArray);
 
     bool AddChildBody(CBody& chldBody);
-    double GetMass()const override;
+    double GetMass() override;
 
 private:
     std::vector<std::shared_ptr<CBody>> m_childBodies;

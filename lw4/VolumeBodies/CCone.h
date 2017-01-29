@@ -11,7 +11,7 @@ public:
     double GetHeight()const;
     double GetBaseRadius()const;
 
-    std::string ToString()const override;
+    std::string ToString() override;
 
 private:
     double m_radius;

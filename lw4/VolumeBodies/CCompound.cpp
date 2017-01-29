@@ -22,6 +22,7 @@ bool CCompound::IsValidBody(const CBody& body)const
 
 bool CCompound::AddChildBody(CBody& chldBody)
 {
+    // todo: проверка на родительские
     if (std::addressof(chldBody) == this)
     {
         throw invalid_argument("Assign yourself body error");
@@ -36,7 +37,7 @@ bool CCompound::AddChildBody(CBody& chldBody)
     return false;
 }
 
-double CCompound::GetMass()const
+double CCompound::GetMass()
 {
     double mass = 0.0;
 

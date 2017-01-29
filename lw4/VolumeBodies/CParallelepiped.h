@@ -12,7 +12,7 @@ public:
     double GetDepth()const;
     double GetVolume()const override;
 
-    std::string ToString()const override;
+    std::string ToString() override;
 
 private:
     double m_width;

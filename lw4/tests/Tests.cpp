@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include <stdexcept>
 #include <vector>
 #include <iostream>
 
@@ -16,11 +15,11 @@ using namespace std;
 class CSphereTestFixture : public ::testing::Test
 {
 public:
-    CSphere *sphere;
+    CSphere sphere;
 
     CSphereTestFixture()
+    :sphere(10.0, 20.0)
     {
-        sphere = new CSphere(10.0, 20.0);
     }
 
 protected:
@@ -30,7 +29,7 @@ protected:
 
     void TearDown() override
     {
-        delete sphere;
+        //delete sphere;
     }
 };
 
@@ -51,15 +50,15 @@ TEST_F(CSphereTestFixture, InitClassWithAllowParams)
 
 TEST_F(CSphereTestFixture, CheckSphereType)
 {
-    ASSERT_TRUE(sphere->GetType() == TYPENAME_SPHERE);
+    ASSERT_TRUE(sphere.GetType() == TYPENAME_SPHERE);
 }
 
 TEST_F(CSphereTestFixture, TestBaseSphereMethods)
 {
-    ASSERT_EQ(sphere->GetDensity(), 10.0);
-    ASSERT_EQ(sphere->GetRadius(), 20.0);
-    ASSERT_EQ(sphere->GetVolume(), (4/3) * 3.14 * pow(20.0, 3));
-    ASSERT_EQ(sphere->GetMass(), sphere->GetDensity() * sphere->GetVolume());
+    ASSERT_EQ(sphere.GetDensity(), 10.0);
+    ASSERT_EQ(sphere.GetRadius(), 20.0);
+    ASSERT_EQ(sphere.GetVolume(), (4/3) * 3.14 * pow(20.0, 3));
+    ASSERT_EQ(sphere.GetMass(), sphere.GetDensity() * sphere.GetVolume());
 }
 
 TEST_F(CSphereTestFixture, ToStringSphere)
@@ -70,7 +69,7 @@ TEST_F(CSphereTestFixture, ToStringSphere)
             "Mass: 251200.000000\n"
             "Radius: 20.000000\n";
 
-    ASSERT_TRUE(sphere->ToString() == expectedString);
+    ASSERT_TRUE(sphere.ToString() == expectedString);
 }
 
 /* -------------------- Конус -------------------- */
@@ -78,11 +77,11 @@ TEST_F(CSphereTestFixture, ToStringSphere)
 class CConeTestFixture : public ::testing::Test
 {
 public:
-    CCone *cone;
+    CCone cone;
 
     CConeTestFixture()
+    :cone(10.0, 20.0, 5.0)
     {
-        cone = new CCone(10.0, 20.0, 5.0);
     }
 
 protected:
@@ -92,7 +91,6 @@ protected:
 
     void TearDown() override
     {
-        delete cone;
     }
 };
 
@@ -119,19 +117,19 @@ TEST_F(CConeTestFixture, InitClassWithAllowParams)
 
 TEST_F(CConeTestFixture, CheckSphereType)
 {
-    ASSERT_TRUE(cone->GetType() == TYPENAME_CONE);
+    ASSERT_TRUE(cone.GetType() == TYPENAME_CONE);
 }
 
 TEST_F(CConeTestFixture, TestBaseConeMethods)
 {
-    ASSERT_EQ(cone->GetDensity(), 10.0);
-    ASSERT_EQ(cone->GetBaseRadius(), 20.0);
-    ASSERT_EQ(cone->GetHeight(), 5.0);
+    ASSERT_EQ(cone.GetDensity(), 10.0);
+    ASSERT_EQ(cone.GetBaseRadius(), 20.0);
+    ASSERT_EQ(cone.GetHeight(), 5.0);
 
     // test calculate cone volume
     // 2094.3999
     double expectedTesingVolume = (5.0 / 3) * (pow(20.0, 2) * M_PI);
-    ASSERT_FLOAT_EQ(cone->GetVolume(), expectedTesingVolume);
+    ASSERT_FLOAT_EQ(cone.GetVolume(), expectedTesingVolume);
 }
 
 TEST_F(CConeTestFixture, ToStringCone)
@@ -143,7 +141,7 @@ TEST_F(CConeTestFixture, ToStringCone)
             "Radius: 20.000000\n"
             "Height: 5.000000\n";
 
-    ASSERT_TRUE(cone->ToString() == expectedString);
+    ASSERT_TRUE(cone.ToString() == expectedString);
 }
 
 /* -------------------- Параллелепипед -------------------- */
@@ -151,11 +149,11 @@ TEST_F(CConeTestFixture, ToStringCone)
 class CParallelepipedTestFixture : public ::testing::Test
 {
 public:
-    CParallelepiped *parallelepiped;
+    CParallelepiped parallelepiped;
 
     CParallelepipedTestFixture()
+    :parallelepiped(10.0, 20.0, 5.0, 15.0)
     {
-        parallelepiped = new CParallelepiped(10.0, 20.0, 5.0, 15.0);
     }
 
 protected:
@@ -165,7 +163,7 @@ protected:
 
     void TearDown() override
     {
-        delete parallelepiped;
+//        delete parallelepiped;
     }
 };
 
@@ -196,18 +194,18 @@ TEST_F(CParallelepipedTestFixture, InitClassWithAllowParams)
 
 TEST_F(CParallelepipedTestFixture, CheckParallelepipedType)
 {
-    ASSERT_TRUE(parallelepiped->GetType() == TYPENAME_PARALLELEPIPED);
+    ASSERT_TRUE(parallelepiped.GetType() == TYPENAME_PARALLELEPIPED);
 }
 
 TEST_F(CParallelepipedTestFixture, TestBaseParallelepipedMethods)
 {
-    ASSERT_EQ(parallelepiped->GetDensity(), 10.0);
-    ASSERT_EQ(parallelepiped->GetWidth(), 20.0);
-    ASSERT_EQ(parallelepiped->GetHeight(), 5.0);
-    ASSERT_EQ(parallelepiped->GetDepth(), 15.0);
+    ASSERT_EQ(parallelepiped.GetDensity(), 10.0);
+    ASSERT_EQ(parallelepiped.GetWidth(), 20.0);
+    ASSERT_EQ(parallelepiped.GetHeight(), 5.0);
+    ASSERT_EQ(parallelepiped.GetDepth(), 15.0);
 
-    ASSERT_FLOAT_EQ(parallelepiped->GetVolume(), 20.0 * 5.0 * 15.0); // 1500
-    ASSERT_FLOAT_EQ(parallelepiped->GetMass(), (20.0 * 5.0 * 15.0) * 10); // 15000
+    ASSERT_FLOAT_EQ(parallelepiped.GetVolume(), 20.0 * 5.0 * 15.0); // 1500
+    ASSERT_FLOAT_EQ(parallelepiped.GetMass(), (20.0 * 5.0 * 15.0) * 10); // 15000
 }
 
 
@@ -221,7 +219,7 @@ TEST_F(CParallelepipedTestFixture, ToStringParallelepiped)
             "Height: 5.000000\n"
             "Depth: 15.000000\n";
 
-    ASSERT_TRUE(parallelepiped->ToString() == expectedString);
+    ASSERT_TRUE(parallelepiped.ToString() == expectedString);
 }
 
 /* -------------------- Цилиндр -------------------- */
@@ -229,11 +227,11 @@ TEST_F(CParallelepipedTestFixture, ToStringParallelepiped)
 class CCylinderTestFixture : public ::testing::Test
 {
 public:
-    CCylinder *cylinder;
+    CCylinder cylinder;
 
     CCylinderTestFixture()
+    :cylinder(10.0, 20.0, 5.0)
     {
-        cylinder = new CCylinder(10.0, 20.0, 5.0);
     }
 
 protected:
@@ -243,7 +241,7 @@ protected:
 
     void TearDown() override
     {
-        delete cylinder;
+//        delete cylinder;
     }
 };
 
@@ -269,17 +267,17 @@ TEST_F(CCylinderTestFixture, InitClassWithAllowParams)
 
 TEST_F(CCylinderTestFixture, CheckSphereType)
 {
-    ASSERT_TRUE(cylinder->GetType() == TYPENAME_CYLINDER);
+    ASSERT_TRUE(cylinder.GetType() == TYPENAME_CYLINDER);
 }
 
 TEST_F(CCylinderTestFixture, TestBaseConeMethods)
 {
-    ASSERT_EQ(cylinder->GetDensity(), 10.0);
-    ASSERT_EQ(cylinder->GetBaseRadius(), 20.0);
-    ASSERT_EQ(cylinder->GetHeight(), 5.0);
+    ASSERT_EQ(cylinder.GetDensity(), 10.0);
+    ASSERT_EQ(cylinder.GetBaseRadius(), 20.0);
+    ASSERT_EQ(cylinder.GetHeight(), 5.0);
 
     // test calculate cylinder volume
-    ASSERT_FLOAT_EQ(cylinder->GetVolume(), M_PI * pow(20.0, 3) * 5.0);
+    ASSERT_FLOAT_EQ(cylinder.GetVolume(), M_PI * pow(20.0, 3) * 5.0);
 }
 
 TEST_F(CCylinderTestFixture, ToStringCylinder)
@@ -290,7 +288,7 @@ TEST_F(CCylinderTestFixture, ToStringCylinder)
             "Mass: 1256637.061436\n"
             "Radius: 20.000000\n";
 
-    ASSERT_TRUE(cylinder->ToString() == expectedString);
+    ASSERT_TRUE(cylinder.ToString() == expectedString);
 }
 
 /* -------------------- Составное тело -------------------- */
@@ -298,61 +296,61 @@ TEST_F(CCylinderTestFixture, ToStringCylinder)
 class CCompoundTestFixture : public ::testing::Test
 {
 public:
-    CCompound *thisCompound;
-
-    CCylinder *cylinder;
-    CCone *cone;
-    CParallelepiped *parallelepiped;
-    CSphere *sphere;
-    CCompound *compound;
+    CCylinder cylinder;
+    CCone cone;
+    CParallelepiped parallelepiped;
+    CSphere sphere;
+    CCompound compound;
+    CCompound thisCompound;
 
     CCompoundTestFixture()
+        :cylinder(10, 10, 10),
+         cone(5, 5, 5),
+         parallelepiped(7, 7, 7, 7),
+         sphere(10, 20),
+         compound(childBodiesArray),
+         thisCompound(childBodiesArray)
     {
-        std::vector<std::shared_ptr<CBody>>childBodiesArray;
-        thisCompound = new CCompound(childBodiesArray);
     }
 
 protected:
     void SetUp() override
     {
-        std::vector<std::shared_ptr<CBody>>childBodiesArray;
 
-        cylinder = new CCylinder(10, 10, 10);
-        cone = new CCone(5, 5, 5);
-        parallelepiped = new CParallelepiped(7, 7, 7, 7);
-        sphere = new CSphere(10, 20);
-        compound = new CCompound(childBodiesArray);
     }
 
     void TearDown() override
     {
-        delete cylinder;
-        delete cone;
-        delete parallelepiped;
-        delete sphere;
-        delete thisCompound;
+//        delete cylinder;
+//        delete cone;
+//        delete parallelepiped;
+//        delete sphere;
+//        delete thisCompound;
     }
+
+private:
+    std::vector<std::shared_ptr<CBody>> childBodiesArray;
 };
 
 TEST_F(CCompoundTestFixture, TestSelfAddToChild)
 {
-    ASSERT_THROW(thisCompound->AddChildBody(*thisCompound), std::invalid_argument);
+    ASSERT_THROW(thisCompound.AddChildBody(thisCompound), std::invalid_argument);
 }
 
 TEST_F(CCompoundTestFixture, TestAddValideSimpleBodiesChilds)
 {
-    ASSERT_TRUE(thisCompound->AddChildBody(*cylinder));
-    ASSERT_TRUE(thisCompound->AddChildBody(*cone));
-    ASSERT_TRUE(thisCompound->AddChildBody(*parallelepiped));
-    ASSERT_TRUE(thisCompound->AddChildBody(*sphere));
+    ASSERT_TRUE(thisCompound.AddChildBody(cylinder));
+    ASSERT_TRUE(thisCompound.AddChildBody(cone));
+    ASSERT_TRUE(thisCompound.AddChildBody(parallelepiped));
+    ASSERT_TRUE(thisCompound.AddChildBody(sphere));
 }
 
 
 TEST_F(CCompoundTestFixture, TestAddCompoundChilds)
 {
-    ASSERT_TRUE(thisCompound->AddChildBody(*cylinder));
-    ASSERT_TRUE(thisCompound->AddChildBody(*cone));
-    ASSERT_TRUE(thisCompound->AddChildBody(*compound));
+    ASSERT_TRUE(thisCompound.AddChildBody(cylinder));
+    ASSERT_TRUE(thisCompound.AddChildBody(cone));
+    ASSERT_TRUE(thisCompound.AddChildBody(compound));
 }
 
 
@@ -360,17 +358,18 @@ TEST_F(CCompoundTestFixture, TestGetMassOfSimpleBodies)
 {
     CCylinder cylinder1(10, 2, 1);
 
-    thisCompound->AddChildBody(cylinder1);
-    thisCompound->AddChildBody(*sphere);
+    thisCompound.AddChildBody(cylinder1);
+    //thisCompound.AddChildBody(*sphere);
 
-//    cout << cylinder->GetMass() << endl;
-//    cout << cone->GetMass() << endl;
-    cout << thisCompound->GetMass() << endl;
+//    cout << cylinder.GetMass() << endl;
+//    cout << cone.GetMass() << endl;
+    cout << thisCompound.GetMass() << endl;
 }
 
 
 /* -------------------- Консольная программа -------------------- */
 
+std::vector<std::shared_ptr<CBody>> bodiesArray;
 
 class ConsoleProgramTestFixture : public ::testing::Test
 {
@@ -397,7 +396,6 @@ protected:
     void TearDown() override
     {
         std::cout.clear();
-        delete program;
     }
 };
 

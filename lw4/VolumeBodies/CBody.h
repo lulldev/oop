@@ -9,11 +9,13 @@ public:
     CBody(const std::string& figureType);
     CBody(const std::string& figureType, double density);
 
-    double GetDensity()const;
+    virtual double GetDensity();
     virtual double GetVolume()const;
-    virtual double GetMass()const;
+    virtual double GetMass();
+
+    virtual std::string ToString();
+
     std::string GetType()const;
-    virtual std::string ToString()const;
 
 protected:
     std::string m_type;

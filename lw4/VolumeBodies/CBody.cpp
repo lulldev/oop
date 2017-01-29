@@ -23,7 +23,7 @@ CBody::CBody(const std::string& figureType, double density)
 }
 
 
-double CBody::GetDensity()const
+double CBody::GetDensity()
 {
     return m_density;
 }
@@ -33,12 +33,12 @@ double CBody::GetVolume()const
     return m_volume;
 }
 
-double CBody::GetMass()const
+double CBody::GetMass()
 {
     return GetDensity() * GetVolume();
 }
 
-string CBody::ToString()const
+string CBody::ToString()
 {
     return "Type: " + m_type + "\n" +
            "Density: " + to_string(GetDensity()) + "\n" +

@@ -36,7 +36,7 @@ double CCylinder::GetVolume()const
     return M_PI * pow(m_radius, 3) * m_height;
 }
 
-string CCylinder::ToString()const
+string CCylinder::ToString()
 {
     return CBody::ToString() + "\n" +
            "Radius: " + to_string(GetBaseRadius()) + "\n";
