@@ -34,7 +34,7 @@ double CCone::GetHeight()const
 double CCone::GetVolume()
 {
     // todo pow -> m_radius * m_radius
-    return (m_height / 3) * (pow(m_radius, 2) * M_PI);
+    return (m_height / 3) * (SimplePow(m_radius, 2) * M_PI);
 }
 
 string CCone::ToString()

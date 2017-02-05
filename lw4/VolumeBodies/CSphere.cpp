@@ -23,7 +23,7 @@ double CSphere::GetRadius()const
 
 double CSphere::GetVolume()
 {
-    return (4/3) * 3.14 * pow(GetRadius(), 3);
+    return (4/3) * 3.14 * SimplePow(GetRadius(), 3);
 }
 
 std::string CSphere::ToString()

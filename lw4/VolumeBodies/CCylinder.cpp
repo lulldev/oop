@@ -33,7 +33,7 @@ double CCylinder::GetHeight()const
 
 double CCylinder::GetVolume()
 {
-    return M_PI * pow(m_radius, 3) * m_height;
+    return M_PI * SimplePow(m_radius, 3) * m_height;
 }
 
 string CCylinder::ToString()

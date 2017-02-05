@@ -4,11 +4,22 @@
 #include <vector>
 #include <iostream>
 
+#include "../VolumeBodies/Helpers.h"
 #include "../VolumeBodies/VolumeBodies.h"
 #include "../ConsoleProgram/ConsoleProgram.h"
 
 using testing::Eq;
 using namespace std;
+
+/* -------------------- Хелперы -------------------- */
+
+TEST(TestHelpers, TestSimplePow)
+{
+    ASSERT_DOUBLE_EQ(pow(10, 2), SimplePow(10, 2));
+    ASSERT_DOUBLE_EQ(pow(5, 3), SimplePow(5, 3));
+    ASSERT_DOUBLE_EQ(pow(2.75, 2), SimplePow(2.75, 2));
+}
+
 
 /* -------------------- Сфера -------------------- */
 
@@ -57,7 +68,7 @@ TEST_F(CSphereTestFixture, TestBaseSphereMethods)
 {
     ASSERT_EQ(sphere.GetDensity(), 10.0);
     ASSERT_EQ(sphere.GetRadius(), 20.0);
-    ASSERT_EQ(sphere.GetVolume(), (4/3) * 3.14 * pow(20.0, 3));
+    ASSERT_EQ(sphere.GetVolume(), (4/3) * 3.14 * SimplePow(20.0, 3));
     ASSERT_EQ(sphere.GetMass(), sphere.GetDensity() * sphere.GetVolume());
 }
 
@@ -128,7 +139,7 @@ TEST_F(CConeTestFixture, TestBaseConeMethods)
 
     // test calculate cone volume
     // 2094.3999
-    double expectedTesingVolume = (5.0 / 3) * (pow(20.0, 2) * M_PI);
+    double expectedTesingVolume = (5.0 / 3) * (SimplePow(20.0, 2) * M_PI);
     ASSERT_FLOAT_EQ(cone.GetVolume(), expectedTesingVolume);
 }
 
@@ -277,7 +288,7 @@ TEST_F(CCylinderTestFixture, TestBaseConeMethods)
     ASSERT_EQ(cylinder.GetHeight(), 5.0);
 
     // test calculate cylinder volume
-    ASSERT_FLOAT_EQ(cylinder.GetVolume(), M_PI * pow(20.0, 3) * 5.0);
+    ASSERT_FLOAT_EQ(cylinder.GetVolume(), M_PI * SimplePow(20.0, 3) * 5.0);
 }
 
 TEST_F(CCylinderTestFixture, ToStringCylinder)
@@ -336,6 +347,7 @@ TEST_F(CCompoundTestFixture, TestSelfAddToChild)
     ASSERT_THROW(thisCompound.AddChildBody(thisCompound), std::invalid_argument);
 }
 
+/*
 TEST_F(CCompoundTestFixture, TestAddValideSimpleBodiesChilds)
 {
     ASSERT_TRUE(thisCompound.AddChildBody(cylinder));
@@ -367,7 +379,7 @@ TEST_F(CCompoundTestFixture, TestGetMassOfSimpleBodies)
     //ASSERT_DOUBLE_EQ(thisCompound.GetMass(), 0);
     ASSERT_DOUBLE_EQ(cd.GetMass(), 0);
 }
-
+*/
 
 /* -------------------- Консольная программа -------------------- */
 
