@@ -14,7 +14,7 @@ public:
     virtual double GetVolume();
     double GetMass();
 
-    virtual std::string ToString();
+    virtual std::string ToString() final;
 
     std::string GetType()const;
 
@@ -22,4 +22,6 @@ protected:
     std::string m_type;
     double m_density;
     double m_volume;
+
+    virtual void AppendCustomProperties(std::ostream & s)const;
 };

@@ -2,12 +2,6 @@
 
 #include <iostream>
 
-double RoundedByDecimals(double number, int decimal)
-{
-    double devider = decimal * 10;
-    return round(number * decimal * 10) / devider;
-}
-
 double SimplePow(double number, int power)
 {
     double result = number;

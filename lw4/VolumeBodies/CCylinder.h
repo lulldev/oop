@@ -11,9 +11,10 @@ public:
     double GetHeight()const;
     double GetBaseRadius()const;
 
-    std::string ToString()override;
-
 private:
     double m_radius;
     double m_height;
+
+protected:
+    void AppendCustomProperties(std::ostream & s)const override;
 };

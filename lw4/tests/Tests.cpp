@@ -75,10 +75,10 @@ TEST_F(CSphereTestFixture, TestBaseSphereMethods)
 TEST_F(CSphereTestFixture, ToStringSphere)
 {
     std::string expectedString = "Type: sphere\n"
-            "Density: 10.000000\n"
-            "Volume: 25120.000000\n"
-            "Mass: 251200.000000\n"
-            "Radius: 20.000000\n";
+            "Density: 10.00\n"
+            "Volume: 25120.00\n"
+            "Mass: 251200.00\n"
+            "Radius: 20.00\n";
 
     ASSERT_TRUE(sphere.ToString() == expectedString);
 }
@@ -146,11 +146,11 @@ TEST_F(CConeTestFixture, TestBaseConeMethods)
 TEST_F(CConeTestFixture, ToStringCone)
 {
     std::string expectedString = "Type: cone\n"
-            "Density: 10.000000\n"
-            "Volume: 2094.395102\n"
-            "Mass: 20943.951024\n"
-            "Radius: 20.000000\n"
-            "Height: 5.000000\n";
+            "Density: 10.00\n"
+            "Volume: 2094.40\n"
+            "Mass: 20943.95\n"
+            "Radius: 20.00\n"
+            "Height: 5.00\n";
 
     ASSERT_TRUE(cone.ToString() == expectedString);
 }
@@ -223,12 +223,12 @@ TEST_F(CParallelepipedTestFixture, TestBaseParallelepipedMethods)
 TEST_F(CParallelepipedTestFixture, ToStringParallelepiped)
 {
     std::string expectedString = "Type: parallelepiped\n"
-            "Density: 10.000000\n"
-            "Volume: 1500.000000\n"
-            "Mass: 15000.000000\n"
-            "Width: 20.000000\n"
-            "Height: 5.000000\n"
-            "Depth: 15.000000\n";
+            "Density: 10.00\n"
+            "Volume: 1500.00\n"
+            "Mass: 15000.00\n"
+            "Width: 20.00\n"
+            "Height: 5.00\n"
+            "Depth: 15.00\n";
 
     ASSERT_TRUE(parallelepiped.ToString() == expectedString);
 }
@@ -294,10 +294,10 @@ TEST_F(CCylinderTestFixture, TestBaseConeMethods)
 TEST_F(CCylinderTestFixture, ToStringCylinder)
 {
     std::string expectedString = "Type: cylinder\n"
-            "Density: 10.000000\n"
-            "Volume: 125663.706144\n"
-            "Mass: 1256637.061436\n"
-            "Radius: 20.000000\n";
+            "Density: 10.00\n"
+            "Volume: 125663.71\n"
+            "Mass: 1256637.06\n"
+            "Radius: 20.00\n";
 
     ASSERT_TRUE(cylinder.ToString() == expectedString);
 }
@@ -341,12 +341,12 @@ protected:
 //        delete thisCompound;
     }
 };
-
+/*
 TEST_F(CCompoundTestFixture, TestSelfAddToChild)
 {
     ASSERT_THROW(thisCompound.AddChildBody(thisCompound), std::invalid_argument);
 }
-
+*/
 /*
 TEST_F(CCompoundTestFixture, TestAddValideSimpleBodiesChilds)
 {

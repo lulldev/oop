@@ -26,8 +26,7 @@ double CSphere::GetVolume()
     return (4/3) * 3.14 * SimplePow(GetRadius(), 3);
 }
 
-std::string CSphere::ToString()
+void CSphere::AppendCustomProperties(ostream & s)const
 {
-    return CBody::ToString() + "\n" +
-           "Radius: " + to_string(GetRadius()) + "\n";
+    s << "Radius: " << GetRadius() << endl;
 }

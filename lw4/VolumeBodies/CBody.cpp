@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cmath>
+#include <sstream>
+#include <iomanip>
 
 #include "CBody.h"
 
@@ -24,12 +26,12 @@ CBody::CBody(const std::string& figureType, double density)
 
 double CBody::GetDensity()
 {
-    return RoundedByDecimals(m_density, 2);
+    return m_density;
 }
 
 double CBody::GetVolume()
 {
-    return RoundedByDecimals(m_volume, 2);
+    return m_volume;
 }
 
 double CBody::GetMass()
@@ -37,12 +39,26 @@ double CBody::GetMass()
     return GetDensity() * GetVolume();
 }
 
+void CBody::AppendCustomProperties(ostream & s)const
+{
+    (void)&s;
+}
+
 string CBody::ToString()
 {
-    return "Type: " + m_type + "\n" +
-           "Density: " + to_string(GetDensity()) + "\n" +
-           "Volume: " + to_string(GetVolume()) + "\n" +
-           "Mass: " + to_string(GetMass());
+    ostringstream s;
+
+    s << fixed << showpoint;
+    s << setprecision(2);
+
+    s << "Type: " << m_type << endl;
+    s << "Density: " << GetDensity() << endl;
+    s << "Volume: " << GetVolume() << endl;
+    s << "Mass: " << GetMass() << endl;
+
+    AppendCustomProperties(s);
+
+    return s.str();
 }
 
 std::string CBody::GetType()const

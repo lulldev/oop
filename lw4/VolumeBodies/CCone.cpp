@@ -33,13 +33,11 @@ double CCone::GetHeight()const
 
 double CCone::GetVolume()
 {
-    // todo pow -> m_radius * m_radius
     return (m_height / 3) * (SimplePow(m_radius, 2) * M_PI);
 }
 
-string CCone::ToString()
+void CCone::AppendCustomProperties(ostream & s)const
 {
-    return CBody::ToString() + "\n" +
-           "Radius: " + to_string(GetBaseRadius()) + "\n" +
-           "Height: " + to_string(GetHeight()) + "\n";
+    s << "Radius: " << GetBaseRadius() << endl;
+    s << "Height: " << GetHeight() << endl;
 }

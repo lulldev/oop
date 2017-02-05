@@ -12,10 +12,11 @@ public:
     double GetDepth()const;
     double GetVolume() override;
 
-    std::string ToString() override;
-
 private:
     double m_width;
     double m_height;
     double m_depth;
+
+protected:
+    void AppendCustomProperties(std::ostream & s)const override;
 };

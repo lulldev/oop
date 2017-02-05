@@ -10,8 +10,9 @@ public:
     double GetRadius()const;
     double GetVolume() override;
 
-    std::string ToString() override;
-
 private:
     double m_radius;
+
+protected:
+    void AppendCustomProperties(std::ostream & s)const override;
 };
