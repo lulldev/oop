@@ -8,14 +8,17 @@
 class CCompound : public CBody
 {
 public:
-    CCompound(std::vector<std::shared_ptr<CBody>>& childBodiesArray);
+    CCompound();
 
-    bool AddChildBody(CBody& chldBody);
+    bool AddChildBody(std::shared_ptr<CBody> const& childBody);
     double GetMass();
-    double GetDensity() override;
     double GetVolume() override;
 
 private:
     std::vector<std::shared_ptr<CBody>> m_childBodies;
-    bool IsValidBody(const CBody& body)const;
+    bool IsValidBody(std::shared_ptr<CBody> const& childBody)const;
+    void SetCompoundDensity();
+
+protected:
+    void AppendCustomProperties(std::ostream & s)const override;
 };

@@ -5,37 +5,17 @@
 
 using namespace std;
 
-CCompound::CCompound(std::vector<std::shared_ptr<CBody>>& childBodiesArray)
-        : CBody(TYPENAME_COMPOUND),
-          m_childBodies(childBodiesArray)
+CCompound::CCompound(): CBody(TYPENAME_COMPOUND)
 {
 }
 
-bool CCompound::IsValidBody(const CBody& body)const
+bool CCompound::IsValidBody(std::shared_ptr<CBody> const& childBody)const
 {
-    return body.GetType() == TYPENAME_SPHERE ||
-           body.GetType() == TYPENAME_CONE ||
-           body.GetType() == TYPENAME_PARALLELEPIPED ||
-           body.GetType() == TYPENAME_CYLINDER ||
-           body.GetType() == TYPENAME_COMPOUND;
-}
-
-bool CCompound::AddChildBody(CBody& chldBody)
-{
-    // todo: проверка на родительские
-    if (std::addressof(chldBody) == this)
-    {
-        throw invalid_argument("Assign yourself body error");
-    }
-
-    if (IsValidBody(chldBody))
-    {
-        cout << "add";
-        m_childBodies.push_back(make_shared<CBody>(chldBody));
-        return true;
-    }
-
-    return false;
+    return childBody->GetType() == TYPENAME_SPHERE ||
+           childBody->GetType() == TYPENAME_CONE ||
+           childBody->GetType() == TYPENAME_PARALLELEPIPED ||
+           childBody->GetType() == TYPENAME_CYLINDER ||
+           childBody->GetType() == TYPENAME_COMPOUND;
 }
 
 double CCompound::GetMass()
@@ -46,11 +26,10 @@ double CCompound::GetMass()
     {
         for (auto childBody : m_childBodies)
         {
-            cout << childBody->GetType() << "|" << childBody->GetMass() << endl;
-            //mass += childBody->GetMass();
+            mass += childBody->GetMass();
         }
     }
-    //cout << mass;
+
     return mass;
 }
 
@@ -70,9 +49,47 @@ double CCompound::GetVolume()
     return volume;
 }
 
-
-double CCompound::GetDensity()
+void CCompound::SetCompoundDensity()
 {
-    return GetMass() / GetVolume();
+    m_density = 0;
+
+    if (GetVolume() > 0)
+    {
+        m_density = GetMass() / GetVolume();
+    }
 }
 
+bool CCompound::AddChildBody(std::shared_ptr<CBody> const& childBody) //(CBody& chldBody)
+{
+    // todo: проверка на родительские
+    if (&(*childBody) == this)
+    {
+        throw invalid_argument("Assign yourself body error");
+    }
+
+    if (IsValidBody(childBody))
+    {
+        m_childBodies.push_back(childBody);
+        SetCompoundDensity();
+        return true;
+    }
+
+    return false;
+}
+
+void CCompound::AppendCustomProperties(ostream & s)const
+{
+    s << "Childs (" << m_childBodies.size() << "):" << endl;
+
+    if (m_childBodies.size() > 0)
+    {
+        for (auto childBody : m_childBodies)
+        {
+            s << childBody->ToString() << endl;
+        }
+    }
+    else
+    {
+        s << "No childs" << endl;
+    }
+}

@@ -244,16 +244,6 @@ public:
     :cylinder(10.0, 20.0, 5.0)
     {
     }
-
-protected:
-    void SetUp() override
-    {
-    }
-
-    void TearDown() override
-    {
-//        delete cylinder;
-    }
 };
 
 TEST_F(CCylinderTestFixture, InitClassWithNegativeDensity)
@@ -312,74 +302,145 @@ public:
     CParallelepiped parallelepiped;
     CSphere sphere;
     CCompound compound;
-    CCompound thisCompound;
 
-    std::vector<std::shared_ptr<CBody>> childBodiesArray;
+    shared_ptr<CBody> cylinderPtr;
+    shared_ptr<CBody> conePtr;
+    shared_ptr<CBody> parallelepipedPtr;
+    shared_ptr<CBody> spherePtr;
+    shared_ptr<CBody> compoundPtr;
 
     CCompoundTestFixture()
-        :cylinder(10, 10, 10),
-         cone(5, 5, 5),
-         parallelepiped(7, 7, 7, 7),
-         sphere(10, 20),
-         compound(childBodiesArray),
-         thisCompound(childBodiesArray)
+        :cylinder(1, 1, 2),
+         cone(10, 2, 1),
+         parallelepiped(2, 2, 2, 2),
+         sphere(1, 2),
+         compound()
     {
-    }
-
-protected:
-    void SetUp() override
-    {
-
-    }
-
-    void TearDown() override
-    {
-//        delete cylinder;
-//        delete cone;
-//        delete parallelepiped;
-//        delete sphere;
-//        delete thisCompound;
+        cylinderPtr = make_shared<CCylinder>(cylinder);
+        conePtr = make_shared<CCone>(cone);
+        parallelepipedPtr = make_shared<CParallelepiped>(parallelepiped);
+        spherePtr = make_shared<CSphere>(sphere);
+        compoundPtr = make_shared<CCompound>(compound);
     }
 };
-/*
+
 TEST_F(CCompoundTestFixture, TestSelfAddToChild)
 {
-    ASSERT_THROW(thisCompound.AddChildBody(thisCompound), std::invalid_argument);
+//    ASSERT_THROW(compound.AddChildBody(compoundPtr), std::invalid_argument); todo
+    ASSERT_NO_THROW(compound.AddChildBody(spherePtr));
 }
-*/
-/*
-TEST_F(CCompoundTestFixture, TestAddValideSimpleBodiesChilds)
+
+TEST_F(CCompoundTestFixture, TestAddValidSimpleBodiesChilds)
 {
-    ASSERT_TRUE(thisCompound.AddChildBody(cylinder));
-    ASSERT_TRUE(thisCompound.AddChildBody(cone));
-    ASSERT_TRUE(thisCompound.AddChildBody(parallelepiped));
-    ASSERT_TRUE(thisCompound.AddChildBody(sphere));
+    ASSERT_TRUE(compound.AddChildBody(cylinderPtr));
+    ASSERT_TRUE(compound.AddChildBody(conePtr));
+    ASSERT_TRUE(compound.AddChildBody(parallelepipedPtr));
+    ASSERT_TRUE(compound.AddChildBody(spherePtr));
 }
 
 
-TEST_F(CCompoundTestFixture, TestAddCompoundChilds)
+TEST_F(CCompoundTestFixture, TestAddCompoundToChilds)
 {
-    ASSERT_TRUE(thisCompound.AddChildBody(cylinder));
-    ASSERT_TRUE(thisCompound.AddChildBody(cone));
-    ASSERT_TRUE(thisCompound.AddChildBody(compound));
+    CCompound testingCompound;
+    shared_ptr<CBody> testingCompoundPtr = make_shared<CCompound>(testingCompound);
+
+    ASSERT_TRUE(testingCompound.AddChildBody(cylinderPtr));
+    ASSERT_TRUE(testingCompound.AddChildBody(conePtr));
+    ASSERT_TRUE(compound.AddChildBody(testingCompoundPtr));
 }
 
-
-TEST_F(CCompoundTestFixture, TestGetMassOfSimpleBodies)
+TEST_F(CCompoundTestFixture, TestGetMassOnEmptyBodiesArray)
 {
-    ASSERT_DOUBLE_EQ(thisCompound.GetMass(), 0);
-
-    CCone cone2(5, 5, 5);
-
-    std::vector<std::shared_ptr<CBody>> childBodiesArray;
-    CCompound cd(childBodiesArray);
-    cd.AddChildBody(cone2);
-
-    cout << to_string(cone2.GetMass()) << endl;
-    //ASSERT_DOUBLE_EQ(thisCompound.GetMass(), 0);
-    ASSERT_DOUBLE_EQ(cd.GetMass(), 0);
+    ASSERT_DOUBLE_EQ(compound.GetMass(), 0);
 }
-*/
+
+TEST_F(CCompoundTestFixture, TestGetMassOnFillBodiesArray)
+{
+    compound.AddChildBody(cylinderPtr);
+    ASSERT_DOUBLE_EQ(compound.GetMass(), cylinder.GetMass());
+
+    compound.AddChildBody(conePtr);
+    ASSERT_DOUBLE_EQ(compound.GetMass(), cone.GetMass() + cylinder.GetMass());
+}
+
+TEST_F(CCompoundTestFixture, TestCompoundVolume)
+{
+    ASSERT_DOUBLE_EQ(compound.GetVolume(), 0);
+
+    compound.AddChildBody(parallelepipedPtr);
+    ASSERT_DOUBLE_EQ(compound.GetVolume(), parallelepiped.GetVolume());
+
+    compound.AddChildBody(cylinderPtr);
+    ASSERT_DOUBLE_EQ(compound.GetVolume(), parallelepiped.GetVolume() + cylinder.GetVolume());
+}
+
+TEST_F(CCompoundTestFixture, TestCompoundDensity)
+{
+    ASSERT_DOUBLE_EQ(compound.GetDensity(), 0);
+
+    compound.AddChildBody(parallelepipedPtr);
+    ASSERT_DOUBLE_EQ(compound.GetDensity(), parallelepiped.GetDensity());
+
+    compound.AddChildBody(cylinderPtr);
+    double expectedDensity = (parallelepiped.GetMass() + cylinder.GetMass())
+                             / (parallelepiped.GetVolume() + cylinder.GetVolume());
+    ASSERT_DOUBLE_EQ(compound.GetDensity(), expectedDensity);
+}
+
+TEST_F(CCompoundTestFixture, TestEmptyCompoundToString)
+{
+    std::string expectedString =
+            "Type: compound\n"
+            "Density: 0.00\n"
+            "Volume: 0.00\n"
+            "Mass: 0.00\n"
+            "Childs (0):\n"
+            "No childs\n";
+
+    ASSERT_TRUE(compound.ToString() == expectedString);
+}
+
+TEST_F(CCompoundTestFixture, TestCompoundToString)
+{
+    compound.AddChildBody(spherePtr);
+
+    std::string expectedString =
+        "Type: compound\n"
+        "Density: 1.00\n"
+        "Volume: 25.12\n"
+        "Mass: 25.12\n"
+        "Childs (1):\n"
+        "Type: sphere\n"
+        "Density: 1.00\n"
+        "Volume: 25.12\n"
+        "Mass: 25.12\n"
+        "Radius: 2.00\n\n";
+
+    ASSERT_TRUE(compound.ToString() == expectedString);
+
+    compound.AddChildBody(cylinderPtr);
+
+    expectedString =
+            "Type: compound\n"
+                    "Density: 1.00\n"
+                    "Volume: 31.40\n"
+                    "Mass: 31.40\n"
+                    "Childs (2):\n"
+                    "Type: sphere\n"
+                    "Density: 1.00\n"
+                    "Volume: 25.12\n"
+                    "Mass: 25.12\n"
+                    "Radius: 2.00\n\n"
+                    "Type: cylinder\n"
+                    "Density: 1.00\n"
+                    "Volume: 6.28\n"
+                    "Mass: 6.28\n"
+                    "Radius: 1.00\n\n";
+
+    ASSERT_TRUE(compound.ToString() == expectedString);
+}
+
+
 
 /* -------------------- Консольная программа -------------------- */
 
