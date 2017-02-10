@@ -211,6 +211,11 @@ const double GetWeightByBodyDensityAndVolume(double density, double volume)
     return (density - 1000) * 9.8 * volume;
 }
 
+bool comparator(std::shared_ptr<CBody>& body1, std::shared_ptr<CBody>& body2)
+{
+    return body1->GetMass() < body2->GetMass();
+}
+
 std::shared_ptr<CBody> ConsoleProgram::GetMaxMassBody()const
 {
     if (m_bodiesArray.empty())
@@ -218,17 +223,12 @@ std::shared_ptr<CBody> ConsoleProgram::GetMaxMassBody()const
         throw std::invalid_argument("Body array is empty");
     }
 
-    auto maxBodyMass = m_bodiesArray.front();
-
-    for (auto &concreteBody : m_bodiesArray)
-    {
-        if (concreteBody->GetMass() > maxBodyMass->GetMass())
-        {
-            maxBodyMass = concreteBody;
-        }
-    }
-
-    return maxBodyMass;
+    auto maxBodyByMass = std::max_element( m_bodiesArray.begin(), m_bodiesArray.end(),
+                                 []( std::shared_ptr<CBody>& body1, std::shared_ptr<CBody>& body2 )
+                                 {
+                                     return body1->GetMass() < body2->GetMass();
+                                 } );
+    return *maxBodyByMass;
 }
 
 std::shared_ptr<CBody> ConsoleProgram::GetMinWeightBody()const
@@ -238,22 +238,15 @@ std::shared_ptr<CBody> ConsoleProgram::GetMinWeightBody()const
         throw std::invalid_argument("Body array is empty");
     }
 
-    auto minBodyWeght = m_bodiesArray.front();
+    auto minBodyByWeight = std::min_element( m_bodiesArray.begin(), m_bodiesArray.end(),
+                                           []( std::shared_ptr<CBody>& body1, std::shared_ptr<CBody>& body2 )
+                                           {
+                                               double weightBody1 = GetWeightByBodyDensityAndVolume(body1->GetDensity(), body1->GetVolume());
+                                               double weightBody2 = GetWeightByBodyDensityAndVolume(body2->GetDensity(), body2->GetVolume());
+                                               return weightBody1 < weightBody2;
+                                           } );
+    return *minBodyByWeight;
 
-    double minWeight = GetWeightByBodyDensityAndVolume(minBodyWeght->GetDensity(), minBodyWeght->GetVolume());
-    double weight;
-
-    for (auto &concreteBody : m_bodiesArray)
-    {
-        weight = GetWeightByBodyDensityAndVolume(minBodyWeght->GetDensity(), minBodyWeght->GetVolume());
-        if (weight < minWeight)
-        {
-            minBodyWeght = concreteBody;
-            minWeight = weight;
-        }
-    }
-
-    return minBodyWeght;
 }
 
 
