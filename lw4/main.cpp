@@ -15,6 +15,7 @@ int main(int argc, char* argv[])
          << "cone <density> <radius> <height>\n"
          << "parallelepiped <density> <width> <height> <depth>\n"
          << "cylinder <density> <radius> <height>\n"
+         << "compound\n"
          << "--------------------------\n" << endl;
 
     std::vector<shared_ptr<CBody>> bodiesArray;

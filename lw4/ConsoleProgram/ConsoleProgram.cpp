@@ -42,9 +42,9 @@ ConsoleProgram::ConsoleProgram(istream& input, ostream& output, vector<shared_pt
 
 void ConsoleProgram::ProcessInputCommand(std::string inputCommand)
 {
-    vector<string> splitCommand{split(inputCommand, ' ')};
+    vector<string> splitCommand { split(inputCommand, ' ') };
 
-    if (splitCommand.size() < 2)
+    if (splitCommand.size() < 2 && splitCommand[0] != TYPENAME_COMPOUND)
     {
         throw invalid_argument("Invalid number parameters");
     }
@@ -142,6 +142,31 @@ void ConsoleProgram::CreateCylinder(std::vector<std::string>& parameters)
     m_bodiesArray.push_back(cylinder);
 }
 
+void ConsoleProgram::CreateCompound()
+{
+    std::vector<shared_ptr<CBody>> compoundBodies;
+    ConsoleProgram fillCompoundProgram(cin, cout, compoundBodies);
+    string inputString("");
+
+    m_output << "Input compound childs (for exit input 'save')" << endl;
+    while(getline(cin, inputString) && inputString != "save")
+    {
+        try
+        {
+            fillCompoundProgram.ProcessInputCommand(inputString);
+        }
+        catch (const invalid_argument& e)
+        {
+            m_output << e.what() << endl;
+        }
+    }
+
+    m_output << "Compound input complete!" << endl;
+
+//    shared_ptr<CBody> compound = make_shared<CCylinder>();
+//    m_bodiesArray.push_back(compound);
+}
+
 bool ConsoleProgram::CallCommand(std::vector<std::string>& splitCommand)
 {
     if (splitCommand[0] == TYPENAME_SPHERE)
@@ -159,6 +184,10 @@ bool ConsoleProgram::CallCommand(std::vector<std::string>& splitCommand)
     else if (splitCommand[0] == TYPENAME_CYLINDER)
     {
         CreateCylinder(splitCommand);
+    }
+    else if (splitCommand[0] == TYPENAME_COMPOUND)
+    {
+        CreateCompound();
     }
     else
     {

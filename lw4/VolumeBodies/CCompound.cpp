@@ -61,7 +61,6 @@ void CCompound::SetCompoundDensity()
 
 bool CCompound::AddChildBody(std::shared_ptr<CBody> const& childBody) //(CBody& chldBody)
 {
-    // todo: проверка на родительские
     if (&(*childBody) == this)
     {
         throw invalid_argument("Assign yourself body error");

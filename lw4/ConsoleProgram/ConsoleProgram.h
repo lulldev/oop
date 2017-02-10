@@ -27,6 +27,7 @@ private:
     void CreateParallelepiped(std::vector<std::string>& parameters);
     void CreateCone(std::vector<std::string>& parameters);
     void CreateCylinder(std::vector<std::string>& parameters);
+    void CreateCompound();
 
     bool CallCommand(std::vector<std::string>& splitCommand);
 };
