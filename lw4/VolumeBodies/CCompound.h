@@ -11,7 +11,7 @@ public:
     CCompound();
 
     bool AddChildBody(std::shared_ptr<CBody> const& childBody);
-    double GetMass();
+    double GetMass() override;
     double GetVolume() override;
 
 private:

@@ -12,7 +12,7 @@ public:
 
     virtual double GetDensity();
     virtual double GetVolume();
-    double GetMass();
+    virtual double GetMass();
 
     virtual std::string ToString() final;
 
