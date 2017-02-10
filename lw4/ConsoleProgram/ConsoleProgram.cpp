@@ -7,32 +7,6 @@
 
 using namespace std;
 
-const vector<string> split(const string& targetString, const char& delimiter)
-{
-    string tmpString("");
-    vector<string> resultStringVector;
-
-    for(auto prepareString : targetString)
-    {
-        if(prepareString != delimiter)
-        {
-            tmpString += prepareString;
-        }
-        else if(prepareString == delimiter && tmpString != "")
-        {
-            resultStringVector.push_back(tmpString);
-            tmpString = "";
-        }
-    }
-
-    if(tmpString != "")
-    {
-        resultStringVector.push_back(tmpString);
-    }
-
-    return resultStringVector;
-}
-
 ConsoleProgram::ConsoleProgram(istream& input, ostream& output, vector<shared_ptr<CBody>>& bodiesArray)
     : m_input(input),
       m_output(output),
@@ -40,25 +14,40 @@ ConsoleProgram::ConsoleProgram(istream& input, ostream& output, vector<shared_pt
 {
 }
 
+void ConsoleProgram::ShowHelpUsage()const
+{
+     m_output << "Input information about volume bodies in array\n"
+         << "* For example: \n"
+         << "sphere <density> <radius>\n"
+         << "cone <density> <radius> <height>\n"
+         << "parallelepiped <density> <width> <height> <depth>\n"
+         << "cylinder <density> <radius> <height>\n"
+         << "compound\n"
+         << "--------------------------\n" << endl;
+}
+
 void ConsoleProgram::ProcessInputCommand(std::string inputCommand)
 {
     vector<string> splitCommand { split(inputCommand, ' ') };
 
-    if (splitCommand.size() < 2 && splitCommand[0] != TYPENAME_COMPOUND)
+    try
     {
-        throw invalid_argument("Invalid number parameters");
+        CallCommand(splitCommand);
     }
-    else
+    catch (const invalid_argument& e)
     {
-        if (!CallCommand(splitCommand))
-        {
-            throw invalid_argument("Unknow parameters");
-        }
+        throw;
     }
+
 }
 
 void ConsoleProgram::CreateSphere(std::vector<std::string>& parameters)
 {
+    if (parameters.size() != 3)
+    {
+        throw invalid_argument("Invalid count parameters");
+    }
+
     double density;
     double radius;
 
@@ -78,6 +67,12 @@ void ConsoleProgram::CreateSphere(std::vector<std::string>& parameters)
 
 void ConsoleProgram::CreateParallelepiped(std::vector<std::string>& parameters)
 {
+
+    if (parameters.size() != 5)
+    {
+        throw invalid_argument("Invalid count parameters");
+    }
+
     double density;
     double width;
     double height;
@@ -101,6 +96,10 @@ void ConsoleProgram::CreateParallelepiped(std::vector<std::string>& parameters)
 
 void ConsoleProgram::CreateCone(std::vector<std::string>& parameters)
 {
+    if (parameters.size() != 4)
+    {
+        throw invalid_argument("Invalid count parameters");
+    }
 
     double density;
     double radius;
@@ -123,6 +122,11 @@ void ConsoleProgram::CreateCone(std::vector<std::string>& parameters)
 
 void ConsoleProgram::CreateCylinder(std::vector<std::string>& parameters)
 {
+    if (parameters.size() != 4)
+    {
+        throw invalid_argument("Invalid count parameters");
+    }
+
     double density;
     double radius;
     double height;
@@ -161,13 +165,20 @@ void ConsoleProgram::CreateCompound()
         }
     }
 
-    m_output << "Compound input complete!" << endl;
+    shared_ptr<CCompound> compound = make_shared<CCompound>();
+    for (auto compoundChild : compoundBodies)
+    {
+        compound->AddChildBody(compoundChild);
+    }
 
-//    shared_ptr<CBody> compound = make_shared<CCylinder>();
-//    m_bodiesArray.push_back(compound);
+    m_bodiesArray.push_back(compound);
+
+    m_output << "Compound input complete!" << endl;
+    ShowHelpUsage();
+
 }
 
-bool ConsoleProgram::CallCommand(std::vector<std::string>& splitCommand)
+void ConsoleProgram::CallCommand(std::vector<std::string>& splitCommand)
 {
     if (splitCommand[0] == TYPENAME_SPHERE)
     {
@@ -191,10 +202,8 @@ bool ConsoleProgram::CallCommand(std::vector<std::string>& splitCommand)
     }
     else
     {
-        return false;
+        throw invalid_argument("Unknow command");
     }
-
-    return true;
 }
 
 const double GetWeightByBodyDensityAndVolume(double density, double volume)
@@ -255,7 +264,7 @@ void ConsoleProgram::PrintVolumeBodies()const
         m_output << "Volume bodies array is empty!" << endl;
     }
 
-    m_output << "All bodies in program array:" << endl;
+    m_output << "All bodies in program array (" << m_bodiesArray.size() << ")" << endl;
 
     for (auto &concreteBody : m_bodiesArray)
     {

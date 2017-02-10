@@ -1,6 +1,6 @@
 #include "Helpers.h"
 
-#include <iostream>
+using namespace std;
 
 double SimplePow(double number, int power)
 {
@@ -12,4 +12,30 @@ double SimplePow(double number, int power)
     }
 
     return result;
+}
+
+const vector<string> split(const string& targetString, const char& delimiter)
+{
+    string tmpString("");
+    vector<string> resultStringVector;
+
+    for(auto prepareString : targetString)
+    {
+        if(prepareString != delimiter)
+        {
+            tmpString += prepareString;
+        }
+        else if(prepareString == delimiter && tmpString != "")
+        {
+            resultStringVector.push_back(tmpString);
+            tmpString = "";
+        }
+    }
+
+    if(tmpString != "")
+    {
+        resultStringVector.push_back(tmpString);
+    }
+
+    return resultStringVector;
 }

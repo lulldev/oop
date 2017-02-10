@@ -14,12 +14,13 @@ public:
     void PrintVolumeBodies()const;
     void PrintMaxMassBody();
     void PrintMinWeightBody();
+    void ShowHelpUsage()const;
 
     std::shared_ptr<CBody> GetMaxMassBody()const;
     std::shared_ptr<CBody> GetMinWeightBody()const;
 
 private:
-    std::vector<std::shared_ptr<CBody>> m_bodiesArray;
+    std::vector<std::shared_ptr<CBody>>& m_bodiesArray;
     std::istream& m_input;
     std::ostream& m_output;
 
@@ -29,5 +30,5 @@ private:
     void CreateCylinder(std::vector<std::string>& parameters);
     void CreateCompound();
 
-    bool CallCommand(std::vector<std::string>& splitCommand);
+    void CallCommand(std::vector<std::string>& splitCommand);
 };
