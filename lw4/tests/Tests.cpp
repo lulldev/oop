@@ -1,9 +1,6 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include <vector>
-#include <iostream>
-
 #include "../VolumeBodies/Helpers.h"
 #include "../VolumeBodies/VolumeBodies.h"
 #include "../ConsoleProgram/ConsoleProgram.h"
@@ -20,7 +17,6 @@ TEST(TestHelpers, TestSimplePow)
     ASSERT_DOUBLE_EQ(pow(2.75, 2), SimplePow(2.75, 2));
 }
 
-
 /* -------------------- Сфера -------------------- */
 
 class CSphereTestFixture : public ::testing::Test
@@ -31,16 +27,6 @@ public:
     CSphereTestFixture()
     :sphere(10.0, 20.0)
     {
-    }
-
-protected:
-    void SetUp() override
-    {
-    }
-
-    void TearDown() override
-    {
-        //delete sphere;
     }
 };
 
@@ -92,15 +78,6 @@ public:
 
     CConeTestFixture()
     :cone(10.0, 20.0, 5.0)
-    {
-    }
-
-protected:
-    void SetUp() override
-    {
-    }
-
-    void TearDown() override
     {
     }
 };
@@ -165,16 +142,6 @@ public:
     CParallelepipedTestFixture()
     :parallelepiped(10.0, 20.0, 5.0, 15.0)
     {
-    }
-
-protected:
-    void SetUp() override
-    {
-    }
-
-    void TearDown() override
-    {
-//        delete parallelepiped;
     }
 };
 
@@ -464,10 +431,6 @@ public:
     }
 
 protected:
-    void SetUp() override
-    {
-    }
-
     void TearDown() override
     {
         std::cout.clear();

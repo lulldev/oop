@@ -1,6 +1,3 @@
-#include <iostream>
-#include <vector>
-
 #include "VolumeBodies.h"
 
 using namespace std;

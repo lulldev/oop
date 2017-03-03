@@ -1,7 +1,7 @@
 #include <iostream>
+#include <cmath>
 
 #include "ConsoleProgram/ConsoleProgram.h"
-#include <cmath>
 
 using namespace std;
 

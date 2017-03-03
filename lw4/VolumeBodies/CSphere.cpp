@@ -1,6 +1,3 @@
-#include <math.h>
-#include <iostream>
-
 #include "CSphere.h"
 
 using namespace std;

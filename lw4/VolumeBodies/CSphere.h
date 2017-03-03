@@ -1,5 +1,8 @@
 #pragma once
 
+#include <math.h>
+#include <iostream>
+
 #include "CBody.h"
 
 class CSphere : public CBody

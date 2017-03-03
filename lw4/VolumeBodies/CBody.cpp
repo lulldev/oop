@@ -1,8 +1,3 @@
-#include <iostream>
-#include <cmath>
-#include <sstream>
-#include <iomanip>
-
 #include "CBody.h"
 
 using namespace std;

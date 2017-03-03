@@ -1,6 +1,3 @@
-#include <math.h>
-#include <iostream>
-
 #include "CParallelepiped.h"
 
 using namespace std;

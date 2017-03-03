@@ -1,5 +1,10 @@
 #pragma once
 
+#include <iostream>
+#include <cmath>
+#include <sstream>
+#include <iomanip>
+
 #include "FigureTypes.h"
 #include "Helpers.h"
 

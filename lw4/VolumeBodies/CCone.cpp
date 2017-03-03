@@ -1,6 +1,3 @@
-#include <math.h>
-#include <iostream>
-
 #include "CCone.h"
 
 using namespace std;

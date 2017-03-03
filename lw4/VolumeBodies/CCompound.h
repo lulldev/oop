@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 
+#include "VolumeBodies.h"
 #include "CBody.h"
 
 class CCompound : public CBody

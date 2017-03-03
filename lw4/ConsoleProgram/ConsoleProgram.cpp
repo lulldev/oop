@@ -1,8 +1,3 @@
-#include <iostream>
-#include <vector>
-#include <regex>
-#include <string>
-
 #include "ConsoleProgram.h"
 
 using namespace std;
