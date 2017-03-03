@@ -5,3 +5,13 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES main.cpp)
 add_executable(FindMaxEx ${SOURCE_FILES})
+
+project(FindMaxExTesting)
+
+add_subdirectory(lib/googletest-master)
+include_directories(lib/googletest-master/googletest/include)
+include_directories(lib/googletest-master/googlemock/include)
+
+set(SOURCE_FILES tests/Tests.cpp tests/Tests.h)
+add_executable(FindMaxTesting ${SOURCE_FILES} tests/Tests.cpp tests/Tests.h)
+target_link_libraries(FindMaxTesting gtest_main)
