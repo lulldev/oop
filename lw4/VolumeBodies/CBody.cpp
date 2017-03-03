@@ -11,12 +11,16 @@ CBody::CBody(const std::string& type)
 CBody::CBody(const std::string& figureType, double density)
         : m_type(figureType)
 {
+    ValidateBodyArguments(density);
+    m_density = density;
+}
+
+void CBody::ValidateBodyArguments(double density)const
+{
     if (density < 0)
     {
         throw invalid_argument("Density must be > 0");
     }
-
-    m_density = density;
 }
 
 double CBody::GetDensity()
@@ -34,26 +38,26 @@ double CBody::GetMass()
     return GetDensity() * GetVolume();
 }
 
-void CBody::AppendCustomProperties(ostream & s)const
+void CBody::AppendCustomProperties(ostream& output)const
 {
-    (void)&s;
+    (void)&output;
 }
 
 string CBody::ToString()
 {
-    ostringstream s;
+    ostringstream output;
 
-    s << fixed << showpoint;
-    s << setprecision(2);
+    output << fixed << showpoint;
+    output << setprecision(2);
 
-    s << "Type: " << m_type << endl;
-    s << "Density: " << GetDensity() << endl;
-    s << "Volume: " << GetVolume() << endl;
-    s << "Mass: " << GetMass() << endl;
+    output << "Type: " << m_type << endl;
+    output << "Density: " << GetDensity() << endl;
+    output << "Volume: " << GetVolume() << endl;
+    output << "Mass: " << GetMass() << endl;
 
-    AppendCustomProperties(s);
+    AppendCustomProperties(output);
 
-    return s.str();
+    return output.str();
 }
 
 std::string CBody::GetType()const

@@ -17,5 +17,6 @@ private:
     double m_radius;
 
 protected:
-    void AppendCustomProperties(std::ostream & s)const override;
+    void AppendCustomProperties(std::ostream& output)const override;
+    void ValidateBodyArguments(double radius)const;
 };

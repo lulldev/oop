@@ -5,6 +5,14 @@ using namespace std;
 CParallelepiped::CParallelepiped(double density, double width, double height, double depth)
         :CBody(TYPENAME_PARALLELEPIPED, density)
 {
+    ValidateBodyArguments(width, height, depth);
+    m_width = width;
+    m_height = height;
+    m_depth = depth;
+}
+
+void CParallelepiped::ValidateBodyArguments(double width, double height, double depth)const
+{
     if (width < 0)
     {
         throw std::invalid_argument("Width must be > 0\n");
@@ -17,12 +25,7 @@ CParallelepiped::CParallelepiped(double density, double width, double height, do
     {
         throw std::invalid_argument("Depth must be > 0\n");
     }
-
-    m_width = width;
-    m_height = height;
-    m_depth = depth;
 }
-
 
 double CParallelepiped::GetWidth()const
 {
@@ -44,9 +47,9 @@ double CParallelepiped::GetVolume()
     return (m_width * m_height * m_depth);
 }
 
-void CParallelepiped::AppendCustomProperties(ostream & s)const
+void CParallelepiped::AppendCustomProperties(ostream& output)const
 {
-    s << "Width: " << GetWidth() << endl;
-    s << "Height: " << GetHeight() << endl;
-    s << "Depth: " << GetDepth() << endl;
+    output << "Width: " << GetWidth() << endl;
+    output << "Height: " << GetHeight() << endl;
+    output << "Depth: " << GetDepth() << endl;
 }

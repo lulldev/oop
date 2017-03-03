@@ -8,7 +8,6 @@
 class ConsoleProgram
 {
 public:
-
     ConsoleProgram(std::istream& input, std::ostream& output, std::vector<std::shared_ptr<CBody>>& bodiesArray);
 
     void ProcessInputCommand(std::string inputCommand);

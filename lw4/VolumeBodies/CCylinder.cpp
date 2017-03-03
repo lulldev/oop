@@ -5,6 +5,14 @@ using namespace std;
 CCylinder::CCylinder(double density, double radius, double height)
         :CBody(TYPENAME_CYLINDER, density)
 {
+    ValidateBodyArguments(radius, height);
+
+    m_radius = radius;
+    m_height = height;
+}
+
+void CCylinder::ValidateBodyArguments(double radius, double height)const
+{
     if (radius < 0)
     {
         throw invalid_argument("Radius must be > 0\n");
@@ -13,9 +21,6 @@ CCylinder::CCylinder(double density, double radius, double height)
     {
         throw invalid_argument("Height must be > 0\n");
     }
-
-    m_radius = radius;
-    m_height = height;
 }
 
 double CCylinder::GetBaseRadius()const
@@ -33,7 +38,7 @@ double CCylinder::GetVolume()
     return M_PI * SimplePow(m_radius, 3) * m_height;
 }
 
-void CCylinder::AppendCustomProperties(ostream & s)const
+void CCylinder::AppendCustomProperties(ostream& output)const
 {
-    s << "Radius: " << GetBaseRadius() << endl;
+    output << "Radius: " << GetBaseRadius() << endl;
 }

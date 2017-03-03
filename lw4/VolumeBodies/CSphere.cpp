@@ -5,12 +5,16 @@ using namespace std;
 CSphere::CSphere(double density, double radius)
         : CBody(TYPENAME_SPHERE, density)
 {
+    ValidateBodyArguments(radius);
+    m_radius = radius;
+}
+
+void CSphere::ValidateBodyArguments(double radius)const
+{
     if (radius < 0)
     {
         throw invalid_argument("Radius must be > 0");
     }
-
-    m_radius = radius;
 }
 
 double CSphere::GetRadius()const
@@ -23,7 +27,7 @@ double CSphere::GetVolume()
     return (4/3) * 3.14 * SimplePow(GetRadius(), 3);
 }
 
-void CSphere::AppendCustomProperties(ostream & s)const
+void CSphere::AppendCustomProperties(ostream& output)const
 {
-    s << "Radius: " << GetRadius() << endl;
+    output << "Radius: " << GetRadius() << endl;
 }

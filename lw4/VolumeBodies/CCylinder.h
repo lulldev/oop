@@ -19,5 +19,6 @@ private:
     double m_height;
 
 protected:
-    void AppendCustomProperties(std::ostream & s)const override;
+    void ValidateBodyArguments(double radius, double height)const;
+    void AppendCustomProperties(std::ostream& output)const override;
 };

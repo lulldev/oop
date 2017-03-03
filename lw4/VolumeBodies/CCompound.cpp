@@ -2,7 +2,8 @@
 
 using namespace std;
 
-CCompound::CCompound(): CBody(TYPENAME_COMPOUND)
+CCompound::CCompound():
+        CBody(TYPENAME_COMPOUND)
 {
 }
 
@@ -73,19 +74,19 @@ bool CCompound::AddChildBody(std::shared_ptr<CBody> const& childBody) //(CBody& 
     return false;
 }
 
-void CCompound::AppendCustomProperties(ostream & s)const
+void CCompound::AppendCustomProperties(ostream& output)const
 {
-    s << "Childs (" << m_childBodies.size() << "):" << endl;
+    output << "Childs (" << m_childBodies.size() << "):" << endl;
 
     if (m_childBodies.size() > 0)
     {
         for (auto childBody : m_childBodies)
         {
-            s << childBody->ToString() << endl;
+            output << childBody->ToString() << endl;
         }
     }
     else
     {
-        s << "No childs" << endl;
+        output << "No childs" << endl;
     }
 }
