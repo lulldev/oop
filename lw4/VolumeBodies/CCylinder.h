@@ -20,5 +20,5 @@ private:
 
 protected:
     void ValidateBodyArguments(double radius, double height)const;
-    void AppendCustomProperties(std::ostream& output)const override;
+    void ConcreteBodyToString(std::ostream &output)const override;
 };

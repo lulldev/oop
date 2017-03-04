@@ -37,7 +37,7 @@ double CCone::GetVolume()
     return (m_height / 3) * (SimplePow(m_radius, 2) * M_PI);
 }
 
-void CCone::AppendCustomProperties(ostream& output)const
+void CCone::ConcreteBodyToString(ostream &output)const
 {
     output << "Radius: " << GetBaseRadius() << endl;
     output << "Height: " << GetHeight() << endl;

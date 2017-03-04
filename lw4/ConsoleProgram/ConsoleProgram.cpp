@@ -36,7 +36,7 @@ void ConsoleProgram::ProcessInputCommand(std::string inputCommand)
 
 }
 
-void ConsoleProgram::CreateSphere(std::vector<std::string>& parameters)
+void ConsoleProgram::CreateSphere(std::vector<std::string> const& parameters)
 {
     if (parameters.size() != 3)
     {
@@ -60,7 +60,7 @@ void ConsoleProgram::CreateSphere(std::vector<std::string>& parameters)
     m_bodiesArray.push_back(sphere);
 }
 
-void ConsoleProgram::CreateParallelepiped(std::vector<std::string>& parameters)
+void ConsoleProgram::CreateParallelepiped(std::vector<std::string> const& parameters)
 {
 
     if (parameters.size() != 5)
@@ -89,7 +89,7 @@ void ConsoleProgram::CreateParallelepiped(std::vector<std::string>& parameters)
     m_bodiesArray.push_back(parallelepiped);
 }
 
-void ConsoleProgram::CreateCone(std::vector<std::string>& parameters)
+void ConsoleProgram::CreateCone(std::vector<std::string> const& parameters)
 {
     if (parameters.size() != 4)
     {
@@ -115,7 +115,7 @@ void ConsoleProgram::CreateCone(std::vector<std::string>& parameters)
     m_bodiesArray.push_back(cone);
 }
 
-void ConsoleProgram::CreateCylinder(std::vector<std::string>& parameters)
+void ConsoleProgram::CreateCylinder(std::vector<std::string> const& parameters)
 {
     if (parameters.size() != 4)
     {
@@ -201,7 +201,7 @@ void ConsoleProgram::CallCommand(std::vector<std::string>& splitCommand)
     }
 }
 
-const double GetWeightByBodyDensityAndVolume(double density, double volume)
+const double GetWeightInWaterByBodyDensityAndVolume(double density, double volume)
 {
     return (density - 1000) * 9.8 * volume;
 }
@@ -219,10 +219,10 @@ std::shared_ptr<CBody> ConsoleProgram::GetMaxMassBody()const
     }
 
     auto maxBodyByMass = std::max_element( m_bodiesArray.begin(), m_bodiesArray.end(),
-                                 []( std::shared_ptr<CBody>& body1, std::shared_ptr<CBody>& body2 )
+                                 [](std::shared_ptr<CBody>& body1, std::shared_ptr<CBody>& body2)
                                  {
                                      return body1->GetMass() < body2->GetMass();
-                                 } );
+                                 });
     return *maxBodyByMass;
 }
 
@@ -233,13 +233,15 @@ std::shared_ptr<CBody> ConsoleProgram::GetMinWeightBody()const
         throw std::invalid_argument("Body array is empty");
     }
 
-    auto minBodyByWeight = std::min_element( m_bodiesArray.begin(), m_bodiesArray.end(),
-                                           []( std::shared_ptr<CBody>& body1, std::shared_ptr<CBody>& body2 )
+    auto minBodyByWeight = std::min_element(m_bodiesArray.begin(), m_bodiesArray.end(),
+                                           [](std::shared_ptr<CBody>& body1, std::shared_ptr<CBody>& body2)
                                            {
-                                               double weightBody1 = GetWeightByBodyDensityAndVolume(body1->GetDensity(), body1->GetVolume());
-                                               double weightBody2 = GetWeightByBodyDensityAndVolume(body2->GetDensity(), body2->GetVolume());
+                                               double weightBody1 = GetWeightInWaterByBodyDensityAndVolume(
+                                                       body1->GetDensity(), body1->GetVolume());
+                                               double weightBody2 = GetWeightInWaterByBodyDensityAndVolume(
+                                                       body2->GetDensity(), body2->GetVolume());
                                                return weightBody1 < weightBody2;
-                                           } );
+                                           });
     return *minBodyByWeight;
 
 }

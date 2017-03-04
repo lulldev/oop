@@ -21,6 +21,6 @@ private:
     double m_depth;
 
 protected:
-    void AppendCustomProperties(std::ostream& output)const override;
+    void ConcreteBodyToString(std::ostream &output)const override;
     void ValidateBodyArguments(double width, double height, double depth)const;
 };

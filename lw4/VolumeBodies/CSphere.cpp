@@ -27,7 +27,7 @@ double CSphere::GetVolume()
     return (4/3) * 3.14 * SimplePow(GetRadius(), 3);
 }
 
-void CSphere::AppendCustomProperties(ostream& output)const
+void CSphere::ConcreteBodyToString(ostream &output)const
 {
     output << "Radius: " << GetRadius() << endl;
 }

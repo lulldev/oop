@@ -1,4 +1,6 @@
-#ifndef OOP_LW4_TESTS_H
-#define OOP_LW4_TESTS_H
+#include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
-#endif //OOP_LW4_TESTS_H
+#include "../VolumeBodies/Helpers.h"
+#include "../VolumeBodies/VolumeBodies.h"
+#include "../ConsoleProgram/ConsoleProgram.h"

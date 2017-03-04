@@ -25,6 +25,6 @@ protected:
     double m_density;
     double m_volume;
 
-    virtual void AppendCustomProperties(std::ostream& output)const;
+    virtual void ConcreteBodyToString(std::ostream& output)const;
     void ValidateBodyArguments(double density)const;
 };

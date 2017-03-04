@@ -1,9 +1,4 @@
-#include <gtest/gtest.h>
-#include <gmock/gmock.h>
-
-#include "../VolumeBodies/Helpers.h"
-#include "../VolumeBodies/VolumeBodies.h"
-#include "../ConsoleProgram/ConsoleProgram.h"
+#include "Tests.h"
 
 using testing::Eq;
 using namespace std;
@@ -264,45 +259,34 @@ TEST_F(CCylinderTestFixture, ToStringCylinder)
 class CCompoundTestFixture : public ::testing::Test
 {
 public:
-    CCylinder cylinder;
-    CCone cone;
-    CParallelepiped parallelepiped;
-    CSphere sphere;
-    CCompound compound;
-
     shared_ptr<CBody> cylinderPtr;
     shared_ptr<CBody> conePtr;
     shared_ptr<CBody> parallelepipedPtr;
     shared_ptr<CBody> spherePtr;
-    shared_ptr<CBody> compoundPtr;
+    shared_ptr<CCompound> compoundPtr;
 
     CCompoundTestFixture()
-        :cylinder(1, 1, 2),
-         cone(10, 2, 1),
-         parallelepiped(2, 2, 2, 2),
-         sphere(1, 2),
-         compound()
     {
-        cylinderPtr = make_shared<CCylinder>(cylinder);
-        conePtr = make_shared<CCone>(cone);
-        parallelepipedPtr = make_shared<CParallelepiped>(parallelepiped);
-        spherePtr = make_shared<CSphere>(sphere);
-        compoundPtr = make_shared<CCompound>(compound);
+        cylinderPtr = make_shared<CCylinder>(CCylinder(1, 1, 2));
+        conePtr = make_shared<CCone>(CCone(10, 2, 1));
+        parallelepipedPtr = make_shared<CParallelepiped>(CParallelepiped(2, 2, 2, 2));
+        spherePtr = make_shared<CSphere>(CSphere(1, 2));
+        compoundPtr = make_shared<CCompound>(CCompound());
     }
 };
 
 TEST_F(CCompoundTestFixture, TestSelfAddToChild)
 {
-//    ASSERT_THROW(compound.AddChildBody(compoundPtr), std::invalid_argument); todo
-    ASSERT_NO_THROW(compound.AddChildBody(spherePtr));
+    ASSERT_THROW(compoundPtr->AddChildBody(compoundPtr), std::invalid_argument);
+    ASSERT_NO_THROW(compoundPtr->AddChildBody(spherePtr));
 }
 
 TEST_F(CCompoundTestFixture, TestAddValidSimpleBodiesChilds)
 {
-    ASSERT_TRUE(compound.AddChildBody(cylinderPtr));
-    ASSERT_TRUE(compound.AddChildBody(conePtr));
-    ASSERT_TRUE(compound.AddChildBody(parallelepipedPtr));
-    ASSERT_TRUE(compound.AddChildBody(spherePtr));
+    ASSERT_TRUE(compoundPtr->AddChildBody(cylinderPtr));
+    ASSERT_TRUE(compoundPtr->AddChildBody(conePtr));
+    ASSERT_TRUE(compoundPtr->AddChildBody(parallelepipedPtr));
+    ASSERT_TRUE(compoundPtr->AddChildBody(spherePtr));
 }
 
 
@@ -313,45 +297,60 @@ TEST_F(CCompoundTestFixture, TestAddCompoundToChilds)
 
     ASSERT_TRUE(testingCompound.AddChildBody(cylinderPtr));
     ASSERT_TRUE(testingCompound.AddChildBody(conePtr));
-    ASSERT_TRUE(compound.AddChildBody(testingCompoundPtr));
+    ASSERT_TRUE(compoundPtr->AddChildBody(testingCompoundPtr));
 }
 
 TEST_F(CCompoundTestFixture, TestGetMassOnEmptyBodiesArray)
 {
-    ASSERT_DOUBLE_EQ(compound.GetMass(), 0);
+    ASSERT_DOUBLE_EQ(compoundPtr->GetMass(), 0);
 }
 
 TEST_F(CCompoundTestFixture, TestGetMassOnFillBodiesArray)
 {
-    compound.AddChildBody(cylinderPtr);
-    ASSERT_DOUBLE_EQ(compound.GetMass(), cylinder.GetMass());
+    compoundPtr->AddChildBody(cylinderPtr);
+    ASSERT_DOUBLE_EQ(compoundPtr->GetMass(), cylinderPtr->GetMass());
 
-    compound.AddChildBody(conePtr);
-    ASSERT_DOUBLE_EQ(compound.GetMass(), cone.GetMass() + cylinder.GetMass());
+    compoundPtr->AddChildBody(conePtr);
+    ASSERT_DOUBLE_EQ(compoundPtr->GetMass(), conePtr->GetMass() + cylinderPtr->GetMass());
 }
 
-TEST_F(CCompoundTestFixture, TestCompoundVolume)
+
+TEST_F(CCompoundTestFixture, TestEmptyCompoundVolume)
 {
-    ASSERT_DOUBLE_EQ(compound.GetVolume(), 0);
-
-    compound.AddChildBody(parallelepipedPtr);
-    ASSERT_DOUBLE_EQ(compound.GetVolume(), parallelepiped.GetVolume());
-
-    compound.AddChildBody(cylinderPtr);
-    ASSERT_DOUBLE_EQ(compound.GetVolume(), parallelepiped.GetVolume() + cylinder.GetVolume());
+    ASSERT_DOUBLE_EQ(compoundPtr->GetVolume(), 0);
 }
 
-TEST_F(CCompoundTestFixture, TestCompoundDensity)
+TEST_F(CCompoundTestFixture, TestCompoundVolumeWithOneBodyEQVolume)
 {
-    ASSERT_DOUBLE_EQ(compound.GetDensity(), 0);
+    compoundPtr->AddChildBody(parallelepipedPtr);
+    ASSERT_DOUBLE_EQ(compoundPtr->GetVolume(), parallelepipedPtr->GetVolume());
+}
 
-    compound.AddChildBody(parallelepipedPtr);
-    ASSERT_DOUBLE_EQ(compound.GetDensity(), parallelepiped.GetDensity());
+TEST_F(CCompoundTestFixture, TestCompoundVolumeWithTwoBodyEQMassAndVolume)
+{
+    compoundPtr->AddChildBody(parallelepipedPtr);
+    compoundPtr->AddChildBody(cylinderPtr);
+    ASSERT_DOUBLE_EQ(compoundPtr->GetVolume(), parallelepipedPtr->GetVolume() + cylinderPtr->GetVolume());
+}
 
-    compound.AddChildBody(cylinderPtr);
-    double expectedDensity = (parallelepiped.GetMass() + cylinder.GetMass())
-                             / (parallelepiped.GetVolume() + cylinder.GetVolume());
-    ASSERT_DOUBLE_EQ(compound.GetDensity(), expectedDensity);
+TEST_F(CCompoundTestFixture, TestEmptyCompoundDensity)
+{
+    ASSERT_DOUBLE_EQ(compoundPtr->GetDensity(), 0);
+}
+
+TEST_F(CCompoundTestFixture, TestCompoundDensityWithOneBodyEQDensity)
+{
+    compoundPtr->AddChildBody(parallelepipedPtr);
+    ASSERT_DOUBLE_EQ(compoundPtr->GetDensity(), parallelepipedPtr->GetDensity());
+}
+
+TEST_F(CCompoundTestFixture, TestCompoundDensityWithTwoBodyEQMassAndVolume)
+{
+    compoundPtr->AddChildBody(cylinderPtr);
+    compoundPtr->AddChildBody(parallelepipedPtr);
+    double expectedDensity = (cylinderPtr->GetMass() + parallelepipedPtr->GetMass()) /
+            (cylinderPtr->GetVolume() + parallelepipedPtr->GetVolume());
+    ASSERT_DOUBLE_EQ(compoundPtr->GetDensity(), expectedDensity);
 }
 
 TEST_F(CCompoundTestFixture, TestEmptyCompoundToString)
@@ -364,12 +363,12 @@ TEST_F(CCompoundTestFixture, TestEmptyCompoundToString)
             "Childs (0):\n"
             "No childs\n";
 
-    ASSERT_TRUE(compound.ToString() == expectedString);
+    ASSERT_TRUE(compoundPtr->ToString() == expectedString);
 }
 
 TEST_F(CCompoundTestFixture, TestCompoundToString)
 {
-    compound.AddChildBody(spherePtr);
+    compoundPtr->AddChildBody(spherePtr);
 
     std::string expectedString =
         "Type: compound\n"
@@ -383,9 +382,9 @@ TEST_F(CCompoundTestFixture, TestCompoundToString)
         "Mass: 25.12\n"
         "Radius: 2.00\n\n";
 
-    ASSERT_TRUE(compound.ToString() == expectedString);
+    ASSERT_TRUE(compoundPtr->ToString() == expectedString);
 
-    compound.AddChildBody(cylinderPtr);
+    compoundPtr->AddChildBody(cylinderPtr);
 
     expectedString =
             "Type: compound\n"
@@ -404,7 +403,7 @@ TEST_F(CCompoundTestFixture, TestCompoundToString)
                     "Mass: 6.28\n"
                     "Radius: 1.00\n\n";
 
-    ASSERT_TRUE(compound.ToString() == expectedString);
+    ASSERT_TRUE(compoundPtr->ToString() == expectedString);
 }
 
 

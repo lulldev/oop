@@ -38,7 +38,7 @@ double CCylinder::GetVolume()
     return M_PI * SimplePow(m_radius, 3) * m_height;
 }
 
-void CCylinder::AppendCustomProperties(ostream& output)const
+void CCylinder::ConcreteBodyToString(ostream &output)const
 {
     output << "Radius: " << GetBaseRadius() << endl;
 }

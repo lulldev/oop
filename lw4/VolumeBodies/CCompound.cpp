@@ -59,7 +59,7 @@ void CCompound::SetCompoundDensity()
 
 bool CCompound::AddChildBody(std::shared_ptr<CBody> const& childBody) //(CBody& chldBody)
 {
-    if (&(*childBody) == this)
+    if (childBody.get() == this)
     {
         throw invalid_argument("Assign yourself body error");
     }
@@ -74,7 +74,7 @@ bool CCompound::AddChildBody(std::shared_ptr<CBody> const& childBody) //(CBody& 
     return false;
 }
 
-void CCompound::AppendCustomProperties(ostream& output)const
+void CCompound::ConcreteBodyToString(ostream &output)const
 {
     output << "Childs (" << m_childBodies.size() << "):" << endl;
 

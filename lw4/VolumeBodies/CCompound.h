@@ -21,5 +21,5 @@ private:
     void SetCompoundDensity();
 
 protected:
-    void AppendCustomProperties(std::ostream& output)const override;
+    void ConcreteBodyToString(std::ostream &output)const override;
 };

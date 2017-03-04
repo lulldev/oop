@@ -38,7 +38,7 @@ double CBody::GetMass()
     return GetDensity() * GetVolume();
 }
 
-void CBody::AppendCustomProperties(ostream& output)const
+void CBody::ConcreteBodyToString(ostream& output)const
 {
     (void)&output;
 }
@@ -55,7 +55,7 @@ string CBody::ToString()
     output << "Volume: " << GetVolume() << endl;
     output << "Mass: " << GetMass() << endl;
 
-    AppendCustomProperties(output);
+    ConcreteBodyToString(output);
 
     return output.str();
 }

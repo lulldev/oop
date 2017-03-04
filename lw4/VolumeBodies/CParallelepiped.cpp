@@ -47,7 +47,7 @@ double CParallelepiped::GetVolume()
     return (m_width * m_height * m_depth);
 }
 
-void CParallelepiped::AppendCustomProperties(ostream& output)const
+void CParallelepiped::ConcreteBodyToString(ostream &output)const
 {
     output << "Width: " << GetWidth() << endl;
     output << "Height: " << GetHeight() << endl;
