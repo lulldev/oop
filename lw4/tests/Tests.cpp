@@ -267,18 +267,17 @@ public:
 
     CCompoundTestFixture()
     {
-        cylinderPtr = make_shared<CCylinder>(CCylinder(1, 1, 2));
-        conePtr = make_shared<CCone>(CCone(10, 2, 1));
-        parallelepipedPtr = make_shared<CParallelepiped>(CParallelepiped(2, 2, 2, 2));
-        spherePtr = make_shared<CSphere>(CSphere(1, 2));
-        compoundPtr = make_shared<CCompound>(CCompound());
+        cylinderPtr = make_shared<CCylinder>(1, 1, 2);
+        conePtr = make_shared<CCone>(10, 2, 1);
+        parallelepipedPtr = make_shared<CParallelepiped>(2, 2, 2, 2);
+        spherePtr = make_shared<CSphere>(1, 2);
+        compoundPtr = make_shared<CCompound>();
     }
 };
 
-TEST_F(CCompoundTestFixture, TestSelfAddToChild)
+TEST_F(CCompoundTestFixture, TestCompoundCantAddSelfAsChild)
 {
     ASSERT_THROW(compoundPtr->AddChildBody(compoundPtr), std::invalid_argument);
-    ASSERT_NO_THROW(compoundPtr->AddChildBody(spherePtr));
 }
 
 TEST_F(CCompoundTestFixture, TestAddValidSimpleBodiesChilds)
@@ -315,7 +314,7 @@ TEST_F(CCompoundTestFixture, TestGetMassOnFillBodiesArray)
 }
 
 
-TEST_F(CCompoundTestFixture, TestEmptyCompoundVolume)
+TEST_F(CCompoundTestFixture, TestEmptyCompoundVolumeIsZero)
 {
     ASSERT_DOUBLE_EQ(compoundPtr->GetVolume(), 0);
 }
@@ -333,7 +332,7 @@ TEST_F(CCompoundTestFixture, TestCompoundVolumeWithTwoBodyEQMassAndVolume)
     ASSERT_DOUBLE_EQ(compoundPtr->GetVolume(), parallelepipedPtr->GetVolume() + cylinderPtr->GetVolume());
 }
 
-TEST_F(CCompoundTestFixture, TestEmptyCompoundDensity)
+TEST_F(CCompoundTestFixture, TestEmptyCompoundDensityIsZero)
 {
     ASSERT_DOUBLE_EQ(compoundPtr->GetDensity(), 0);
 }
@@ -344,7 +343,7 @@ TEST_F(CCompoundTestFixture, TestCompoundDensityWithOneBodyEQDensity)
     ASSERT_DOUBLE_EQ(compoundPtr->GetDensity(), parallelepipedPtr->GetDensity());
 }
 
-TEST_F(CCompoundTestFixture, TestCompoundDensityWithTwoBodyEQMassAndVolume)
+TEST_F(CCompoundTestFixture, TestCompoundDensityWithTwoBodyEQMassAndVolumeDivision)
 {
     compoundPtr->AddChildBody(cylinderPtr);
     compoundPtr->AddChildBody(parallelepipedPtr);

@@ -80,7 +80,7 @@ void ConsoleProgram::CreateParallelepiped(std::vector<std::string> const& parame
         height = stod(parameters[3]);
         depth = stod(parameters[4]);
     }
-    catch(invalid_argument const& e)
+    catch(exception const&)
     {
         throw invalid_argument("Parallelepiped invalid parameters");
     }
@@ -201,14 +201,11 @@ void ConsoleProgram::CallCommand(std::vector<std::string>& splitCommand)
     }
 }
 
-const double GetWeightInWaterByBodyDensityAndVolume(double density, double volume)
+double GetWeightInWaterByBodyDensityAndVolume(double density, double volume)
 {
-    return (density - 1000) * 9.8 * volume;
-}
-
-bool comparator(std::shared_ptr<CBody>& body1, std::shared_ptr<CBody>& body2)
-{
-    return body1->GetMass() < body2->GetMass();
+    const unsigned WATER_DENSITY = 1000;
+    const float GRAVITY = 9.8;
+    return (density - WATER_DENSITY) * GRAVITY * volume;
 }
 
 std::shared_ptr<CBody> ConsoleProgram::GetMaxMassBody()const
@@ -218,7 +215,7 @@ std::shared_ptr<CBody> ConsoleProgram::GetMaxMassBody()const
         throw std::invalid_argument("Body array is empty");
     }
 
-    auto maxBodyByMass = std::max_element( m_bodiesArray.begin(), m_bodiesArray.end(),
+    auto maxBodyByMass = std::max_element(m_bodiesArray.begin(), m_bodiesArray.end(),
                                  [](std::shared_ptr<CBody>& body1, std::shared_ptr<CBody>& body2)
                                  {
                                      return body1->GetMass() < body2->GetMass();

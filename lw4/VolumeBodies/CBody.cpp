@@ -38,9 +38,8 @@ double CBody::GetMass()
     return GetDensity() * GetVolume();
 }
 
-void CBody::ConcreteBodyToString(ostream& output)const
+void CBody::ConcreteBodyToString(ostream&)const
 {
-    (void)&output;
 }
 
 string CBody::ToString()
