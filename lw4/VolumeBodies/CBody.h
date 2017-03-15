@@ -20,11 +20,14 @@ public:
     virtual std::string ToString() final;
 
     std::string GetType()const;
+
+private:
+    void ValidateBodyArguments(double density)const;
+
 protected:
     std::string m_type;
     double m_density;
     double m_volume;
 
     virtual void ConcreteBodyToString(std::ostream& output)const;
-    void ValidateBodyArguments(double density)const;
 };

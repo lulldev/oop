@@ -2,6 +2,7 @@
 #include <vector>
 #include <regex>
 #include <string>
+#include <boost/optional.hpp>
 
 #include "../VolumeBodies/VolumeBodies.h"
 
@@ -29,6 +30,5 @@ private:
     void CreateCone(std::vector<std::string> const& parameters);
     void CreateCylinder(std::vector<std::string> const& parameters);
     void CreateCompound();
-
     void CallCommand(std::vector<std::string>& splitCommand);
 };

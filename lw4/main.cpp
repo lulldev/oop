@@ -9,8 +9,8 @@ int main(int argc, char* argv[])
 {
     string inputString;
 
-    std::vector<shared_ptr<CBody>> bodiesArray;
-    ConsoleProgram program(cin, cout, bodiesArray);
+//    std::vector<shared_ptr<CBody>> bodiesArray;
+    ConsoleProgram program(cin, cout, <#initializer#>);
 
     program.ShowHelpUsage();
 

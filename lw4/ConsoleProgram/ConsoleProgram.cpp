@@ -2,7 +2,7 @@
 
 using namespace std;
 
-ConsoleProgram::ConsoleProgram(istream& input, ostream& output, vector<shared_ptr<CBody>>& bodiesArray)
+ConsoleProgram::ConsoleProgram(std::istream& input, std::ostream& output, std::vector<std::shared_ptr<CBody>>& bodiesArray)
     : m_input(input),
       m_output(output),
       m_bodiesArray(bodiesArray)
@@ -33,7 +33,6 @@ void ConsoleProgram::ProcessInputCommand(std::string inputCommand)
     {
         throw;
     }
-
 }
 
 void ConsoleProgram::CreateSphere(std::vector<std::string> const& parameters)
@@ -144,7 +143,7 @@ void ConsoleProgram::CreateCylinder(std::vector<std::string> const& parameters)
 void ConsoleProgram::CreateCompound()
 {
     std::vector<shared_ptr<CBody>> compoundBodies;
-    ConsoleProgram fillCompoundProgram(cin, cout, compoundBodies);
+    ConsoleProgram fillCompoundProgram(cin, cout, m_bodiesArray);
     string inputString("");
 
     m_output << "Input compound childs (for exit input 'save')" << endl;

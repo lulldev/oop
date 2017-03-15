@@ -18,7 +18,8 @@ private:
     double m_radius;
     double m_height;
 
-protected:
     void ValidateBodyArguments(double radius, double height)const;
+
+protected:
     void ConcreteBodyToString(std::ostream &output)const override;
 };

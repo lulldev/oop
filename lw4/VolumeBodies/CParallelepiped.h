@@ -20,7 +20,8 @@ private:
     double m_height;
     double m_depth;
 
+    void ValidateBodyArguments(double width, double height, double depth)const;
+
 protected:
     void ConcreteBodyToString(std::ostream &output)const override;
-    void ValidateBodyArguments(double width, double height, double depth)const;
 };
