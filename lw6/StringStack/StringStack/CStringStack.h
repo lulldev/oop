@@ -1,0 +1,8 @@
+//
+// Created by Иван Калагин on 17.03.17.
+//
+
+#ifndef TESTSTRINGSTACK_CSTRINGSTACK_H
+#define TESTSTRINGSTACK_CSTRINGSTACK_H
+
+#endif //TESTSTRINGSTACK_CSTRINGSTACK_H
