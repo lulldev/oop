@@ -3,10 +3,11 @@
 using testing::Eq;
 using namespace std;
 
+/*
 class CSCListTestFixture: public ::testing::Test
 {
 public:
-    CSCList<int> sclist;
+    CSCList<string> sclist;
 
     CSCListTestFixture(): sclist()
     {
@@ -15,8 +16,9 @@ public:
 
 TEST_F(CSCListTestFixture, Test)
 {
-    sclist.Push(1);
-    sclist.Show();
+    sclist.Push("test");
+    sclist.Push("test1");
+    sclist.Pop();
 }
 
 int main(int argc, char* argv[])
@@ -24,3 +26,5 @@ int main(int argc, char* argv[])
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
+
+ */
