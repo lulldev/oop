@@ -47,18 +47,17 @@ void CStringStack::Pop()
 
     shared_ptr<StringElement> tmpElement = m_top;
     m_top = m_top->next;
-    // todo: test deleting
     --m_size;
 }
 
-shared_ptr<StringElement> CStringStack::Top() const
+std::string CStringStack::Top() const
 {
     if (IsEmpty())
     {
         throw std::underflow_error("Error get top element: stack is empty");
     }
 
-    return m_top;
+    return m_top->stringElement;
 }
 
 void CStringStack::MoveStackToThis(CStringStack& movedStack)

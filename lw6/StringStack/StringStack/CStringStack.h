@@ -22,7 +22,7 @@ public:
 
     void Push(std::string const& newString);
     void Pop();
-    std::shared_ptr<StringElement> Top() const;
+    std::string Top()const;
     bool IsEmpty()const;
     void ClearStack();
 

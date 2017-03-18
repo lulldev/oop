@@ -44,40 +44,8 @@
       <file leaf-file-name="Tests.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/Tests.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-              <folding>
-                <marker date="1489801417000" expanded="true" signature="61:414" ph="/.../" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tests.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/Tests.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CStringStack.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StringStack/CStringStack.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1194">
-              <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CStringStack.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StringStack/CStringStack.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state relative-caret-position="189">
+              <caret line="102" column="1" lean-forward="true" selection-start-line="102" selection-start-column="1" selection-end-line="102" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -112,8 +80,8 @@
         <option value="$PROJECT_DIR$/tests/Tests.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/StringStack/CStringStack.h" />
-        <option value="$PROJECT_DIR$/StringStack/CStringStack.cpp" />
         <option value="$PROJECT_DIR$/tests/Tests.cpp" />
+        <option value="$PROJECT_DIR$/StringStack/CStringStack.cpp" />
       </list>
     </option>
   </component>
@@ -412,44 +380,44 @@
       <updated>1489602349271</updated>
       <workItem from="1489602395747" duration="2511000" />
       <workItem from="1489645138167" duration="1547000" />
-      <workItem from="1489772642501" duration="15956000" />
+      <workItem from="1489772642501" duration="19090000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestStringStack - 2017.03.15 at 21h 59m 06s.xml">
+    <history-entry file="TestStringStack - 2017.03.18 at 05h 02m 54s.xml">
       <configuration name="TestStringStack" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestStringStack - 2017.03.17 at 22h 51m 18s.xml">
+    <history-entry file="TestStringStack - 2017.03.18 at 05h 11m 02s.xml">
       <configuration name="TestStringStack" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestStringStack - 2017.03.17 at 23h 42m 06s.xml">
+    <history-entry file="TestStringStack - 2017.03.18 at 05h 18m 28s.xml">
       <configuration name="TestStringStack" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestStringStack - 2017.03.17 at 23h 42m 48s.xml">
+    <history-entry file="TestStringStack - 2017.03.18 at 05h 23m 39s.xml">
       <configuration name="TestStringStack" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestStringStack - 2017.03.17 at 23h 43m 12s.xml">
+    <history-entry file="TestStringStack - 2017.03.18 at 05h 25m 21s.xml">
       <configuration name="TestStringStack" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestStringStack - 2017.03.18 at 00h 53m 30s.xml">
+    <history-entry file="TestStringStack - 2017.03.18 at 05h 29m 56s.xml">
       <configuration name="TestStringStack" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestStringStack - 2017.03.18 at 01h 27m 47s.xml">
+    <history-entry file="TestStringStack - 2017.03.18 at 05h 33m 22s.xml">
       <configuration name="TestStringStack" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestStringStack - 2017.03.18 at 01h 55m 47s.xml">
+    <history-entry file="TestStringStack - 2017.03.18 at 05h 38m 08s.xml">
       <configuration name="TestStringStack" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestStringStack - 2017.03.18 at 03h 34m 11s.xml">
+    <history-entry file="TestStringStack - 2017.03.18 at 05h 38m 32s.xml">
       <configuration name="TestStringStack" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestStringStack - 2017.03.18 at 04h 42m 46s.xml">
+    <history-entry file="TestStringStack - 2017.03.18 at 05h 38m 54s.xml">
       <configuration name="TestStringStack" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20014000" />
+    <option name="totallyTimeSpent" value="23148000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="774" extended-state="0" />
@@ -498,9 +466,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="32" lean-forward="false" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-          <folding>
-            <marker date="1489801417000" expanded="true" signature="61:414" ph="/.../" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -560,19 +526,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StringStack/CStringStack.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/StringStack/CStringStack.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1194">
-          <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="180">
+          <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+          <folding>
+            <marker date="1489804722000" expanded="true" signature="144:168" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -584,13 +544,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Tests.cpp">
+    <entry file="file://$PROJECT_DIR$/StringStack/CStringStack.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="339">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <marker date="1489801417000" expanded="true" signature="61:414" ph="/.../" />
-          </folding>
+          <caret line="31" column="8" lean-forward="true" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Tests.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="102" column="1" lean-forward="true" selection-start-line="102" selection-start-column="1" selection-end-line="102" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
