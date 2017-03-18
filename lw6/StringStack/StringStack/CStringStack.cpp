@@ -87,7 +87,7 @@ CStringStack& CStringStack::operator=(CStringStack const& cloneStack)
                 target->next = std::make_shared<StringElement>(*tmpCopy->next);
 
                 tmpCopy = tmpCopy->next;
-                target = target ->next;
+                target = target->next;
             }
             m_size = cloneStack.m_size;
         }
