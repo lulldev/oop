@@ -3,7 +3,6 @@
 using testing::Eq;
 using namespace std;
 
-/*
 class CSCListTestFixture: public ::testing::Test
 {
 public:
@@ -26,5 +25,3 @@ int main(int argc, char* argv[])
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
-
- */

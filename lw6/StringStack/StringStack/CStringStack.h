@@ -16,6 +16,8 @@ class CStringStack
 {
 public:
     CStringStack();
+    CStringStack(CStringStack const& stack);
+    CStringStack(CStringStack && movedStack);
     ~CStringStack();
 
     void Push(std::string const& newString);
@@ -24,12 +26,12 @@ public:
     bool IsEmpty()const;
     void ClearStack();
 
-    //CStringStack(CStringStack const& stack);
-    //CStringStack(CStringStack && stackCopy);
-//    CStringStack& operator=(CStringStack const& cloneStack);
-//    CStringStack& operator=(CStringStack && moveStack);
+    CStringStack& operator=(CStringStack const& stack);
+    CStringStack& operator=(CStringStack && movedStack);
 
 private:
     size_t m_size = 0;
     std::shared_ptr<StringElement> m_top = nullptr;
+
+    void MoveStackToThis(CStringStack& movedStack);
 };
