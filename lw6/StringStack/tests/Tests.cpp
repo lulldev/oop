@@ -62,6 +62,21 @@ TEST_F(CStringStackTestFixture, PopInFilledStack)
     ASSERT_TRUE(stringStack.IsEmpty());
 }
 
+TEST_F(CStringStackTestFixture, ManyPushesAndPops)
+{
+    ASSERT_TRUE(stringStack.IsEmpty());
+
+    int c = 0;
+    while (c < 20)
+    {
+        stringStack.Push(to_string(c));
+        ASSERT_EQ(stringStack.Top(), to_string(c));
+        stringStack.Pop();
+        c++;
+    }
+    ASSERT_TRUE(stringStack.IsEmpty());
+}
+
 TEST_F(CStringStackTestFixture, ClearEmptyStack)
 {
     ASSERT_TRUE(stringStack.IsEmpty());
@@ -92,10 +107,6 @@ TEST_F(CStringStackTestFixture, CopyStackByConstructor)
 
     CStringStack copyStringStack = stringStack;
 
-    stringStack.Push("original-str");
-    ASSERT_NE(copyStringStack.Top(), stringStack.Top());
-    stringStack.Pop();
-
     while (!copyStringStack.IsEmpty())
     {
         ASSERT_EQ(copyStringStack.Top(), stringStack.Top());
@@ -106,7 +117,7 @@ TEST_F(CStringStackTestFixture, CopyStackByConstructor)
     ASSERT_EQ(copyStringStack.IsEmpty(), stringStack.IsEmpty());
 }
 
-TEST_F(CStringStackTestFixture, CopyStackByCopyOperator)
+TEST_F(CStringStackTestFixture, CopyStackByAssignmentOperator)
 {
     stringStack.Push("test1");
     stringStack.Push("test2");
@@ -122,6 +133,33 @@ TEST_F(CStringStackTestFixture, CopyStackByCopyOperator)
     }
 
     ASSERT_EQ(copyStringStack.IsEmpty(), stringStack.IsEmpty());
+}
+
+TEST_F(CStringStackTestFixture, CopyStackByPushModifyOnlySelf)
+{
+    stringStack.Push("test1");
+    stringStack.Push("test2");
+
+    CStringStack copyStringStack;
+    copyStringStack = stringStack;
+
+    copyStringStack.Push("test3");
+    ASSERT_NE(copyStringStack.Top(), stringStack.Top());
+}
+
+TEST_F(CStringStackTestFixture, CopyingObjectToItself)
+{
+    ASSERT_TRUE(stringStack.IsEmpty());
+
+    stringStack.Push("test1");
+    stringStack.Push("test2");
+
+    ASSERT_FALSE(stringStack.IsEmpty());
+
+    stringStack = stringStack;
+
+    ASSERT_FALSE(stringStack.IsEmpty());
+    ASSERT_EQ(stringStack.Top(), "test2");
 }
 
 TEST_F(CStringStackTestFixture, MoveStackByConstructor)
@@ -142,7 +180,7 @@ TEST_F(CStringStackTestFixture, MoveStackByConstructor)
     ASSERT_EQ(copyStringStack.IsEmpty(), movedStringStack.IsEmpty());
 }
 
-TEST_F(CStringStackTestFixture, MoveStackByCopyOperator)
+TEST_F(CStringStackTestFixture, MoveStackByAssignmentOperator)
 {
     stringStack.Push("test1");
     stringStack.Push("test2");
@@ -150,7 +188,7 @@ TEST_F(CStringStackTestFixture, MoveStackByCopyOperator)
     CStringStack copyStringStack = stringStack;
     CStringStack movedStringStack;
 
-    movedStringStack = copyStringStack;
+    movedStringStack = std::move(copyStringStack);
 
     while (!copyStringStack.IsEmpty())
     {
@@ -158,6 +196,21 @@ TEST_F(CStringStackTestFixture, MoveStackByCopyOperator)
         copyStringStack.Pop();
         movedStringStack.Pop();
     }
+}
+
+TEST_F(CStringStackTestFixture, MovingObjectToItself)
+{
+    ASSERT_TRUE(stringStack.IsEmpty());
+
+    stringStack.Push("test1");
+    stringStack.Push("test2");
+
+    ASSERT_FALSE(stringStack.IsEmpty());
+
+    stringStack = std::move(stringStack);
+
+    ASSERT_FALSE(stringStack.IsEmpty());
+    ASSERT_EQ(stringStack.Top(), "test2");
 }
 
 int main(int argc, char* argv[])

@@ -72,7 +72,7 @@ CStringStack &CStringStack::operator=(CStringStack const &cloneStack)
     if (this != std::addressof(cloneStack) && !cloneStack.IsEmpty())
     {
         std::shared_ptr<StringElement> tmpCopy = cloneStack.m_top;
-        std::shared_ptr<StringElement> tmpStack = std::make_shared<StringElement>(*tmpCopy->next);
+        std::shared_ptr<StringElement> tmpStack = std::make_shared<StringElement>(*tmpCopy);
         std::shared_ptr<StringElement> headTmpStack = tmpStack;
 
         tmpCopy = tmpCopy->next;
@@ -81,7 +81,7 @@ CStringStack &CStringStack::operator=(CStringStack const &cloneStack)
         {
             while (tmpCopy->next != nullptr)
             {
-                tmpStack->next = std::make_shared<StringElement>(*tmpCopy->next);
+                tmpStack->next = std::make_shared<StringElement>(*tmpCopy);
                 tmpStack = tmpStack->next;
                 tmpCopy = tmpCopy->next;
             }
