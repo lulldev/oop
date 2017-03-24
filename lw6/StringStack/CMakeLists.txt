@@ -15,6 +15,6 @@ include_directories(lib/googletest-master/googletest/include)
 include_directories(lib/googletest-master/googlemock/include)
 include_directories(${Boost_INCLUDE_DIR})
 
-set(SOURCE_FILES tests/Tests.cpp tests/Tests.h StringStack/CStringStack.cpp StringStack/CStringStack.h)
+set(SOURCE_FILES tests/Tests.cpp tests/Tests.h StringStack/StringStack.cpp StringStack/StringStack.h)
 add_executable(TestStringStack ${SOURCE_FILES} tests/Tests.cpp tests/Tests.h)
 target_link_libraries(TestStringStack gtest gtest_main)
