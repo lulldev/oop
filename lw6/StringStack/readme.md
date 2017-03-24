@@ -1,0 +1,2 @@
+IDE: CLion
+Building: CMake

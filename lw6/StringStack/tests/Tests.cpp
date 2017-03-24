@@ -77,6 +77,19 @@ TEST_F(CStringStackTestFixture, ManyPushesAndPops)
     ASSERT_TRUE(stringStack.IsEmpty());
 }
 
+TEST_F(CStringStackTestFixture, GetStackSize)
+{
+    ASSERT_TRUE(stringStack.IsEmpty());
+    ASSERT_EQ(stringStack.GetSize(), 0);
+    stringStack.Push("test");
+    ASSERT_FALSE(stringStack.IsEmpty());
+    ASSERT_EQ(stringStack.GetSize(), 1);
+    stringStack.Push("test");
+    ASSERT_EQ(stringStack.GetSize(), 2);
+    stringStack.Pop();
+    ASSERT_EQ(stringStack.GetSize(), 1);
+}
+
 TEST_F(CStringStackTestFixture, ClearEmptyStack)
 {
     ASSERT_TRUE(stringStack.IsEmpty());
@@ -115,6 +128,7 @@ TEST_F(CStringStackTestFixture, CopyStackByConstructor)
     }
 
     ASSERT_EQ(copyStringStack.IsEmpty(), stringStack.IsEmpty());
+    ASSERT_EQ(copyStringStack.GetSize(), stringStack.GetSize());
 }
 
 TEST_F(CStringStackTestFixture, CopyStackByAssignmentOperator)
@@ -133,6 +147,7 @@ TEST_F(CStringStackTestFixture, CopyStackByAssignmentOperator)
     }
 
     ASSERT_EQ(copyStringStack.IsEmpty(), stringStack.IsEmpty());
+    ASSERT_EQ(copyStringStack.GetSize(), stringStack.GetSize());
 }
 
 TEST_F(CStringStackTestFixture, CopyStackByPushModifyOnlySelf)
@@ -178,6 +193,7 @@ TEST_F(CStringStackTestFixture, MoveStackByConstructor)
     }
 
     ASSERT_EQ(copyStringStack.IsEmpty(), movedStringStack.IsEmpty());
+    ASSERT_EQ(copyStringStack.GetSize(), movedStringStack.GetSize());
 }
 
 TEST_F(CStringStackTestFixture, MoveStackByAssignmentOperator)

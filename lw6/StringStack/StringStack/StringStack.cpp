@@ -24,6 +24,11 @@ bool CStringStack::IsEmpty() const
     return (m_size == 0);
 }
 
+size_t CStringStack::GetSize()const
+{
+    return m_size;
+}
+
 void CStringStack::ClearStack()
 {
     while (!IsEmpty())
@@ -61,7 +66,7 @@ std::string CStringStack::Top() const
 
 void CStringStack::MoveStackToThis(CStringStack &movedStack)
 {
-    m_size = movedStack.m_size;
+    m_size = movedStack.GetSize();
     m_top = movedStack.m_top;
     movedStack.m_top = nullptr;
     movedStack.m_size = 0;
@@ -87,7 +92,7 @@ CStringStack &CStringStack::operator=(CStringStack const &cloneStack)
             }
             ClearStack();
             m_top = headTmpStack;
-            m_size = cloneStack.m_size;
+            m_size = cloneStack.GetSize();
         }
         catch(...)
         {

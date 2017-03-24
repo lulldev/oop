@@ -23,6 +23,7 @@ public:
 
     std::string Top()const;
     bool IsEmpty()const;
+    size_t GetSize()const;
 
     void Push(std::string const& newString);
     void Pop();
