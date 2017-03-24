@@ -3,9 +3,18 @@
 using testing::Eq;
 using namespace std;
 
-TEST(TestHelpers, TestSimplePow)
+/* Для чисел */
+
+class CFindMaxExNumberFixture: public ::testing::Test
 {
-    ASSERT_TRUE(1==1);
+public:
+    std::vector<int> numbersVector;
+    int maxNumber;
+};
+
+TEST_F(CFindMaxExNumberFixture, FindMaxInEmptyVector)
+{
+    ASSERT_FALSE(FindMaxEx(numbersVector, maxNumber, less<int>()));
 }
 
 int main(int argc, char* argv[])

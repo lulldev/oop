@@ -1,9 +1,8 @@
 #include <iostream>
 #include <vector>
 
-template < typename T, typename Less>
-
-bool FindMax(std::vector<T> const& arr, T& maxValue, Less const& less)
+template <typename T, typename Less>
+bool FindMaxEx(std::vector<T> const& arr, T& maxValue, Less const& less)
 {
     if (arr.size() == 0)
     {
@@ -13,9 +12,9 @@ bool FindMax(std::vector<T> const& arr, T& maxValue, Less const& less)
     const T* maxElement = &arr[0];
     for (T arrElem : arr)
     {
-        if (less(*maxElement, arr))
+        if (less(*maxElement, arrElem))
         {
-            maxElement = arrElem;
+            maxElement = &arrElem;
         }
     }
 
