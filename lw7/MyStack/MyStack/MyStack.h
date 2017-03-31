@@ -1,18 +1,19 @@
 #include <iostream>
 
-struct StackElement
-{
-    StackElement(std::string const& element, std::shared_ptr<StackElement>const& nextElement)
-            : stringElement(element)
-            , next(nextElement)
-    {
-    }
-    std::string stringElement;
-    std::shared_ptr<StackElement> next;
-};
-
+template<typename T>
 class CMyStack
 {
+    struct StackElement
+    {
+        StackElement(T const& newElement, std::shared_ptr<StackElement>const& nextElement)
+                : element(newElement)
+                , next(nextElement)
+        {
+        }
+        T element;
+        std::shared_ptr<StackElement> next;
+    };
+
 public:
     CMyStack() = default;
 
@@ -31,13 +32,13 @@ public:
         if (this != std::addressof(cloneStack) && !cloneStack.IsEmpty())
         {
             std::shared_ptr<StackElement> tmpCloneTop = cloneStack.m_top;
-            std::shared_ptr<StackElement> currentElement = std::make_shared<StackElement>(tmpCloneTop->stringElement, nullptr);
+            std::shared_ptr<StackElement> currentElement = std::make_shared<StackElement>(tmpCloneTop->element, nullptr);
             m_top = currentElement;
 
             tmpCloneTop = tmpCloneTop->next;
             while (tmpCloneTop != nullptr)
             {
-                currentElement->next = std::make_shared<StackElement>(tmpCloneTop->stringElement, nullptr);
+                currentElement->next = std::make_shared<StackElement>(tmpCloneTop->element, nullptr);
                 currentElement = currentElement->next;
 
                 tmpCloneTop = tmpCloneTop->next;
@@ -97,14 +98,14 @@ public:
         --m_size;
     }
 
-    std::string Top() const
+    T Top() const
     {
         if (IsEmpty())
         {
             throw std::underflow_error("Error get top element: stack is empty");
         }
 
-        return m_top->stringElement;
+        return m_top->element;
     }
 
 private:
