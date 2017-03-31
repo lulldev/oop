@@ -12,6 +12,6 @@ add_subdirectory(lib/googletest-master)
 include_directories(lib/googletest-master/googletest/include)
 include_directories(lib/googletest-master/googlemock/include)
 
-set(SOURCE_FILES tests/Tests.cpp tests/Tests.h FindMaxEx/FindMaxEx.h)
+set(SOURCE_FILES tests/Tests.cpp tests/Tests.h FindMaxEx/FindMaxEx.h tests/data/Athlete.cpp tests/data/Athlete.h)
 add_executable(FindMaxTesting ${SOURCE_FILES})
 target_link_libraries(FindMaxTesting gtest_main)
