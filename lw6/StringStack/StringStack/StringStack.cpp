@@ -76,31 +76,19 @@ CStringStack &CStringStack::operator=(CStringStack const& cloneStack)
 {
     if (this != std::addressof(cloneStack) && !cloneStack.IsEmpty())
     {
-        std::shared_ptr<StringElement> cloneStackTop = cloneStack.m_top;
-        std::shared_ptr<StringElement> tmpStack = std::make_shared<StringElement>(*cloneStackTop);
-        std::shared_ptr<StringElement> copyTmpStack = tmpStack;
+        std::shared_ptr<StringElement> tmpCloneTop = cloneStack.m_top;
+        std::shared_ptr<StringElement> currentElement = std::make_shared<StringElement>(tmpCloneTop->stringElement, nullptr);
+        m_top = currentElement;
 
-        cloneStackTop = cloneStackTop->next;
+        tmpCloneTop = tmpCloneTop->next;
+        while (tmpCloneTop != nullptr)
+        {
+            currentElement->next = std::make_shared<StringElement>(tmpCloneTop->stringElement, nullptr);
+            currentElement = currentElement->next;
 
-        try
-        {
-            while (cloneStackTop->next != nullptr)
-            {
-                tmpStack->next = std::make_shared<StringElement>(*cloneStackTop);
-                tmpStack = tmpStack->next;
-                cloneStackTop = cloneStackTop->next;
-            }
-            ClearStack();
-            m_top = copyTmpStack;
-            m_size = cloneStack.GetSize();
+            tmpCloneTop = tmpCloneTop->next;
         }
-        catch(...)
-        {
-            while (copyTmpStack != nullptr)
-            {
-                delete copyTmpStack.get();
-            }
-        }
+        m_size = cloneStack.m_size;
     }
     return *this;
 }
