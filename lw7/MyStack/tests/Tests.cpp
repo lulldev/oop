@@ -229,6 +229,234 @@ TEST_F(CMyStackStringTestFixture, MovingObjectToItself)
     ASSERT_EQ(stringStack.Top(), "test2");
 }
 
+/* Для чисел (int) */
+
+class CMyStackIntegerTestFixture: public ::testing::Test
+{
+public:
+    CMyStack<int> numberStack;
+};
+
+TEST_F(CMyStackIntegerTestFixture, NewStackIsEmpty)
+{
+    ASSERT_TRUE(numberStack.IsEmpty());
+    numberStack.Push(1);
+    ASSERT_FALSE(numberStack.IsEmpty());
+}
+
+TEST_F(CMyStackIntegerTestFixture, GetTopOnEmptyStack)
+{
+    ASSERT_THROW(numberStack.Top(), std::underflow_error);
+}
+
+TEST_F(CMyStackIntegerTestFixture, GetTopOnFilledStack)
+{
+    numberStack.Push(1);
+    ASSERT_NO_THROW(numberStack.Top());
+    ASSERT_EQ(numberStack.Top(), 1);
+}
+
+TEST_F(CMyStackIntegerTestFixture, PushInEmptyStack)
+{
+    ASSERT_TRUE(numberStack.IsEmpty());
+    numberStack.Push(1);
+    ASSERT_FALSE(numberStack.IsEmpty());
+    ASSERT_EQ(numberStack.Top(), 1);
+    numberStack.Push(2);
+    ASSERT_EQ(numberStack.Top(), 2);
+}
+
+TEST_F(CMyStackIntegerTestFixture, PushInFilledStack)
+{
+    numberStack.Push(1);
+    numberStack.Push(2);
+    ASSERT_FALSE(numberStack.IsEmpty());
+    ASSERT_EQ(numberStack.Top(), 2);
+    numberStack.Push(1);
+    ASSERT_EQ(numberStack.Top(), 1);
+}
+
+TEST_F(CMyStackIntegerTestFixture, PopInEmptyStack)
+{
+    ASSERT_TRUE(numberStack.IsEmpty());
+    ASSERT_THROW(numberStack.Pop(), std::underflow_error);
+}
+
+TEST_F(CMyStackIntegerTestFixture, PopInFilledStack)
+{
+    numberStack.Push(1);
+    ASSERT_FALSE(numberStack.IsEmpty());
+    ASSERT_NO_THROW(numberStack.Pop());
+    ASSERT_TRUE(numberStack.IsEmpty());
+}
+
+TEST_F(CMyStackIntegerTestFixture, ManyPushesAndPops)
+{
+    ASSERT_TRUE(numberStack.IsEmpty());
+
+    int c = 0;
+    while (c < 20)
+    {
+        numberStack.Push(c);
+        ASSERT_EQ(numberStack.Top(), c);
+        numberStack.Pop();
+        c++;
+    }
+    ASSERT_TRUE(numberStack.IsEmpty());
+}
+
+TEST_F(CMyStackIntegerTestFixture, GetStackSize)
+{
+    ASSERT_TRUE(numberStack.IsEmpty());
+    ASSERT_EQ(numberStack.GetSize(), 0);
+    numberStack.Push(1);
+    ASSERT_FALSE(numberStack.IsEmpty());
+    ASSERT_EQ(numberStack.GetSize(), 1);
+    numberStack.Push(1);
+    ASSERT_EQ(numberStack.GetSize(), 2);
+    numberStack.Pop();
+    ASSERT_EQ(numberStack.GetSize(), 1);
+}
+
+TEST_F(CMyStackIntegerTestFixture, ClearEmptyStack)
+{
+    ASSERT_TRUE(numberStack.IsEmpty());
+    ASSERT_NO_THROW(numberStack.ClearStack());
+    ASSERT_TRUE(numberStack.IsEmpty());
+}
+
+TEST_F(CMyStackIntegerTestFixture, ClearFilledStack)
+{
+    ASSERT_TRUE(numberStack.IsEmpty());
+    numberStack.Push(1);
+    numberStack.Push(2);
+    ASSERT_FALSE(numberStack.IsEmpty());
+    numberStack.ClearStack();
+    ASSERT_TRUE(numberStack.IsEmpty());
+}
+
+TEST_F(CMyStackIntegerTestFixture, CopyStackByConstructor)
+{
+    numberStack.Push(1);
+    numberStack.Push(2);
+    numberStack.Push(3);
+    numberStack.Push(4);
+    numberStack.Pop();
+    numberStack.Push(4);
+    numberStack.Pop();
+    numberStack.Push(5);
+
+    CMyStack<int> copynumberStack = numberStack;
+
+    while (!copynumberStack.IsEmpty())
+    {
+        ASSERT_EQ(copynumberStack.Top(), numberStack.Top());
+        copynumberStack.Pop();
+        numberStack.Pop();
+    }
+
+    ASSERT_EQ(copynumberStack.IsEmpty(), numberStack.IsEmpty());
+    ASSERT_EQ(copynumberStack.GetSize(), numberStack.GetSize());
+}
+
+TEST_F(CMyStackIntegerTestFixture, CopyStackByAssignmentOperator)
+{
+    numberStack.Push(1);
+    numberStack.Push(2);
+
+    CMyStack<int> copynumberStack;
+    copynumberStack = numberStack;
+
+    while (!copynumberStack.IsEmpty())
+    {
+        ASSERT_EQ(copynumberStack.Top(), numberStack.Top());
+        copynumberStack.Pop();
+        numberStack.Pop();
+    }
+
+    ASSERT_EQ(copynumberStack.IsEmpty(), numberStack.IsEmpty());
+    ASSERT_EQ(copynumberStack.GetSize(), numberStack.GetSize());
+}
+
+TEST_F(CMyStackIntegerTestFixture, CopyStackByPushModifyOnlySelf)
+{
+    numberStack.Push(1);
+    numberStack.Push(2);
+
+    CMyStack<int> copynumberStack;
+    copynumberStack = numberStack;
+
+    copynumberStack.Push(3);
+    ASSERT_NE(copynumberStack.Top(), numberStack.Top());
+}
+
+TEST_F(CMyStackIntegerTestFixture, CopyingObjectToItself)
+{
+    ASSERT_TRUE(numberStack.IsEmpty());
+
+    numberStack.Push(1);
+    numberStack.Push(2);
+
+    ASSERT_FALSE(numberStack.IsEmpty());
+
+    numberStack = numberStack;
+
+    ASSERT_FALSE(numberStack.IsEmpty());
+    ASSERT_EQ(numberStack.Top(), 2);
+}
+
+TEST_F(CMyStackIntegerTestFixture, MoveStackByConstructor)
+{
+    numberStack.Push(1);
+    numberStack.Push(2);
+
+    CMyStack<int> copynumberStack = numberStack;
+    CMyStack<int> movednumberStack = std::move(numberStack);
+
+    while (!copynumberStack.IsEmpty())
+    {
+        ASSERT_EQ(copynumberStack.Top(), movednumberStack.Top());
+        copynumberStack.Pop();
+        movednumberStack.Pop();
+    }
+
+    ASSERT_EQ(copynumberStack.IsEmpty(), movednumberStack.IsEmpty());
+    ASSERT_EQ(copynumberStack.GetSize(), movednumberStack.GetSize());
+}
+
+TEST_F(CMyStackIntegerTestFixture, MoveStackByAssignmentOperator)
+{
+    numberStack.Push(1);
+    numberStack.Push(2);
+
+    CMyStack<int> copynumberStack = numberStack;
+    CMyStack<int> movednumberStack;
+
+    movednumberStack = std::move(copynumberStack);
+
+    while (!copynumberStack.IsEmpty())
+    {
+        ASSERT_EQ(copynumberStack.Top(), movednumberStack.Top());
+        copynumberStack.Pop();
+        movednumberStack.Pop();
+    }
+}
+
+TEST_F(CMyStackIntegerTestFixture, MovingObjectToItself)
+{
+    ASSERT_TRUE(numberStack.IsEmpty());
+
+    numberStack.Push(1);
+    numberStack.Push(2);
+
+    ASSERT_FALSE(numberStack.IsEmpty());
+
+    numberStack = std::move(numberStack);
+
+    ASSERT_FALSE(numberStack.IsEmpty());
+    ASSERT_EQ(numberStack.Top(), 2);
+}
+
 int main(int argc, char* argv[])
 {
     testing::InitGoogleTest(&argc, argv);

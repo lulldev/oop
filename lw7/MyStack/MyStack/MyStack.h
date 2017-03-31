@@ -81,7 +81,7 @@ public:
         }
     }
 
-    void Push(std::string const &newString)
+    void Push(T const &newString)
     {
         m_top = std::make_shared<StackElement>(newString, m_top);
         ++m_size;
