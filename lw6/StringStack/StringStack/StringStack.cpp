@@ -19,7 +19,7 @@ CStringStack::~CStringStack()
     ClearStack();
 }
 
-bool CStringStack::IsEmpty() const
+bool CStringStack::IsEmpty()const
 {
     return (m_size == 0);
 }
