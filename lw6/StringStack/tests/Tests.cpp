@@ -198,7 +198,7 @@ TEST_F(CStringFilledStackFixture, CopyStackWithConstructor)
 
     while (!copyStringStack.IsEmpty())
     {
-        ASSERT_EQ(copyStringStack.GetSize(), stringStack.GetSize());
+        ASSERT_EQ(copyStringStack.Top(), stringStack.Top());
         stringStack.Pop();
         copyStringStack.Pop();
     }
