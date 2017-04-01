@@ -74,6 +74,13 @@ void CStringStack::MoveStackToThis(CStringStack &movedStack)
 
 CStringStack &CStringStack::operator=(CStringStack const& rhsStack)
 {
+    if (rhsStack.IsEmpty())
+    {
+        m_top = nullptr;
+        m_size = 0;
+        return *this;
+    }
+
     if (this != std::addressof(rhsStack))
     {
         std::shared_ptr<StringElement> tmpCloneTop = rhsStack.m_top;
@@ -88,9 +95,11 @@ CStringStack &CStringStack::operator=(CStringStack const& rhsStack)
             {
                 currentElement->next = std::make_shared<StringElement>(tmpCloneTop->stringElement, nullptr);
                 currentElement = currentElement->next;
-
                 tmpCloneTop = tmpCloneTop->next;
             }
+            ClearStack();
+            m_top = tmpCurrentElement;
+            m_size = rhsStack.GetSize();
         }
         catch (...)
         {
@@ -100,8 +109,6 @@ CStringStack &CStringStack::operator=(CStringStack const& rhsStack)
                 currentElement = currentElement->next;
             }
         }
-        m_top = tmpCurrentElement;
-        m_size = rhsStack.m_size;
     }
     return *this;
 }
