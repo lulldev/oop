@@ -48,13 +48,13 @@ TEST_F(CStringStackTestFixture, PushInFilledStack)
     ASSERT_EQ(stringStack.Top(), "test1");
 }
 
-TEST_F(CStringStackTestFixture, PopInEmptyStack)
+TEST_F(CStringStackTestFixture, PopFromEmptyStack)
 {
     ASSERT_TRUE(stringStack.IsEmpty());
     ASSERT_THROW(stringStack.Pop(), std::underflow_error);
 }
 
-TEST_F(CStringStackTestFixture, PopInFilledStack)
+TEST_F(CStringStackTestFixture, PopFromFilledStack)
 {
     stringStack.Push("test1");
     ASSERT_FALSE(stringStack.IsEmpty());
@@ -107,7 +107,7 @@ TEST_F(CStringStackTestFixture, ClearFilledStack)
     ASSERT_TRUE(stringStack.IsEmpty());
 }
 
-TEST_F(CStringStackTestFixture, CopyStackByConstructor)
+TEST_F(CStringStackTestFixture, CopyStackWithConstructor) // with
 {
     stringStack.Push("test1");
     stringStack.Push("test2");
@@ -131,7 +131,7 @@ TEST_F(CStringStackTestFixture, CopyStackByConstructor)
     ASSERT_EQ(copyStringStack.GetSize(), stringStack.GetSize());
 }
 
-TEST_F(CStringStackTestFixture, CopyStackByAssignmentOperator)
+TEST_F(CStringStackTestFixture, CopyStackWithAssignmentOperator)
 {
     stringStack.Push("test1");
     stringStack.Push("test2");
@@ -150,7 +150,30 @@ TEST_F(CStringStackTestFixture, CopyStackByAssignmentOperator)
     ASSERT_EQ(copyStringStack.GetSize(), stringStack.GetSize());
 }
 
-TEST_F(CStringStackTestFixture, CopyStackByPushModifyOnlySelf)
+TEST_F(CStringStackTestFixture, CopyStackWithAssignmentOperatorWithManyCalls)
+{
+    int c = 0;
+    while (c < 100000)
+    {
+        stringStack.Push(to_string(c));
+        c++;
+    }
+
+    CStringStack copyStringStack;
+    copyStringStack = stringStack;
+
+    while (!copyStringStack.IsEmpty())
+    {
+        ASSERT_EQ(copyStringStack.Top(), stringStack.Top());
+        copyStringStack.Pop();
+        stringStack.Pop();
+    }
+
+    ASSERT_EQ(copyStringStack.IsEmpty(), stringStack.IsEmpty());
+    ASSERT_EQ(copyStringStack.GetSize(), stringStack.GetSize());
+}
+
+TEST_F(CStringStackTestFixture, CopyStackWithPushModifyOnlySelf)
 {
     stringStack.Push("test1");
     stringStack.Push("test2");
@@ -177,7 +200,7 @@ TEST_F(CStringStackTestFixture, CopyingObjectToItself)
     ASSERT_EQ(stringStack.Top(), "test2");
 }
 
-TEST_F(CStringStackTestFixture, MoveStackByConstructor)
+TEST_F(CStringStackTestFixture, MoveStackWithConstructor)
 {
     stringStack.Push("test1");
     stringStack.Push("test2");
@@ -196,7 +219,7 @@ TEST_F(CStringStackTestFixture, MoveStackByConstructor)
     ASSERT_EQ(copyStringStack.GetSize(), movedStringStack.GetSize());
 }
 
-TEST_F(CStringStackTestFixture, MoveStackByAssignmentOperator)
+TEST_F(CStringStackTestFixture, MoveStackWithAssignmentOperator)
 {
     stringStack.Push("test1");
     stringStack.Push("test2");
