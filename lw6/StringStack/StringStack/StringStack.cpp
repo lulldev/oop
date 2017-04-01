@@ -78,6 +78,7 @@ CStringStack &CStringStack::operator=(CStringStack const& rhsStack)
     {
         m_top = nullptr;
         m_size = 0;
+        ClearStack();
         return *this;
     }
 

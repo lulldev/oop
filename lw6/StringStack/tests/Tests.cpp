@@ -21,7 +21,7 @@ TEST_F(CStringEmptyStackFixture, GetTopMustThrow)
     ASSERT_THROW(stringStack.Top(), std::underflow_error);
 }
 
-TEST_F(CStringEmptyStackFixture, CanPushInStack)
+TEST_F(CStringEmptyStackFixture, CanPushInStackReturnLasRecentlyAddedElement)
 {
     stringStack.Push("test");
     ASSERT_EQ(stringStack.Top(), "test");
@@ -47,7 +47,7 @@ TEST_F(CStringEmptyStackFixture, GetStackSize)
     ASSERT_EQ(stringStack.GetSize(), 1);
 }
 
-TEST_F(CStringEmptyStackFixture, ClearStack)
+TEST_F(CStringEmptyStackFixture, ClearStackAndStackWillEmpty)
 {
     ASSERT_TRUE(stringStack.IsEmpty());
     ASSERT_NO_THROW(stringStack.ClearStack());
@@ -55,14 +55,14 @@ TEST_F(CStringEmptyStackFixture, ClearStack)
 }
 
 
-TEST_F(CStringEmptyStackFixture, CopyStackWithConstructor)
+TEST_F(CStringEmptyStackFixture, CopyStackWithConstructorAndStackWillEmpty)
 {
     ASSERT_TRUE(stringStack.IsEmpty());
     CStringStack copyStringStack = stringStack;
     ASSERT_EQ(copyStringStack.IsEmpty(), stringStack.IsEmpty());
 }
 
-TEST_F(CStringEmptyStackFixture, CopyStackWithAssignmentOperator)
+TEST_F(CStringEmptyStackFixture, CopyStackWithAssignmentOperatorAndStackWillEmpty)
 {
     CStringStack copyStringStack;
     copyStringStack = stringStack;
@@ -70,7 +70,7 @@ TEST_F(CStringEmptyStackFixture, CopyStackWithAssignmentOperator)
     ASSERT_EQ(copyStringStack.GetSize(), stringStack.GetSize());
 }
 
-TEST_F(CStringEmptyStackFixture, CopyStackWithPushModifyOnlySelf)
+TEST_F(CStringEmptyStackFixture, CopyStackWithPushModifyOnlySelfAndReturnLastRecentlyElement)
 {
     CStringStack copyStringStack;
     copyStringStack = stringStack;
@@ -79,13 +79,13 @@ TEST_F(CStringEmptyStackFixture, CopyStackWithPushModifyOnlySelf)
     ASSERT_NE(copyStringStack.GetSize(), stringStack.GetSize());
 }
 
-TEST_F(CStringEmptyStackFixture, CopyingObjectToItself)
+TEST_F(CStringEmptyStackFixture, CopyingObjectToItselfAndStackWillEmpty)
 {
     stringStack = stringStack;
     ASSERT_TRUE(stringStack.IsEmpty());
 }
 
-TEST_F(CStringEmptyStackFixture, MoveStackWithConstructor)
+TEST_F(CStringEmptyStackFixture, MoveStackWithConstructorAndStackWillEmpty)
 {
     CStringStack copyStringStack = stringStack;
     CStringStack movedStringStack = std::move(stringStack);
@@ -93,7 +93,7 @@ TEST_F(CStringEmptyStackFixture, MoveStackWithConstructor)
     ASSERT_EQ(copyStringStack.GetSize(), movedStringStack.GetSize());
 }
 
-TEST_F(CStringEmptyStackFixture, MoveStackWithAssignmentOperator)
+TEST_F(CStringEmptyStackFixture, MoveStackWithAssignmentOperatorAndStackWillEmpty)
 {
 
     CStringStack copyStringStack = stringStack;
@@ -105,7 +105,7 @@ TEST_F(CStringEmptyStackFixture, MoveStackWithAssignmentOperator)
 }
 
 
-TEST_F(CStringEmptyStackFixture, MovingObjectToItself)
+TEST_F(CStringEmptyStackFixture, MovingObjectToItselfAndStackWillEmpty)
 {
     ASSERT_TRUE(stringStack.IsEmpty());
     stringStack = std::move(stringStack);
@@ -136,7 +136,7 @@ TEST_F(CStringFilledStackFixture, GetTopMustNoThrow)
 }
 
 
-TEST_F(CStringFilledStackFixture, GetTopOnFilledStack)
+TEST_F(CStringFilledStackFixture, GetTopOnFilledStackMustReturnRecentlyAddedElement)
 {
     ASSERT_NO_THROW(stringStack.Top());
     ASSERT_EQ(stringStack.Top(), "test3");
@@ -146,7 +146,7 @@ TEST_F(CStringFilledStackFixture, GetTopOnFilledStack)
 }
 
 
-TEST_F(CStringFilledStackFixture, CanPushInStack)
+TEST_F(CStringFilledStackFixture, PushInStackMustReturnTheRecentlyAddedElement)
 {
     ASSERT_EQ(stringStack.Top(), "test3");
     stringStack.Push("test4");
@@ -154,7 +154,7 @@ TEST_F(CStringFilledStackFixture, CanPushInStack)
 }
 
 
-TEST_F(CStringFilledStackFixture, PopFromFilledStack)
+TEST_F(CStringFilledStackFixture, PopFromFilledStackWillNoThrow)
 {
     ASSERT_FALSE(stringStack.IsEmpty());
     ASSERT_NO_THROW(stringStack.Pop());
@@ -186,13 +186,13 @@ TEST_F(CStringFilledStackFixture, GetStackSize)
     ASSERT_EQ(stringStack.GetSize(), 4);
 }
 
-TEST_F(CStringFilledStackFixture, ClearStack)
+TEST_F(CStringFilledStackFixture, ClearStackMustRemoveAllElement)
 {
     ASSERT_NO_THROW(stringStack.ClearStack());
     ASSERT_TRUE(stringStack.IsEmpty());
 }
 
-TEST_F(CStringFilledStackFixture, CopyStackWithConstructor)
+TEST_F(CStringFilledStackFixture, CopyStackWithConstructorMustEqualStacks)
 {
     CStringStack copyStringStack = stringStack;
 
@@ -229,7 +229,7 @@ TEST_F(CStringFilledStackFixture, CopyStackWithAssignmentOperatorWithManyCalls)
     ASSERT_EQ(copyStringStack.GetSize(), stringStack.GetSize());
 }
 
-TEST_F(CStringFilledStackFixture, CopyStackWithPushModifyOnlySelf)
+TEST_F(CStringFilledStackFixture, CopyStackWithPushModifyOnlySelfMustReturnThePushingElement)
 {
     CStringStack copyStringStack;
     copyStringStack = stringStack;
@@ -238,14 +238,14 @@ TEST_F(CStringFilledStackFixture, CopyStackWithPushModifyOnlySelf)
 }
 
 
-TEST_F(CStringFilledStackFixture, CopyingObjectToItself)
+TEST_F(CStringFilledStackFixture, CopyingObjectToItselfMustReturnTheRecentlyAddedElement)
 {
     stringStack = stringStack;
     ASSERT_FALSE(stringStack.IsEmpty());
     ASSERT_EQ(stringStack.Top(), "test3");
 }
 
-TEST_F(CStringFilledStackFixture, MoveStackWithConstructor)
+TEST_F(CStringFilledStackFixture, MoveStackWithConstructorMustEqualStasks)
 {
     CStringStack copyStringStack = stringStack;
     CStringStack movedStringStack = std::move(stringStack);
@@ -266,18 +266,19 @@ TEST_F(CStringFilledStackFixture, MoveStackWithAssignmentOperator)
 {
     CStringStack copyStringStack = stringStack;
     CStringStack movedStringStack;
+    movedStringStack = std::move(stringStack);
 
-    movedStringStack = std::move(copyStringStack);
-
-    while (!copyStringStack.IsEmpty())
+    while (!stringStack.IsEmpty())
     {
-        ASSERT_EQ(copyStringStack.Top(), movedStringStack.Top());
-        copyStringStack.Pop();
+        ASSERT_EQ(stringStack.Top(), movedStringStack.Top());
+        stringStack.Pop();
         movedStringStack.Pop();
     }
+
+    ASSERT_NE(stringStack.GetSize(), movedStringStack.GetSize());
 }
 
-TEST_F(CStringFilledStackFixture, MovingObjectToItself)
+TEST_F(CStringFilledStackFixture, MovingObjectToItselfMustReturnTheRecentlyAddedElement)
 {
     stringStack = std::move(stringStack);
     ASSERT_FALSE(stringStack.IsEmpty());
