@@ -217,6 +217,13 @@ TEST_F(CStringFilledStackFixture, CopyStackWithAssignmentOperatorWithManyCalls)
 
     CStringStack copyStringStack;
     copyStringStack = stringStack;
+    CStringStack emptyStack;
+    copyStringStack = emptyStack;
+
+    copyStringStack = stringStack;
+    copyStringStack = (CStringStack());
+
+    copyStringStack = stringStack;
 
     while (!copyStringStack.IsEmpty())
     {
