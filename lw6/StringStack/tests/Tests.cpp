@@ -36,7 +36,7 @@ TEST_F(CStringEmptyStackFixture, PopFromStackMustThrow)
     ASSERT_THROW(stringStack.Pop(), std::underflow_error);
 }
 
-TEST_F(CStringEmptyStackFixture, GetStackSize)
+TEST_F(CStringEmptyStackFixture, CanGetValidGetStackSize)
 {
     ASSERT_EQ(stringStack.GetSize(), 0);
     stringStack.Push("test");
