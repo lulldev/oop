@@ -66,9 +66,9 @@ std::string CStringStack::Top() const
 
 void CStringStack::MoveStackToThis(CStringStack &movedStack)
 {
+    ClearStack();
     m_size = movedStack.GetSize();
-    m_top = movedStack.m_top;
-    movedStack.m_top = nullptr;
+    movedStack.m_top.swap(m_top);
     movedStack.m_size = 0;
 }
 
