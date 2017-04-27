@@ -27,23 +27,41 @@ public:
         MoveStackToThis(movedStack);
     }
 
-    CMyStack &operator=(CMyStack const& cloneStack)
+    CMyStack &operator=(CMyStack const& rhsStack)
     {
-        if (this != std::addressof(cloneStack) && !cloneStack.IsEmpty())
+        if (rhsStack.IsEmpty())
         {
-            std::shared_ptr<StackElement> tmpCloneTop = cloneStack.m_top;
-            std::shared_ptr<StackElement> currentElement = std::make_shared<StackElement>(tmpCloneTop->element, nullptr);
-            m_top = currentElement;
+            ClearStack();
+            return *this;
+        }
 
-            tmpCloneTop = tmpCloneTop->next;
-            while (tmpCloneTop != nullptr)
+        if (this != std::addressof(rhsStack))
+        {
+            std::shared_ptr<StackElement> tmpCopyTop = rhsStack.m_top;
+            std::shared_ptr<StackElement> currentElement = std::make_shared<StackElement>(tmpCopyTop->element, nullptr);
+            std::shared_ptr<StackElement> tmpCurrentElement = currentElement;
+
+            tmpCopyTop = tmpCopyTop->next;
+            try
             {
-                currentElement->next = std::make_shared<StackElement>(tmpCloneTop->element, nullptr);
-                currentElement = currentElement->next;
-
-                tmpCloneTop = tmpCloneTop->next;
+                while (tmpCopyTop != nullptr)
+                {
+                    currentElement->next = std::make_shared<StackElement>(tmpCopyTop->element, nullptr);
+                    currentElement = currentElement->next;
+                    tmpCopyTop = tmpCopyTop->next;
+                }
+                ClearStack();
+                m_top = tmpCurrentElement;
+                m_size = rhsStack.GetSize();
             }
-            m_size = cloneStack.m_size;
+            catch (...)
+            {
+                while (currentElement != nullptr)
+                {
+                    std::shared_ptr<StackElement> deleteNode = currentElement;
+                    currentElement = currentElement->next;
+                }
+            }
         }
         return *this;
     }
