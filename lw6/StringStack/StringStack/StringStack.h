@@ -17,9 +17,9 @@ class CStringStack
 public:
     CStringStack();
     CStringStack(CStringStack const& stack);
-    CStringStack(CStringStack && movedStack);
+    CStringStack(CStringStack&& movedStack);
     CStringStack& operator=(CStringStack const& rhsStack);
-    CStringStack& operator=(CStringStack && movedStack);
+    CStringStack& operator=(CStringStack&& movedStack);
     ~CStringStack();
 
     std::string Top()const;

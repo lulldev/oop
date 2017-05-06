@@ -1,4 +1,6 @@
-#include <iostream>
+#include <string>
+#include <memory>
+#include <cassert>
 
 template<typename T>
 class CMyStack
@@ -58,7 +60,6 @@ public:
             {
                 while (currentElement != nullptr)
                 {
-                    std::shared_ptr<StackElement> deleteNode = currentElement;
                     currentElement = currentElement->next;
                 }
             }
@@ -99,7 +100,7 @@ public:
         }
     }
 
-    void Push(T const &newString)
+    void Push(T const& newString)
     {
         m_top = std::make_shared<StackElement>(newString, m_top);
         ++m_size;
@@ -130,11 +131,12 @@ private:
     size_t m_size = 0;
     std::shared_ptr<StackElement> m_top = nullptr;
 
-    void MoveStackToThis(CMyStack &movedStack)
+    void MoveStackToThis(CMyStack& movedStack)
     {
+        assert(addressof(movedStack) != this);
         ClearStack();
         m_size = movedStack.GetSize();
-        movedStack.m_top.swap(m_top);
+        m_top = move(movedStack.m_top);
         movedStack.m_size = 0;
     }
 };

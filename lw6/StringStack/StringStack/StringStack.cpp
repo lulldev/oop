@@ -6,7 +6,7 @@ using namespace std;
 
 CStringStack::CStringStack() = default;
 
-CStringStack::CStringStack(CStringStack const &stack)
+CStringStack::CStringStack(CStringStack const& stack)
 {
     *(this) = stack;
 }
@@ -39,7 +39,7 @@ void CStringStack::ClearStack()
     }
 }
 
-void CStringStack::Push(std::string const &newString)
+void CStringStack::Push(std::string const& newString)
 {
     m_top = std::make_shared<StringElement>(newString, m_top);
     ++m_size;
@@ -66,7 +66,7 @@ std::string CStringStack::Top() const
     return m_top->stringElement;
 }
 
-void CStringStack::MoveStackToThis(CStringStack &movedStack)
+void CStringStack::MoveStackToThis(CStringStack& movedStack)
 {
     assert(addressof(movedStack) != this);
     ClearStack();
