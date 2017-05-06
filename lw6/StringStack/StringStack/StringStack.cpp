@@ -1,5 +1,7 @@
 #include "StringStack.h"
 
+#include <cassert>
+
 using namespace std;
 
 CStringStack::CStringStack() = default;
@@ -9,7 +11,7 @@ CStringStack::CStringStack(CStringStack const &stack)
     *(this) = stack;
 }
 
-CStringStack::CStringStack(CStringStack &&movedStack)
+CStringStack::CStringStack(CStringStack&& movedStack)
 {
     MoveStackToThis(movedStack);
 }
@@ -66,9 +68,10 @@ std::string CStringStack::Top() const
 
 void CStringStack::MoveStackToThis(CStringStack &movedStack)
 {
+    assert(addressof(movedStack) != this);
     ClearStack();
     m_size = movedStack.GetSize();
-    movedStack.m_top.swap(m_top);
+    m_top = move(movedStack.m_top);
     movedStack.m_size = 0;
 }
 
@@ -103,7 +106,6 @@ CStringStack &CStringStack::operator=(CStringStack const& rhsStack)
         {
             while (currentElement != nullptr)
             {
-                std::shared_ptr<StringElement> deleteNode = currentElement;
                 currentElement = currentElement->next;
             }
         }
@@ -111,7 +113,7 @@ CStringStack &CStringStack::operator=(CStringStack const& rhsStack)
     return *this;
 }
 
-CStringStack &CStringStack::operator=(CStringStack &&movedStack)
+CStringStack &CStringStack::operator=(CStringStack&& movedStack)
 {
     if (this != std::addressof(movedStack))
     {
