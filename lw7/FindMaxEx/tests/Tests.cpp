@@ -160,6 +160,51 @@ TEST_F( CFindMaxExAthleteFixture, FindMaxWeightWithManyValuesInVectorReturnValid
     ASSERT_EQ(athlete.GetFullname(), "Ivanov");
 }
 
+/*
+class ObjectWithException
+{
+public:
+    ObjectWithException() = default;
+    ObjectWithException(bool mustThrow)
+            : mustThrow(mustThrow)
+    {};
+    bool mustThrow;
+};
+
+bool operator==(const ObjectWithException& lhs, const ObjectWithException& rhs)
+{
+    if (mustThrow)
+    {
+        throw runtime_error("Error obect with exception");
+    }
+    return false;
+}
+
+struct CFindMaxExTestObjectsFixture: public ::testing::Test
+{
+    std::vector<ObjectWithException> vectorOfTestObjects;
+    std::function<bool(ObjectWithException, ObjectWithException)> less
+            = [](const ObjectWithException& obj1, const ObjectWithException& obj2)
+            { return obj1 == obj2; };
+};
+
+
+TEST_F(CFindMaxExTestObjectsFixture, LessWillThrowException)
+{
+    vectorOfTestObjects.push_back(ObjectWithException(true));
+    vectorOfTestObjects.push_back(ObjectWithException(false));
+    vectorOfTestObjects.push_back(ObjectWithException(false));
+
+    vector<ObjectWithException> vectorOfTestObjects2 = vectorOfTestObjects;
+
+    ObjectWithException testObject;
+    ObjectWithException testObject2 = testObject;
+
+    ASSERT_THROW(FindMaxEx(vectorOfTestObjects, testObject, less), runtime_error);
+    ASSERT_EQ(testObject, testObject2);
+}
+*/
+
 int main(int argc, char* argv[])
 {
     testing::InitGoogleTest(&argc, argv);
