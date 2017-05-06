@@ -7,8 +7,9 @@ class CMyStack
 {
     struct StackElement
     {
-        StackElement(T const& newElement, std::shared_ptr<StackElement>const& nextElement)
-                : element(newElement)
+        template <typename U>
+        StackElement(U && newElement, std::shared_ptr<StackElement>const& nextElement)
+                : element(std::forward<U>(newElement))
                 , next(nextElement)
         {
         }
@@ -100,9 +101,10 @@ public:
         }
     }
 
-    void Push(T const& newString)
+    template <typename U>
+    void Push(U && newItem)
     {
-        m_top = std::make_shared<StackElement>(newString, m_top);
+        m_top = std::make_shared<StackElement>(std::forward<U>(newItem), m_top);
         ++m_size;
     }
 
@@ -117,7 +119,7 @@ public:
         --m_size;
     }
 
-    T Top() const
+    T const& Top() const
     {
         if (IsEmpty())
         {
@@ -133,7 +135,7 @@ private:
 
     void MoveStackToThis(CMyStack& movedStack)
     {
-        assert(addressof(movedStack) != this);
+        assert(std::addressof(movedStack) != this);
         ClearStack();
         m_size = movedStack.GetSize();
         m_top = move(movedStack.m_top);
