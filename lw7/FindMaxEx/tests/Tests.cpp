@@ -3,6 +3,15 @@
 using testing::Eq;
 using namespace std;
 
+template <typename T, typename Less>
+void VerifyFindMaxEx (std::vector<T> const& elementsVector, T const& expectedMaxElement,
+                      Less const& less, bool expectetFindValue)
+{
+    T maxElement;
+    ASSERT_EQ(FindMaxEx(elementsVector, maxElement, less), expectetFindValue);
+    ASSERT_EQ(maxElement, expectedMaxElement);
+}
+
 /* Для чисел */
 
 struct CFindMaxExNumberFixture: public ::testing::Test
@@ -19,15 +28,13 @@ TEST_F(CFindMaxExNumberFixture, FindMaxInEmptyVectorNoThrow)
 
 TEST_F(CFindMaxExNumberFixture, FindMaxInEmptyVectorReturnZero)
 {
-    FindMaxEx(numbersVector, maxNumber, less<int>());
-    ASSERT_EQ(maxNumber, 0);
+    VerifyFindMaxEx(numbersVector, 0, less<int>(), false);
 }
 
 TEST_F(CFindMaxExNumberFixture, FindMaxInVectorWithOneValuesReturnThisElement)
 {
     numbersVector.push_back(2);
-    ASSERT_TRUE(FindMaxEx(numbersVector, maxNumber, less<int>()));
-    ASSERT_EQ(maxNumber, 2);
+    VerifyFindMaxEx(numbersVector, 2, less<int>(), true);
 }
 
 TEST_F(CFindMaxExNumberFixture, FindMaxWithManyValuesInVectorReturnValidMax)
@@ -36,8 +43,7 @@ TEST_F(CFindMaxExNumberFixture, FindMaxWithManyValuesInVectorReturnValidMax)
     numbersVector.push_back(-2);
     numbersVector.push_back(1);
 
-    ASSERT_TRUE(FindMaxEx(numbersVector, maxNumber, less<int>()));
-    ASSERT_EQ(maxNumber, 3);
+    VerifyFindMaxEx(numbersVector, 3, less<int>(), true);
 }
 
 /* Для строк */
@@ -63,8 +69,7 @@ TEST_F(CFindMaxExStringFixture, FindMaxInEmptyVectorReturnZero)
 TEST_F(CFindMaxExStringFixture, FindMaxInVectorWithOneElementReturnThisElement)
 {
     stringVector.push_back("one");
-    ASSERT_TRUE(FindMaxEx(stringVector, maxString, less<string>()));
-    ASSERT_EQ(maxString, "one");
+    VerifyFindMaxEx(stringVector, std::string("one"), less<string>(), true);
 }
 
 TEST_F(CFindMaxExStringFixture, FindMaxInVectorWithManyElementsReturnValidMaxLexicElement)
@@ -73,8 +78,7 @@ TEST_F(CFindMaxExStringFixture, FindMaxInVectorWithManyElementsReturnValidMaxLex
     stringVector.push_back("two");
     stringVector.push_back("wou");
 
-    ASSERT_TRUE(FindMaxEx(stringVector, maxString, less<string>()));
-    ASSERT_EQ(maxString, "wou");
+    VerifyFindMaxEx(stringVector, std::string("wou"), less<string>(), true);
 }
 
 /* Для массива обьектов типа CAthlete */
@@ -95,9 +99,9 @@ struct CFindMaxExAthleteFixture: public ::testing::Test
 
 TEST_F(CFindMaxExAthleteFixture, InitConstructorWithoutArgsCreateAgreedObject)
 {
-    ASSERT_EQ(athlete.GetFullname(), "");
-    ASSERT_EQ(athlete.GetHeight(), "");
-    ASSERT_EQ(athlete.GetWeight(), "");
+    ASSERT_EQ(athlete.GetFullname(), std::string(""));
+    ASSERT_EQ(athlete.GetHeight(), 0);
+    ASSERT_EQ(athlete.GetWeight(), 0);
 }
 
 TEST_F(CFindMaxExAthleteFixture, GetFullnameReturnValidValue)
@@ -132,6 +136,8 @@ TEST_F(CFindMaxExAthleteFixture, FindMaxWithOneElementInVectorReturnThisElement)
     ASSERT_EQ(athlete.GetFullname(), "Romanov");
     ASSERT_TRUE(FindMaxEx(athleteVector, athlete, LessByWeight));
     ASSERT_EQ(athlete.GetFullname(), "Romanov");
+
+//    VerifyFindMaxEx(athleteVector, "wou", LessByHeight, true);
 }
 
 TEST_F( CFindMaxExAthleteFixture, FindMaxHeightWithManyValuesInVectorReturnValidMaxByHeightElement)

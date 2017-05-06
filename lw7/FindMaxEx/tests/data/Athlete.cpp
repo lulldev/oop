@@ -1,7 +1,5 @@
 #include "Athlete.h"
 
-CAthlete::CAthlete() = default;
-
 CAthlete::CAthlete()
         : CAthlete(std::string(""), 0, 0)
 {
