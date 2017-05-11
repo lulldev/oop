@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const set<string> BAD_WORDS_LIST =  {"идиот", "дурак", "fuck"};
+const set<string> BAD_WORDS_LIST =  {"идиот", "дурак", "fuck", "idiot"};
 const set<string> WORDS_SEPARATORS =  {" ", ".", ",", ";", ":", "?", "!"};
 
 bool IsStrInStringSet(const string& str, const set<string>& setStringList)

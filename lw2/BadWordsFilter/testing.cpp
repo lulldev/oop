@@ -7,53 +7,46 @@
 
 using namespace std;
 
-/*
-TEST_CASE("IsBracketsValid with invalid brackets", "[IsBracketsValid]") {
-    REQUIRE(IsBracketsValid(")") == false);
-    REQUIRE(IsBracketsValid("(") == false);
-    REQUIRE(IsBracketsValid("]") == false);
-    REQUIRE(IsBracketsValid("[") == false);
-    REQUIRE(IsBracketsValid(")(") == false);
-    REQUIRE(IsBracketsValid("][") == false);
-    REQUIRE(IsBracketsValid("(])") == false);
-    REQUIRE(IsBracketsValid("[(]") == false);
-    REQUIRE(IsBracketsValid("[](") == false);
-    REQUIRE(IsBracketsValid("[]())") == false);
-    REQUIRE(IsBracketsValid("[())") == false);
-    REQUIRE(IsBracketsValid("[()])") == false);
-}
-
-TEST_CASE("IsBracketsValid with valid brackets", "[IsBracketsValid]") {
-    REQUIRE(IsBracketsValid("()") == true);
-    REQUIRE(IsBracketsValid("[]") == true);
-    REQUIRE(IsBracketsValid("()[]") == true);
-    REQUIRE(IsBracketsValid("[]()") == true);
-    REQUIRE(IsBracketsValid("()[]()") == true);
-    REQUIRE(IsBracketsValid("([])") == true);
-    REQUIRE(IsBracketsValid("[()]") == true);
-    REQUIRE(IsBracketsValid("[([])()]()") == true);
-}
-
-void TestGenerationBrackets(string outputFileName, int inputLenght)
+TEST_CASE("Filter can process empty strings", "[ReplaceBadWordsInLine]")
 {
-    ofstream outputFile(outputFileName);
-    string s("");
-    string d("");
-    ValidBracketsGenerator(outputFile, inputLenght, s, d, 0);
+    string stringLine("");
+    ReplaceBadWordsInLine(stringLine);
+    REQUIRE(stringLine == string(""));
+}
 
-    ifstream inputFile(outputFileName);
-    string fileLine;
-    while (getline(inputFile, fileLine))
-    {
-        REQUIRE(IsBracketsValid(fileLine) == true);
+TEST_CASE("Filter not modify string without bad words", "[ReplaceBadWordsInLine]")
+{
+    string stringLine("this is line without bad words");
+    ReplaceBadWordsInLine(stringLine);
+    REQUIRE(stringLine == string("this is line without bad words"));
+}
+
+TEST_CASE("Filter can right delete bad words", "[ReplaceBadWordsInLine]")
+{
+    string stringLine;
+    SECTION("Can filter russian words") {
+        stringLine = "привет, как дела, дурак";
+        ReplaceBadWordsInLine(stringLine);
+        REQUIRE(stringLine == string("привет, как дела, "));
+        stringLine = "дурак! привет, как дела";
+        ReplaceBadWordsInLine(stringLine);
+        REQUIRE(stringLine == string(" привет, как дела"));
+    }
+
+    SECTION("Can filter english words") {
+        stringLine = "idiot,are you hear me?";
+        ReplaceBadWordsInLine(stringLine);
+        REQUIRE(stringLine == string("are you hear me?"));
+        stringLine = "hey dude!?fuck you!";
+        ReplaceBadWordsInLine(stringLine);
+        REQUIRE(stringLine == string("hey dude!?you!"));
     }
 }
 
-TEST_CASE("Generate easy list with valid brackets", "[Generator]") {
-    TestGenerationBrackets(std::string("../testdata/output.txt"), 2);
-    TestGenerationBrackets(std::string("../testdata/output.txt"), 4);
-    TestGenerationBrackets(std::string("../testdata/output.txt"), 6);
-    TestGenerationBrackets(std::string("../testdata/output.txt"), 8);
-    TestGenerationBrackets(std::string("../testdata/output.txt"), 12);
+TEST_CASE("Testing i/o stream", "[BadWordsFileFilter]")
+{
+    std::istringstream isstr("hey dude, this is text!\nfuck are you see that?\nэй,дурак,как дела?");
+    std::ostringstream osstr;
+    BadWordsFileFilter(isstr, osstr);
+    REQUIRE(osstr.str() == string("hey dude, this is text!\nare you see that?\nэй,как дела?\n"));
 }
- */
