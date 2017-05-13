@@ -7,7 +7,6 @@ static set<string> WORDS_SEPARATORS =  {" ", ".", ",", ";", ":", "?", "!"};
 
 /**
  * @deprecated
- */
 bool IsStrInStringSet(const string& str, const set<string>& setStringList)
 {
     for (auto it = begin(setStringList); it != end(setStringList); ++it)
@@ -19,6 +18,7 @@ bool IsStrInStringSet(const string& str, const set<string>& setStringList)
     }
     return false;
 }
+ */
 
 void ReplaceBadWordsInLine(string& fileLine)
 {
@@ -49,6 +49,19 @@ void ReplaceBadWordsInLine(string& fileLine)
     }
     fileLine = resultLine;
 }
+
+/*
+void ReplaceBadWordsInLine(string& fileLine)
+{
+    for(auto const badWord : BAD_WORDS_LIST) {
+        std::replace_if(fileLine.begin(), fileLine.end(),
+                        [&](auto const badWord) {
+                            auto resultFindWordInBadwordList = BAD_WORDS_LIST.find(badWord);
+                            return resultFindWordInBadwordList != BAD_WORDS_LIST.end();
+                        }, "");
+    }
+}
+*/
 
 void BadWordsFileFilter(istream& input, ostream& output)
 {
