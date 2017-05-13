@@ -2,9 +2,12 @@
 
 using namespace std;
 
-const set<string> BAD_WORDS_LIST =  {"идиот", "дурак", "fuck", "idiot"};
-const set<string> WORDS_SEPARATORS =  {" ", ".", ",", ";", ":", "?", "!"};
+static set<string> BAD_WORDS_LIST =  {"идиот", "дурак", "fuck", "idiot"};
+static set<string> WORDS_SEPARATORS =  {" ", ".", ",", ";", ":", "?", "!"};
 
+/**
+ * @deprecated
+ */
 bool IsStrInStringSet(const string& str, const set<string>& setStringList)
 {
     for (auto it = begin(setStringList); it != end(setStringList); ++it)
@@ -26,7 +29,8 @@ void ReplaceBadWordsInLine(string& fileLine)
     {
         currentChar = fileLine[i];
         word += currentChar;
-        if ((IsStrInStringSet(currentChar, WORDS_SEPARATORS) || (i + 1 == fileLine.size())) && word.size() != 0)
+        auto resultFindCharInSeparators = WORDS_SEPARATORS.find(currentChar);
+        if ((resultFindCharInSeparators != WORDS_SEPARATORS.end() || (i + 1 == fileLine.size())) && word.size() != 0)
         {
             string cleanedWord = word;
             if ((i + 1 != fileLine.size()))
@@ -34,7 +38,8 @@ void ReplaceBadWordsInLine(string& fileLine)
                 cleanedWord.pop_back();
             }
 
-            if(!IsStrInStringSet(cleanedWord, BAD_WORDS_LIST))
+            auto resultFindWordInBadwordList = BAD_WORDS_LIST.find(cleanedWord);
+            if(resultFindWordInBadwordList == BAD_WORDS_LIST.end())
             {
                 resultLine += word;
             }
