@@ -2,7 +2,8 @@
 #include <string>
 #include <set>
 #include <algorithm>
+#include <sstream>
 
-bool IsStrInStringSet(const std::string& str, const std::set<std::string>& setStringList);
-void BadWordsFileFilter(std::istream& input, std::ostream& output);
-void ReplaceBadWordsInLine(std::string& fileLine);
+std::string ReadNextWord(std::istream& input, std::ostream& output, std::string& separator);
+void FilterBadWord(std::string& word);
+void ReplaceBadWordsInString(const std::string& inputString, std::ostream& output);

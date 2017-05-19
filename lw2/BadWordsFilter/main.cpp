@@ -23,7 +23,12 @@ int main(int argc, const char * argv[])
         return 2;
     }
 
-    BadWordsFileFilter(inputFile, cout);
+    string fileLine;
+    while (getline(inputFile, fileLine))
+    {
+        ReplaceBadWordsInString(fileLine, cout);
+        cout << endl;
+    }
 
     return 0;
 }

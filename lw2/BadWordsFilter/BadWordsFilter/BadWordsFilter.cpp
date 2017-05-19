@@ -2,73 +2,54 @@
 
 using namespace std;
 
-static set<string> BAD_WORDS_LIST =  {"идиот", "дурак", "fuck", "idiot"};
-static set<string> WORDS_SEPARATORS =  {" ", ".", ",", ";", ":", "?", "!"};
-
-/**
- * @deprecated
-bool IsStrInStringSet(const string& str, const set<string>& setStringList)
+namespace
 {
-    for (auto it = begin(setStringList); it != end(setStringList); ++it)
-    {
-        if (str == *it)
-        {
-            return true;
-        }
-    }
-    return false;
+    set<string> BAD_WORDS_LIST =  {"идиот", "дурак", "fuck", "idiot"};
+    set<string> WORDS_SEPARATORS =  {" ", ".", ",", ";", ":", "?", "!"};
 }
- */
 
-void ReplaceBadWordsInLine(string& fileLine)
+string ReadNextWord(istream& input, ostream& output, string& separator)
+{
+    char currentChar;
+    string word;
+    while (input.read(&currentChar, 1))
+    {
+        string currentCharString = string(1, currentChar);
+        auto resultFindCharInSeparators = WORDS_SEPARATORS.find(currentCharString);
+        if (resultFindCharInSeparators != WORDS_SEPARATORS.end())
+        {
+            separator = currentCharString;
+            return word.empty() ? separator : word;
+        }
+        word += currentChar;
+    }
+    return word;
+}
+
+void FilterBadWord(string& word)
+{
+    auto resultFindWordInBadwordList = BAD_WORDS_LIST.find(word);
+    if(resultFindWordInBadwordList != BAD_WORDS_LIST.end())
+    {
+        word.erase();
+    }
+}
+
+void ReplaceBadWordsInString(const string& inputString, ostream& output)
 {
     string word;
-    string currentChar;
-    string resultLine;
-    for (size_t i = 0; i <= fileLine.size(); i++)
+    string separator("");
+    istringstream input(inputString);
+
+    while (!(word = ReadNextWord(input, output, separator)).empty())
     {
-        currentChar = fileLine[i];
-        word += currentChar;
-        auto resultFindCharInSeparators = WORDS_SEPARATORS.find(currentChar);
-        if ((resultFindCharInSeparators != WORDS_SEPARATORS.end() || (i + 1 == fileLine.size())) && word.size() != 0)
+        FilterBadWord(word);
+        output << word;
+        if (word != separator)
         {
-            string cleanedWord = word;
-            if ((i + 1 != fileLine.size()))
-            {
-                cleanedWord.pop_back();
-            }
-
-            auto resultFindWordInBadwordList = BAD_WORDS_LIST.find(cleanedWord);
-            if(resultFindWordInBadwordList == BAD_WORDS_LIST.end())
-            {
-                resultLine += word;
-            }
-
-            word.erase();
+            output << separator;
         }
+        separator.erase();
     }
-    fileLine = resultLine;
 }
 
-/*
-void ReplaceBadWordsInLine(string& fileLine)
-{
-    for(auto const badWord : BAD_WORDS_LIST) {
-        std::replace_if(fileLine.begin(), fileLine.end(),
-                        [&](auto const badWord) {
-                            auto resultFindWordInBadwordList = BAD_WORDS_LIST.find(badWord);
-                            return resultFindWordInBadwordList != BAD_WORDS_LIST.end();
-                        }, "");
-    }
-}
-*/
-
-void BadWordsFileFilter(istream& input, ostream& output)
-{
-    string fileLine;
-    while (getline(input, fileLine))
-    {
-        ReplaceBadWordsInLine(fileLine);
-        output << fileLine << endl;
-    }
-}

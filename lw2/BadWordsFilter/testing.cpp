@@ -7,46 +7,56 @@
 
 using namespace std;
 
-TEST_CASE("Filter can process empty strings", "[ReplaceBadWordsInLine]")
+void ClearOstream(std::ostringstream& osstr)
 {
-    string stringLine("");
-    ReplaceBadWordsInLine(stringLine);
-    REQUIRE(stringLine == string(""));
+    osstr.str("");
+    osstr.clear();
+    osstr.seekp(0);
 }
 
-TEST_CASE("Filter not modify string without bad words", "[ReplaceBadWordsInLine]")
+TEST_CASE("Filter can process empty strings", "[ReplaceBadWordsInString]")
 {
-    string stringLine("this is line without bad words");
-    ReplaceBadWordsInLine(stringLine);
-    REQUIRE(stringLine == string("this is line without bad words"));
+    std::string inputstring("");
+    std::ostringstream osstr;
+    ReplaceBadWordsInString(inputstring, osstr);
+    REQUIRE(osstr.str() == string(""));
+    ClearOstream(osstr);
 }
 
-TEST_CASE("Filter can right delete bad words", "[ReplaceBadWordsInLine]")
+TEST_CASE("Filter not modify string without bad words", "[ReplaceBadWordsInString]")
 {
-    string stringLine;
+    std::string inputstring("this is line without bad words");
+    std::ostringstream osstr;
+    ReplaceBadWordsInString(inputstring, osstr);
+    REQUIRE(osstr.str() == string("this is line without bad words"));
+    ClearOstream(osstr);
+}
+
+TEST_CASE("Filter can right delete bad words", "[ReplaceBadWordsInString]")
+{
+    std::ostringstream osstr;
+    
     SECTION("Can filter russian words") {
-        stringLine = "привет, как дела, дурак";
-        ReplaceBadWordsInLine(stringLine);
-        REQUIRE(stringLine == string("привет, как дела, "));
-        stringLine = "дурак! привет, как дела";
-        ReplaceBadWordsInLine(stringLine);
-        REQUIRE(stringLine == string(" привет, как дела"));
+        std::string inputstring("привет, как дела, дурак");
+        ReplaceBadWordsInString(inputstring, osstr);
+        REQUIRE(osstr.str() == string("привет, как дела, "));
+        ClearOstream(osstr);
+
+        std::string inputstring2("дурак! привет, как дела");
+        ReplaceBadWordsInString(inputstring2, osstr);
+        REQUIRE(osstr.str() == string("! привет, как дела"));
+        ClearOstream(osstr);
     }
 
     SECTION("Can filter english words") {
-        stringLine = "idiot,are you hear me?";
-        ReplaceBadWordsInLine(stringLine);
-        REQUIRE(stringLine == string("are you hear me?"));
-        stringLine = "hey dude!?fuck you!";
-        ReplaceBadWordsInLine(stringLine);
-        REQUIRE(stringLine == string("hey dude!?you!"));
-    }
-}
+        std::string inputstring("idiot,are you hear me?");
+        ReplaceBadWordsInString(inputstring, osstr);
+        REQUIRE(osstr.str() == string(",are you hear me?"));
+        ClearOstream(osstr);
 
-TEST_CASE("Testing i/o stream", "[BadWordsFileFilter]")
-{
-    std::istringstream isstr("hey dude, this is text!\nfuck are you see that?\nэй,дурак,как дела?");
-    std::ostringstream osstr;
-    BadWordsFileFilter(isstr, osstr);
-    REQUIRE(osstr.str() == string("hey dude, this is text!\nare you see that?\nэй,как дела?\n"));
+        inputstring = "hello  man fuck";
+        ReplaceBadWordsInString(inputstring, osstr);
+        REQUIRE(osstr.str() == string("hello  man "));
+        ClearOstream(osstr);
+    }
 }
