@@ -5,20 +5,19 @@ using namespace std;
 namespace
 {
     set<string> BAD_WORDS_LIST =  {"идиот", "дурак", "fuck", "idiot"};
-    set<string> WORDS_SEPARATORS =  {" ", ".", ",", ";", ":", "?", "!"};
+    string WORDS_SEPARATORS = " .,;:?!\t";
 }
 
 string ReadNextWord(istream& input, ostream& output, string& separator)
 {
+    separator.clear();
     char currentChar;
     string word;
-    while (input.read(&currentChar, 1))
+    while (input.get(currentChar))
     {
-        string currentCharString = string(1, currentChar);
-        auto resultFindCharInSeparators = WORDS_SEPARATORS.find(currentCharString);
-        if (resultFindCharInSeparators != WORDS_SEPARATORS.end())
+        if (WORDS_SEPARATORS.find(currentChar) != std::string::npos)
         {
-            separator = currentCharString;
+            separator = currentChar;
             return word.empty() ? separator : word;
         }
         word += currentChar;
@@ -38,7 +37,7 @@ void FilterBadWord(string& word)
 void ReplaceBadWordsInString(const string& inputString, ostream& output)
 {
     string word;
-    string separator("");
+    string separator;
     istringstream input(inputString);
 
     while (!(word = ReadNextWord(input, output, separator)).empty())
@@ -49,7 +48,6 @@ void ReplaceBadWordsInString(const string& inputString, ostream& output)
         {
             output << separator;
         }
-        separator.erase();
     }
 }
 
